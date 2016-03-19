@@ -45,7 +45,5 @@
     Administrators will have sudo privileges to the VM and web app and this would be done by an engineer or staff.
     Admins would have advanced editing controls, in addition to normal user account options.
     (Constraints)
-
-
     Administrators would need their credentials directly added to the database
     Advanced controls could be limited on a admin to admin basis
