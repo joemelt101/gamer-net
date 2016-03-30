@@ -1,11 +1,15 @@
 <?php
 
-require_once('libs/helper_lib.php');
-
-$controllerName = 'controllers/' . getCurrentPageName(false) . '_controller.php';
+//if the controller location is not set
+if (!isset($controllerLocation))
+{
+    //there's a problem
+    echo ('<b>Controller location must be set!</b>');
+    exit();
+}
 
 //grab controller from specified file
-require_once($controllerName);
+require_once($controllerLocation);
 
 //initiate controller
 $controller = new Controller();
