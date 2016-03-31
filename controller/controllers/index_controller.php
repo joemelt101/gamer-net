@@ -26,7 +26,7 @@ class Controller
     
     public function grabViewLocation()
     {
-        return "views/index_view.php";
+        return "/view/views/index_view.php";
     }
 }
 
