@@ -1,4 +1,5 @@
 <?php
-    $controllerLocation = '/controller/controllers/index_controller.php';
-    require_once('controller/pagebooter.php');
+//this is the landing page    
+$controllerLocation = '/controller/controllers/landing_controller.php';
+require_once('controller/pagebooter.php');
 ?>
