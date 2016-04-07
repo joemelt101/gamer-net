@@ -111,6 +111,10 @@ body {
                             <label class="control-label" for="repeatEmail"></label>
 							<input id="signupEmailagain" type="email" maxlength="50" class="form-control" placeholder="Repeat Email">
 						</div>
+                        <div class="form-group">
+                            <label class="control-label" for="username">Username</label>
+							<input id="username"  maxlength="50" class="form-control" placeholder="Username">
+						</div>
 						<div class="form-group">
 							<label class="control-label" for="signupPassword">Password</label>
 							<input id="signupPassword" type="password" maxlength="25" class="form-control" placeholder="at least 6 characters" length="40">

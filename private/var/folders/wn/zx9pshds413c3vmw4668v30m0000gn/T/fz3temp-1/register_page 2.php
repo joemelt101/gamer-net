@@ -113,7 +113,7 @@ body {
 						</div>
                         <div class="form-group">
                             <label class="control-label" for="username">Username</label>
-							<input id="username"  maxlength="50" class="form-control" placeholder="Username">
+							<input id="username" type="email" maxlength="50" class="form-control" placeholder="Username">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="signupPassword">Password</label>
