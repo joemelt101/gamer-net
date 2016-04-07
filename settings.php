@@ -120,7 +120,7 @@
                 
             <div class="row">
 
-                    <!---------------------------->
+                    <!---->
                     <!--display section-->
                     <div class="col-md-2 dropdown">
                         <button class="btn btn-primary dropdown-toggle btn-success" type="button" data-toggle="dropdown">Area Display
@@ -139,11 +139,11 @@
             </div>
                     
             <div class="row">    
-                <!-------------------->
-                    <!--friends list section-->
+                <!---->
+                    <!--friends list section-
                     <div class="col-md-6 clear">
                         <h3>Friends List</h3>
-                    </div>
+                    </div>-->
                 </div>
 
                 <div class="col-md-6"></div>
