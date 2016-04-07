@@ -6,7 +6,7 @@ $isLoggedIn = true;
 ?>
 
 <!-- Actual display of the view is defined here -->
-<nav class="navbar navbar-inverse ">
+<nav class="navbar navbar-default ">
     <div class="container">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -17,7 +17,6 @@ $isLoggedIn = true;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            
           <a class="navbar-brand" href="#">Gamer-Net</a>
             <ul class="nav navbar-nav">
                     <li><a href="#"><span class="glyphicon glyphicon-globe"></span> Home</a></li>
