@@ -55,8 +55,7 @@
         ?>
 
         <!--location settings-->
-        <div class="panel panel-default container-fixed container">
-            <div class="panel-body">
+        <div class="panel panel-success container-fixed container">
 
             <div class="row">
                 <div class="col-lg-12">
@@ -155,7 +154,7 @@
                 
             </div>
 
-        </div>
+        
     
     </form>
         
