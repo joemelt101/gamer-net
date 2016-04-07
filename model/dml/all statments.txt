@@ -1,0 +1,184 @@
+/* user
+has 0-many of games
+has 0-many ‘friends’
+has 1 location
+has 0-many contact info
+*/
+
+# create user
+INSERT INTO user(username, salt, hash_pass, gender, age)
+VALUES(?, ?, ?, ?, ?);
+
+# delete user; this will also delete user's gamelist, contact info, anything
+# that is dependent on the user's user id
+DELETE FROM user WHERE user_id = ?;
+
+# update user
+UPDATE user
+SET alias=?, salt=?, hash_pass=?
+WHERE user_id=?;
+
+# user logs on
+UPDATE user SET availability=1 WHERE user_id=?;
+
+# user logs off
+UPDATE user SET availability=0 WHERE user_id=?;
+
+# gets list of all users by username and alias
+SELECT username, alias FROM user ORDER BY alias;
+
+#search for user by username or alias
+SELECT username, alias FROM user
+WHERE username=? OR alias=?
+ORDER BY alias;
+
+
+
+
+/* location
+a user has 1 location
+*/
+
+# add location for user_id=?
+INSERT INTO location (user_id, city, state, zip_code) VALUES(?, ?, ?, ?);
+
+# edit location for user_id=?
+UPDATE location SET city=?, state=?, zip_code=? WHERE user_id=?;
+
+
+
+
+/* game
+*/
+# create game
+INSERT INTO game(developer, year, name, genre, type, platform)
+VALUES(?, ?, ?, ?, ?, ?);
+
+#search for game by name/developer
+SELECT name, developer FROM game
+WHERE name=? OR developer=?
+ORDER BY name;
+
+#list all games by name
+SELECT * FROM game ORDER BY name;
+
+#list all games with genre=?
+SELECT * FROM game
+WHERE genre=?
+ORDER BY name;
+
+#list all games with platform=?
+SELECT * FROM game
+WHERE platform=?
+ORDER BY name;
+
+#list all video games
+SELECT * FROM game WHERE type=0 ORDER BY name;
+
+#list all board games
+SELECT * FROM game WHERE type=1 ORDER BY name;
+
+
+
+
+/* user_games
+a user has many games
+*/
+
+#add game ? into user ?’s game list
+INSERT INTO user_games(user_id, game_id) VALUES(?, ?);
+
+#delete game ? from user ?’s games
+DELETE FROM user_games WHERE user_id=? AND game_id=?;
+
+#list all user ?’s games
+SELECT game.game_id, name, developer, platform, genre, type FROM game
+JOIN user_games ON game.game_id = user_games.game_id
+WHERE user_games.user_id=?
+ORDER BY name;
+
+#list all user ?’s video games
+SELECT game.game_id, name, developer, platform, genre FROM game
+JOIN user_games ON game.game_id = user_games.game_id
+WHERE user_games.user_id=? AND type=0
+ORDER BY name;
+
+#list all user ?’s board games
+SELECT game.game_id, name, developer, platform, genre FROM game
+JOIN user_games ON game.game_id = user_games.game_id
+WHERE user_games.user_id=? AND type=1
+ORDER BY name;
+
+#list all user ?’s video games with genre=?
+SELECT game.game_id, name, developer, platform FROM game
+JOIN user_games ON game.game_id = user_games.game_id
+WHERE user_games.user_id=? AND genre=?
+ORDER BY name;
+
+#list all user ?’s video games with platform=?
+SELECT game.game_id, name, developer, genre FROM game
+JOIN user_games ON game.game_id = user_games.game_id
+WHERE user_games.user_id=? AND platform=?
+ORDER BY name;
+
+
+
+/* contact_info
+a user has 0-many contact_infos
+*/
+#add contact info tag for user ?
+INSERT INTO contactInfo(user_id, platform, username)
+	VALUES(?, ?, ?);
+
+#delete contact info tag for user ?
+DELETE FROM contactInfo WHERE user_id=? AND platform=?;
+
+#update contact info tag for user
+UPDATE contactInfo
+SET username=?
+WHERE user_id=? AND platform=?;
+
+
+
+
+/* relationship
+user has 0-many friends
+*/
+
+#add/delete/block people/friends
+type
+0 = requester
+1 = requestee
+2 = currently friends
+3 = blocker
+4 = blockee
+
+#user ? sends user ? a friend request
+INSERT INTO relationship(user_id, friend_id, type) VALUES(?, ?, 0);
+INSERT INTO relationship(user_id, friend_id, type) VALUES(?, ?, 1);
+
+#user ? accepts user ?’s friend request
+UPDATE relationship
+	SET type=‘2’ WHERE user_id=? AND friend_id=?;
+UPDATE relationship
+	SET type='2' WHERE user_id=? AND friend_id=?;
+
+#user ? declines user ?’s friend request or user ? deletes user ? as a friend
+DELETE FROM relationship WHERE user_id=? AND friend_id=?;
+DELETE FROM relationship WHERE user_id=? AND friend_id=?;
+
+#user ? sends user ? a friend request
+UPDATE relationship SET type=‘3’ WHERE user_id=? AND friend_id=?;
+UPDATE relationship SET type=‘4’ WHERE user_id=? AND friend_id=?;
+
+#show user ?’s friend/pending friend list
+SELECT friend_id, user.alias AS friend, type FROM relationship
+JOIN user ON relationship.friend_id = user.user_id
+WHERE relationship.user_id=? AND type != 3 AND type != 4
+ORDER BY friend;
+
+#show user ?’s blocked users list
+SELECT friend_id AS uid, user.alias AS blocked FROM relationship
+JOIN user ON relationship.friend_id = user.user_id
+WHERE relationship.user_id=? AND type=3
+ORDER BY blocked;
