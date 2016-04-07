@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>Dashboard</title>  
+        <title>Dashboard</title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
         <?php require_once('view/views/includes.html'); ?>
         
