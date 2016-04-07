@@ -8,8 +8,6 @@
         
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
         
-        
-        
         <style>
             .rightAlign {
                 float: right;
@@ -27,9 +25,8 @@
                 width: 70%;
                 margin: auto;
                 padding-top: 3%;
+                
             }
-            
-            
         </style>
         
         <?php require_once('view/views/includes.html'); ?>
@@ -69,8 +66,7 @@
                             </div>
                             <div class="col-sm-3 middle">
                                 <button type="button" class="btn btn-primary">Unfriend</button>
-                                
-                               <input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger" data-style="">
+                               <input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger">
 
                             </div>
                         </div>
