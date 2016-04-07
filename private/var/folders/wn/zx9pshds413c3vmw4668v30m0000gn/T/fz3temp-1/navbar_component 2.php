@@ -17,14 +17,7 @@ $isLoggedIn = true;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            
-          <a class="navbar-brand" href="#">Gamer-Net</a>
-            <ul class="nav navbar-nav">
-                    <li><a href="#"><span class="glyphicon glyphicon-globe"></span> Home</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Near You</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-comment"></span> Messages</a></li>
-                    <li class=""><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-            </ul>
+          <a class="navbar-brand" href="index.php">Gamer-Net</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
