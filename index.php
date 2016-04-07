@@ -9,27 +9,27 @@
 
 <!-- Favicons
     ================================================== -->
-<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+<link rel="shortcut icon" href="view/landing_page/img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="view/landing_page/img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="view/landing_page/img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="view/landing_page/img/apple-touch-icon-114x114.png">
 
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" type="text/css"  href="view/landing_page/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="view/landing_page/fonts/font-awesome/css/font-awesome.css">
 
 <!-- Slider
     ================================================== -->
-<link href="css/owl.carousel.css" rel="stylesheet" media="screen">
-<link href="css/owl.theme.css" rel="stylesheet" media="screen">
+<link href="view/landing_page/css/owl.carousel.css" rel="stylesheet" media="screen">
+<link href="view/landing_page/css/owl.theme.css" rel="stylesheet" media="screen">
 
 <!-- Stylesheet
     ================================================== -->
-<link rel="stylesheet" type="text/css"  href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/animate.min.css">
+<link rel="stylesheet" type="text/css"  href="view/landing_page/css/style.css">
+<link rel="stylesheet" type="text/css" href="view/landing_page/css/animate.min.css">
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="js/modernizr.custom.js"></script>
+<script type="text/javascript" src="view/landing_page/js/modernizr.custom.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,7 +40,7 @@
 </head>
 <body>
 <div id="preloader">
-  <div id="status"> <img src="img/preloader.gif" height="64" width="64" alt=""> </div>
+  <div id="status"> <img src="view/landing_page/img/preloader.gif" height="64" width="64" alt=""> </div>
 </div>
 <!-- Navigation
     ==========================================-->
@@ -138,7 +138,7 @@
                 Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/01.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/01.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 app">
@@ -149,7 +149,7 @@
                 App Development
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/02.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/02.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 web">
@@ -160,7 +160,7 @@
                Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/03.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/03.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 web">
@@ -171,7 +171,7 @@
                 Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/04.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/04.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 app">
@@ -182,7 +182,7 @@
                 App Development
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/05.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/05.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 branding">
@@ -193,7 +193,7 @@
                 Branding
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/06.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/06.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 branding app">
@@ -204,7 +204,7 @@
                 App Development, Branding
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/07.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/07.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 web">
@@ -215,7 +215,7 @@
                 Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/08.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/08.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
       </div>
@@ -232,7 +232,7 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>
     </div>
     <div class="row">
-      <div class="col-md-6 wow fadeInLeft"> <img src="img/about.png" class="img-responsive"> </div>
+      <div class="col-md-6 wow fadeInLeft"> <img src="view/landing_page/img/about.png" class="img-responsive"> </div>
       <div class="col-md-6 wow fadeInRight">
           <h4>Who We Are</h4>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh ante facilisis bibendum.</p>
@@ -274,7 +274,7 @@
     </div>
     <div id="row">
       <div class="col-md-3 col-sm-6 team wow fadeInUp" data-wow-delay="200ms">
-        <div class="thumbnail"> <img src="img/team/01.jpg" alt="..." class="img-circle team-img">
+        <div class="thumbnail"> <img src="view/landing_page/img/team/01.jpg" alt="..." class="img-circle team-img">
           <div class="caption">
             <h3>Jessica Wally</h3>
             <p>CEO / Founder</p>
@@ -287,7 +287,7 @@
         </div>
       </div>
       <div class="col-md-3 col-sm-6 team wow fadeInUp" data-wow-delay="400ms">
-        <div class="thumbnail"> <img src="img/team/02.jpg" alt="..." class="img-circle team-img">
+        <div class="thumbnail"> <img src="view/landing_page/img/team/02.jpg" alt="..." class="img-circle team-img">
           <div class="caption">
             <h3>Mike Sloan</h3>
             <p>Web Designer</p>
@@ -300,7 +300,7 @@
         </div>
       </div>
       <div class="col-md-3 col-sm-6 team wow fadeInUp" data-wow-delay="600ms">
-        <div class="thumbnail"> <img src="img/team/03.jpg" alt="..." class="img-circle team-img">
+        <div class="thumbnail"> <img src="view/landing_page/img/team/03.jpg" alt="..." class="img-circle team-img">
           <div class="caption">
             <h3>Michele Doe</h3>
             <p>Web Designer</p>
@@ -313,7 +313,7 @@
         </div>
       </div>
       <div class="col-md-3 col-sm-6 team wow fadeInUp" data-wow-delay="800ms">
-        <div class="thumbnail"> <img src="img/team/04.jpg" alt="..." class="img-circle team-img">
+        <div class="thumbnail"> <img src="view/landing_page/img/team/04.jpg" alt="..." class="img-circle team-img">
           <div class="caption">
             <h3>Larry Evans</h3>
             <p>Project Manager</p>
@@ -651,19 +651,19 @@
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
-<script type="text/javascript" src="js/jquery.1.11.1.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/jquery.1.11.1.js"></script> 
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
-<script type="text/javascript" src="js/bootstrap.js"></script> 
-<script type="text/javascript" src="js/SmoothScroll.js"></script> 
-<script type="text/javascript" src="js/wow.min.js"></script> 
-<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script> 
-<script type="text/javascript" src="js/jquery.isotope.js"></script> 
-<script type="text/javascript" src="js/jqBootstrapValidation.js"></script> 
-<script type="text/javascript" src="js/contact_me.js"></script> 
-<script type="text/javascript" src="js/owl.carousel.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/bootstrap.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/SmoothScroll.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/wow.min.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/jquery.prettyPhoto.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/jquery.isotope.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/jqBootstrapValidation.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/contact_me.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/owl.carousel.js"></script> 
 
 <!-- Javascripts
     ================================================== --> 
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="view/landing_page/js/main.js"></script>
 </body>
 </html>
