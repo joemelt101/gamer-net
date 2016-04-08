@@ -3,33 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tempo</title>
+<title>Gamer-Net</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
 <!-- Favicons
     ================================================== -->
-<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+<link rel="shortcut icon" href="view/landing_page/img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="view/landing_page/img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="view/landing_page/img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="view/landing_page/img/apple-touch-icon-114x114.png">
 
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" type="text/css"  href="view/landing_page/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="view/landing_page/fonts/font-awesome/css/font-awesome.css">
 
 <!-- Slider
     ================================================== -->
-<link href="css/owl.carousel.css" rel="stylesheet" media="screen">
-<link href="css/owl.theme.css" rel="stylesheet" media="screen">
+<link href="view/landing_page/css/owl.carousel.css" rel="stylesheet" media="screen">
+<link href="view/landing_page/css/owl.theme.css" rel="stylesheet" media="screen">
 
 <!-- Stylesheet
     ================================================== -->
-<link rel="stylesheet" type="text/css"  href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/animate.min.css">
+<link rel="stylesheet" type="text/css"  href="view/landing_page/css/style.css">
+<link rel="stylesheet" type="text/css" href="view/landing_page/css/animate.min.css">
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="js/modernizr.custom.js"></script>
+<script type="text/javascript" src="view/landing_page/js/modernizr.custom.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,7 +40,7 @@
 </head>
 <body>
 <div id="preloader">
-  <div id="status"> <img src="img/preloader.gif" height="64" width="64" alt=""> </div>
+  <div id="status"> <img src="view/landing_page/img/preloader.gif" height="64" width="64" alt=""> </div>
 </div>
 <!-- Navigation
     ==========================================-->
@@ -56,7 +56,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#home" class="page-scroll">Home</a></li>
         <li><a href="#services-section" class="page-scroll">Mission</a></li>
-        <li><a href="#works-section" class="page-scroll">Portfolio</a></li>
+        <li><a href="#works-section" class="page-scroll">Games</a></li>
         <li><a href="#about-section" class="page-scroll">About</a></li>
         <li><a href="#team-section" class="page-scroll">Team</a></li>
         <li><a href="#testimonials-section" class="page-scroll">Testimonials</a></li>
@@ -89,19 +89,19 @@
     <div class="row">
       <div class="col-md-3 col-sm-6 service wow fadeInUp" data-wow-delay="200ms"> <i class="fa fa-desktop"></i>
         <h4><strong>Simplicity</strong></h4>
-        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>
+        <p>Gamer-Net offers an uncomparable user experience that gamers of all ages can manage.</p>
       </div>
       <div class="col-md-3 col-sm-6 service wow fadeInUp" data-wow-delay="400ms"> <i class="fa fa-gears"></i>
         <h4><strong>Networking</strong></h4>
-        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque.</p>
+        <p>Designed for gamers to connect and network. Meet like minded gamers all over the world.</p>
       </div>
       <div class="col-md-3 col-sm-6 service wow fadeInUp" data-wow-delay="600ms"> <i class="fa fa-bullhorn"></i>
         <h4><strong>Team Building</strong></h4>
-        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>
+        <p>Finding teams for both competitive and casual gaming has never been easier.</p>
       </div>
       <div class="col-md-3 col-sm-6 service wow fadeInUp" data-wow-delay="800ms"> <i class="fa fa-rocket"></i>
         <h4><strong>Gaming</strong></h4>
-        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque.</p>
+        <p>Gaming is always mroe fun when you are playing with friends. Sign up for a free account and start connecting today!</p>
       </div>
     </div>
   </div>
@@ -110,19 +110,19 @@
 <div id="works-section" class="text-center">
   <div class="container"> <!-- Container -->
     <div class="section-title wow fadeInDown">
-      <h2>Our <strong>Portfolio</strong></h2>
+      <h2>Top <strong>Games</strong></h2>
       <hr>
       <div class="clearfix"></div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>
+      <p>Some of the most popular games on Gamer-Net</p>
     </div>
     <div class="categories">
       <ul class="cat">
         <li>
           <ol class="type">
             <li><a href="#" data-filter="*" class="active">All</a></li>
-            <li><a href="#" data-filter=".web">Web Design</a></li>
-            <li><a href="#" data-filter=".app">App Development</a></li>
-            <li><a href="#" data-filter=".branding">Branding</a></li>
+            <li><a href="#" data-filter=".web">PC</a></li>
+            <li><a href="#" data-filter=".app">Xbox One</a></li>
+            <li><a href="#" data-filter=".branding">PS4</a></li>
           </ol>
         </li>
       </ul>
@@ -138,7 +138,7 @@
                 Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/01.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/01.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 app">
@@ -149,7 +149,7 @@
                 App Development
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/02.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/02.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 web">
@@ -160,7 +160,7 @@
                Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/03.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/03.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 web">
@@ -171,7 +171,7 @@
                 Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/04.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/04.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 app">
@@ -182,7 +182,7 @@
                 App Development
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/05.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/05.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 branding">
@@ -193,7 +193,7 @@
                 Branding
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/06.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/06.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 branding app">
@@ -204,7 +204,7 @@
                 App Development, Branding
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/07.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/07.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 web">
@@ -215,7 +215,7 @@
                 Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="img/portfolio/08.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/08.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
       </div>
@@ -226,38 +226,22 @@
 <div id="about-section">
   <div class="container">
     <div class="section-title text-center wow fadeInDown">
-      <h2><strong>About</strong> us</h2>
+      <h2><strong>About</strong> Gamer-Net</h2>
       <hr>
       <div class="clearfix"></div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>
+      <p>Gamer-Net is a social networking platform that is meant to bring gamers together.</p>
     </div>
     <div class="row">
-      <div class="col-md-6 wow fadeInLeft"> <img src="img/about.png" class="img-responsive"> </div>
+      <div class="col-md-6 wow fadeInLeft"> <img src="view/landing_page/img/about.png" class="img-responsive"> </div>
       <div class="col-md-6 wow fadeInRight">
           <h4>Who We Are</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh ante facilisis bibendum.</p>
+          <p>The team behind Gamer-Net are students at the University of Missouri. This project started off as an assignment to create a LinkedIn clone. We went above and beyond and decided to create Gamer-Net.</p>
           <div class="space"></div>
+          <br><br>
           <h4>What We Do</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at.</p>
+          <p>We are all CS/IT majors with years of experience developing and testing software.</p>
           <div class="space"></div><div class="list-style">
-            <div class="row">
-              <div class="col-lg-6 col-sm-6 col-xs-12">
-                <ul>
-                  <li>Lorem ipsum dolor</li>
-                  <li>Consectetur adipiscing</li>
-                  <li>Duis sed dapibus leo</li>
-                  <li>Sed commodo nibh ante</li>
-                </ul>
-              </div>
-              <div class="col-lg-6 col-sm-6 col-xs-12">
-                <ul>
-                  <li>Lorem ipsum dolor</li>
-                  <li>Consectetur adipiscing</li>
-                  <li>Duis sed dapibus leo</li>
-                  <li>Sed commodo nibh ante</li>
-                </ul>
-              </div>
-            </div>
+            
           </div>     
       </div>
     </div>
@@ -270,14 +254,14 @@
       <h2>Meet the <strong>Team</strong></h2>
       <hr>
       <div class="clearfix"></div>      
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>
+      <p>Our team here at Gamer-Net</p>
     </div>
     <div id="row">
-      <div class="col-md-3 col-sm-6 team wow fadeInUp" data-wow-delay="200ms">
-        <div class="thumbnail"> <img src="img/team/01.jpg" alt="..." class="img-circle team-img">
+      <div class="col-md-4 col-sm-6 team wow fadeInUp" data-wow-delay="200ms">
+        <div class="thumbnail"> <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="..." class="img-circle team-img">
           <div class="caption">
-            <h3>Jessica Wally</h3>
-            <p>CEO / Founder</p>
+            <h3>Art Martin</h3>
+            <p>UI/UX</p>
                         <ul class="list-inline">
               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -286,11 +270,11 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 col-sm-6 team wow fadeInUp" data-wow-delay="400ms">
-        <div class="thumbnail"> <img src="img/team/02.jpg" alt="..." class="img-circle team-img">
+      <div class="col-md-4 col-sm-6 team wow fadeInUp" data-wow-delay="400ms">
+        <div class="thumbnail"> <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="..." class="img-circle team-img">
           <div class="caption">
-            <h3>Mike Sloan</h3>
-            <p>Web Designer</p>
+            <h3>Homer G.</h3>
+            <p>Back End / Data Management</p>
                         <ul class="list-inline">
               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -299,11 +283,11 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 col-sm-6 team wow fadeInUp" data-wow-delay="600ms">
-        <div class="thumbnail"> <img src="img/team/03.jpg" alt="..." class="img-circle team-img">
+      <div class="col-md-4 col-sm-6 team wow fadeInUp" data-wow-delay="600ms">
+        <div class="thumbnail"> <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="..." class="img-circle team-img">
           <div class="caption">
-            <h3>Michele Doe</h3>
-            <p>Web Designer</p>
+            <h3>Keane</h3>
+            <p>Web Development / Testing </p>
                        <ul class="list-inline">
               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -312,11 +296,15 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 col-sm-6 team wow fadeInUp" data-wow-delay="800ms">
-        <div class="thumbnail"> <img src="img/team/04.jpg" alt="..." class="img-circle team-img">
+    </div>
+      
+      
+   <div id="row">
+      <div class="col-md-4 col-sm-6 team wow fadeInUp" data-wow-delay="200ms">
+        <div class="thumbnail"> <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="..." class="img-circle team-img">
           <div class="caption">
-            <h3>Larry Evans</h3>
-            <p>Project Manager</p>
+            <h3>Jared</h3>
+            <p>UI/UX</p>
                         <ul class="list-inline">
               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -325,14 +313,41 @@
           </div>
         </div>
       </div>
+      <div class="col-md-4 col-sm-6 team wow fadeInUp" data-wow-delay="400ms">
+        <div class="thumbnail"> <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="..." class="img-circle team-img">
+          <div class="caption">
+            <h3>Ben</h3>
+            <p>Back End / Data Management</p>
+                        <ul class="list-inline">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 team wow fadeInUp" data-wow-delay="600ms">
+        <div class="thumbnail"> <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="..." class="img-circle team-img">
+          <div class="caption">
+            <h3>Carlos Martinez</h3>
+            <p>Web Development / Testing </p>
+                       <ul class="list-inline">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+      
   </div>
 </div>
 <!-- Testimonials Section -->
 <div id="testimonials-section" class="text-center">
   <div class="container">
     <div class="section-title wow fadeInDown">
-      <h2>What our <strong>Clients</strong> say</h2>
+      <h2>What our <strong>Users</strong> say</h2>
       <hr>
     </div>
     <div class="row">
@@ -362,18 +377,18 @@
     <div class="section-title wow fadeInDown">
       <h2><strong>Contact</strong> us</h2>
       <hr>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>
+      <p>If you have any questions or inquiries for the team at Gamer-Net feel free to contact us through the information below.</p>
     </div>
     <div class="col-md-8 col-md-offset-2 wow fadeInUp" data-wow-delay="200ms">
       <div class="col-md-4"> <i class="fa fa-map-marker fa-2x"></i>
-        <p>321 Awesome Street<br>
-          New York, NY 17022</p>
+        <p>230 JESSE HALL<br>
+          COLUMBIA, MO 65201</p>
       </div>
       <div class="col-md-4"> <i class="fa fa-envelope-o fa-2x"></i>
-        <p>info@companyname.com</p>
+        <p>support@gamer-net.com</p>
       </div>
       <div class="col-md-4"> <i class="fa fa-phone fa-2x"></i>
-        <p> +1 800 123 1234</p>
+        <p> +1 800 666 6666</p>
       </div>
       <div class="clearfix"></div>
     </div>
@@ -403,11 +418,8 @@
       </form>
       <div class="social">
         <ul>
-          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
           <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
           <li><a href="#"><i class="fa fa-github"></i></a></li>
-          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
           <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
         </ul>
       </div>
@@ -651,19 +663,19 @@
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
-<script type="text/javascript" src="js/jquery.1.11.1.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/jquery.1.11.1.js"></script> 
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
-<script type="text/javascript" src="js/bootstrap.js"></script> 
-<script type="text/javascript" src="js/SmoothScroll.js"></script> 
-<script type="text/javascript" src="js/wow.min.js"></script> 
-<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script> 
-<script type="text/javascript" src="js/jquery.isotope.js"></script> 
-<script type="text/javascript" src="js/jqBootstrapValidation.js"></script> 
-<script type="text/javascript" src="js/contact_me.js"></script> 
-<script type="text/javascript" src="js/owl.carousel.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/bootstrap.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/SmoothScroll.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/wow.min.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/jquery.prettyPhoto.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/jquery.isotope.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/jqBootstrapValidation.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/contact_me.js"></script> 
+<script type="text/javascript" src="view/landing_page/js/owl.carousel.js"></script> 
 
 <!-- Javascripts
     ================================================== --> 
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="view/landing_page/js/main.js"></script>
 </body>
 </html>
