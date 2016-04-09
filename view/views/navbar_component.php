@@ -1,7 +1,7 @@
 <!-- View data is defined here -->
 <?php
 
-$isLoggedIn = true;
+$isLoggedIn = false;
 
 ?>
 
@@ -17,7 +17,14 @@ $isLoggedIn = true;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+            
           <a class="navbar-brand" href="index.php">Gamer-Net</a>
+            <ul class="nav navbar-nav">
+                    <li><a href="index.php"><span class="glyphicon glyphicon-globe"></span> Home</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Near You</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-comment"></span> Messages</a></li>
+                    <li><a href="settings.php"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+            </ul>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -26,15 +33,15 @@ $isLoggedIn = true;
     <?php 
             if ($isLoggedIn)
             {
-                echo("<li><a href=\"#\">Logout</a></li>");
+                echo("<li><a href=\"logout.php\">Logout</a></li>");
             }
             else
             {
-                echo ("<li><a href=\"#\">Login</a></li>");
+                echo ("<li><a href=\"login.php\">Login</a></li>");
             }
 
     ?>        
-            <li><a href="search_page.php">Search</a></li>     
+            <li><a href="search.php">Search</a></li>     
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
