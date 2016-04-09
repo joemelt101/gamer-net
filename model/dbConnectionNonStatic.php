@@ -5,16 +5,16 @@
         private $username;
         private $password;
         private $dbname;
-        public $conn;// kept public so easy to do sql statements and check db connection
+        private $conn;
         
         public static function getLine($file)
         {
             // trim removes any white space at beginning and end of lines
             return trim(fgets($file));
         }
-        public function __construct()
+        public function start()
         {
-            $filename = "model/.credentials";
+            $filename = ".credentials";
             $file = fopen($filename, "r") or die("Unable to open file.");
             
             $this->hostname = self::getLine($file);
@@ -36,12 +36,7 @@
             echo "Connected successfully to database.";
             
         }
-        public function connected()
-        {
-            return isset($this->conn);
-        }
-        
-        public function close()
+        public function stop()
         {
             if (isset($this->conn))
             {
@@ -49,17 +44,9 @@
                 echo "Database connection closed.";
             }
         }
+        
     }
-    function stmt_bind_assoc(&$stmt, &$out) // dynamic way for binding all return variables
-    {
-	   $data = mysqli_stmt_result_metadata($stmt);
-	   $fields = array();
-	   $out = array();
-	   $fields[0] = $stmt;
-	   for ($i = 1; $field = mysqli_fetch_field($data); $i++)
-	   {
-		  $fields[$i] = &$out[$field->name];
-	   }
-	   call_user_func_array('mysqli_stmt_bind_result', $fields);
-    }
+    $database = new dbConnection();
+    $database->start();
+    $database->stop();
 ?>
