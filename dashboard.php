@@ -1,3 +1,7 @@
+<?php
+    require_once("helper.php");
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -52,7 +56,14 @@
             <div class="panel panel-default">
                 
                 <div class="panel-heading">
-                    <h2>Welcome, {name} to your dashboard</h2>
+                    <?php
+                        
+                        if (isset($_SESSION['user']))
+                        {
+                            $user = unserialize($_SESSION['user']);
+                        echo "<h2>Welcome, " . $user->getUsername() . " to your dashboard</h2>";
+                        }
+                    ?>
                 </div>
                 
                 <div class="panel-body">

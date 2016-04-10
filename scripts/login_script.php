@@ -42,8 +42,9 @@ class Login
             $this->errors[] = "Password field was empty.";
         } elseif (!empty($_POST['user_name']) && !empty($_POST['user_password'])) {
 
-            // start a database connection using the credentials we put into config/db.php, which was previously loaded in index.php
-            $this->db_connection = new mysqli('us-cdbr-azure-central-a.cloudapp.net','b3fdfaa18bd9b3', 'fd425182', 'databasedinos');
+            $database = new dbConnection();
+            
+            $this->db_connection = $database->conn;
             // change the input to utf8 and check the connection again
             if (!$this->db_connection->set_charset("utf8")) {
                 $this->errors[] = $this->db_connection->error;
@@ -58,7 +59,7 @@ class Login
                 // a query to our database, retrieves all info on the selected user (works for both username and user_email)
                 $sql = "SELECT *
                         FROM user
-                        WHERE user_name = '" . $user_name . "' OR user_email = '" . $user_name . "';";
+                        WHERE username = '" . $user_name . "' OR email = '" . $user_name . "';";
                 $result_of_login_check = $this->db_connection->query($sql);
                 
 
@@ -70,11 +71,11 @@ class Login
                     $result_row = $result_of_login_check->fetch_object();
 
                     // the following utilizes PHP 5.5s password_verify(). It checks to make sure the provided password matches the hash stored in our DB
-                    if (password_verify($_POST['user_password'], $result_row->user_password_hash)) {
+                    if (password_verify($_POST['user_password'], $result_row->hash_pass)) {
 
                         // write user data into PHP SESSION, SUPERGLOBALS!
-                        $_SESSION['user_name'] = $result_row->user_name;
-                        $_SESSION['user_email'] = $result_row->user_email;
+                        $_SESSION['user_name'] = $result_row->username;
+                        $_SESSION['user_email'] = $result_row->email;
                         $_SESSION['u_fname'] = $result_row->u_fname;
                         $_SESSION['u_lname'] = $result_row->u_lname;
                         $_SESSION['u_age'] = $result_row->u_age;
@@ -97,13 +98,13 @@ class Login
     }
 
     // function to log the user out
-    public function doLogout()
+    public static function doLogout()
     {
         // make sure you delete all the session data
         $_SESSION = array();
         session_destroy();
         // prompt the user that the have been logged out
-        $this->messages[] = "You have been logged out.";
+       // $this->messages[] = "You have been logged out.";
 
     }
 
