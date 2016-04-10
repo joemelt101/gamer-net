@@ -18,7 +18,8 @@
         }
     }
 
-  //  if ($currentPage == "dashboard.php" && !isLoggedIn())
-   //     redirect("login.php");
-   
+    if ($currentPage == "login.php" && isLoggedIn())
+        redirect("dashboard.php");
+    else if ($currentPage == "dashboard.php" && !isLoggedIn())
+        redirect("login.php");
 ?>

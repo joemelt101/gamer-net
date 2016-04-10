@@ -178,7 +178,7 @@ body {
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin" method="post" action="loginOrRegister.php">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" name="username" id="login" class="form-control" placeholder="Email address" required autofocus>
+                <input type="text" name="username" id="login" class="form-control" placeholder="Email or Username" required autofocus>
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 <div id="remember" class="checkbox">
                     <label>
