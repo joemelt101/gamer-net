@@ -177,7 +177,7 @@
                     <button class="btn btn-sm btn-success" type="submit">Save Changes</button>
                 </div>
             </div>
-
+    </form>
             <br><br><br><br>
             <form method="post" action="#"> <!-- delete account php? -->
             <div class="row">
@@ -189,8 +189,6 @@
 
         </div><!--close panel body-->
     </div><!--close main-->
-    
-    </form>
         
         <footer class="centered">Copyright 2016 (find footer)</footer>
 
