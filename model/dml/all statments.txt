@@ -6,8 +6,8 @@ has 0-many contact info
 */
 
 # create user
-INSERT INTO user(username, salt, hash_pass, gender, age)
-VALUES(?, ?, ?, ?, ?);
+INSERT INTO user(username, email, alias, salt, hash_pass)
+	VALUES(?, ?, ?, ?, ?);
 
 # delete user; this will also delete user's gamelist, contact info, anything
 # that is dependent on the user's user id
@@ -32,6 +32,13 @@ SELECT username, alias FROM user
 WHERE username=? OR alias=?
 ORDER BY alias;
 
+
+/*search for user by username and email
+this will be used whenever a new user registers
+users should not be able to register with an email or username
+that already exists in the database
+*/
+SELECT username, email FROM user WHERE username=? OR email=?;
 
 
 
