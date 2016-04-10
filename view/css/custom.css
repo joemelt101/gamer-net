@@ -15,3 +15,7 @@ body{padding-top:50px}body>.navbar{-webkit-transition:background-color .3s ease-
 .clear {
     clear: both;
 }
+/*tried to get this hover color to work...*/
+.navbar-nav a:hover{
+	background-color: #5cb85c;
+}

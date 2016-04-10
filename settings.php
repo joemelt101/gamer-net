@@ -3,14 +3,19 @@
     <head>
         
         <link rel="stylesheet" type="text/css" href="custom.css">
-        <!--css, also moved-->
+        <!--css, to be moved? moved-->
         <style>
-            .toggle.android { border-radius: 0px;}
-            .toggle.android .toggle-handle { border-radius: 0px; }
+            .toggle.android { 
+                border-radius: 0px;
+            }
+            .toggle.android .toggle-handle { 
+                border-radius: 0px; 
+            }
             #body{
-                background-color: dimgray;
+                /*background-color: dimgray;*/
             }
             .centered{
+                display: block;
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -19,6 +24,18 @@
             }
             .clear {
                 clear: both;
+            }
+            #areaDisplay{
+                background-color: #5cb85c; /*success green*/
+                color: white;
+            }
+            /*doesn't really work*/
+            /*tried to get this hover color to work...*/
+            .navbar-nav a:hover{
+                background-color: #5cb85c;
+            }
+            #mySlider .slider-track-high {
+                background: #5cb85c;
             }
         </style>
         <title>G-N Settings</title>  
@@ -38,10 +55,10 @@
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
         <!--Bootstrap Slider - https://cdnjs.com/libraries/bootstrap-slider, https://github.com/seiyria/bootstrap-slider-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.7/bootstrap-slider.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.7/bootstrap-slider.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.7/css/bootstrap-slider.css">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.7/css/bootstrap-slider.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.0/bootstrap-slider.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.0/bootstrap-slider.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.0/css/bootstrap-slider.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.0/css/bootstrap-slider.min.css">
 
 
         <?php require_once('view/views/includes.html');
@@ -50,116 +67,132 @@
     </head>
     
     <body id="body">
-    <form>
+    <form action="#" method="post">
         <?php require_once('view/views/navbar_component.php');
         ?>
 
-        <!--location settings-->
+        
         <div class="panel panel-default container-fixed container">
-            <div class="panel-body">
+            <div class="panel-body"> <!--box-->
 
+            <!--location settings-->
             <div class="row">
                 <div class="col-lg-12">
                     <h2>Location Settings</h2>
                 </div>
-            
+            </div>
                     
-                    <!--range section-->
-                <div class="row">        
-                    <div class="col-md-2">
-                        <h3 class="">Range</h3>
-                    </div>
-                    <div class="col-md-8"></div><!--blank mid spacing-->
-                    <!--mi/km toggle-->
-                    <div class="col-md-2">
-                        <!--<input id="units-toggle" checked type="checkbox" data-style="android" data-onstyle="success" data-offstyle="success" data-toggle="toggle" data-on="mi" data-off="km">-->
-                    <input id="units-toggle" checked type="checkbox" data-style="" data-onstyle="success" data-offstyle="success" data-toggle="toggle" data-on="mi" data-off="km">
-<!--
-                        <script>
-                            $(function() {
-                                $('#units-toggle').bootstrapToggle(
-                                    {   /*on: 'Mi',
-                                        off: 'Km'*/
+            <!--range section-->
+            <div class="row">        
+                <div class="col-md-3">
+                    <h3 class="">Range</h3>
+                </div>
+                <!--div class="col-md-8"></div>blank mid spacing-->
+                <!--mi/km toggle-->
+                <div class="col-md-offset-11">
+                    <!--<input id="units-toggle" checked type="checkbox" data-style="android" data-onstyle="success" data-offstyle="success" data-toggle="toggle" data-on="mi" data-off="km">-->
+                <input id="units-toggle" checked type="checkbox" data-style="" data-onstyle="success" data-offstyle="success" data-toggle="toggle" data-on="mi" data-off="km" name="distanceUnits">
 
-                                    });
-                            })
-                        </script>
--->
-                    </div>
-                </div> 
+                </div>
+            </div> 
                 
-            <!--range slider-->
+            <!--range slider, needs both bootstrap and js-->
             <div class="row">
                 <div class="col-md-12">
-                    <input id="rangeSlider" data-slider-id='rangeSlider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="25"/>
+                    <!-- <input id="mySlider" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="25"> -->
+
+                    <input id="mySlider" type="text" name="distance">
+
+                    <!--shows number when sliding, does not really work if clicked-->
+                    <span id="CurrentSliderValLabel"> : <span id="mySliderVal"></span></span>
                 </div>
+            </div>
 
+            <div class="row">
                 <div class="col-md-12">
-                    
-                    
-                    <script type="text/javascript">// Instantiate a slider
-                    var mySlider = $("input.slider").slider();
+                      
+                       <script type="text/javascript">// Instantiate a slider
+                            var mySlider = $("input.slider").slider();
 
-                    // Call a method on the slider
-                    var value = mySlider.slider('getValue');
+                            // Call a method on the slider
+                            var value = mySlider.slider('getValue');
 
-                    // For non-getter methods, you can chain together commands
-                    mySlider
-                        .slider('setValue', 5)
-                        .slider('setValue', 7);</script>
 
-                        <script type="text/javascript">$('#rangeSlider').slider({
-                            formatter: function(value) {
-                                return 'Current value: ' + value;
-                            }
+                            // // For non-getter methods, you can chain together commands
+                            // mySlider
+                            //     .slider('setValue', 5)
+                            //     .slider('setValue', 7);
+                        </script>
+
+                        <script type="text/javascript">
+                        $("#mySlider").slider({ id: "mySlider", min: 0, max: 200, value: 50, step:5 });
+                        $("#mySlider").on("slide", function(slideEvt) {
+                            $("#mySliderVal").text(slideEvt.value);
                         });</script>
 
+                        
+           
                 </div>
             </div>
             <br>
                 
+            <!--area display section-->
             <div class="row">
-
-                    <!---->
-                    <!--display section-->
-                    <div class="col-md-2 dropdown">
-                        <button class="btn btn-primary dropdown-toggle btn-success" type="button" data-toggle="dropdown">Area Display
-                            <span class="caret"></span>
-                        </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">[City], [State]</a></li>
-                                    <li><a href="#">[State] Area</a></li>
-                                    <li><a href="#">Anonymous -> minimizes location features</a></li>
-                                </ul>
-                    </div>
-                    <div class="col-md-10 clear"></div>
-                    
-                        
-                    <br><br><br>
-            </div>
-                    
-            <div class="row">    
-                <!---->
-                    <!--friends list section-
-                    <div class="col-md-6 clear">
-                        <h3>Friends List</h3>
-                    </div>-->
-                </div>
-
-                <div class="col-md-6"></div>
-                </div>
-                <div class="col-md-6">
-                    <a href="#">Change Alias</a><br>
-                    <a href="#">Change Password</a>
-                </div>
                 
+                <div class="form-group col-xs-3">
+                    <label for="areaDisplay"><h3>Area Display</h3></label>
+                    <select class="form-control" id="areaDisplay">
+                        <option>[City], [State]</option>
+                        <option>[State] Area</option>
+                        <option>Anonymous -> minimizes location features</option>
+                    </select>
+                </div>
+            </div>
+                    
+            <br><br>
+            <div class="row">    
+                <div class="col-md-2">
+                    <h5>Change Alias<h5>
+                </div>
+                <div class="col-md-offset-2">
+                    <input type="text" placeholder="alias" name="alias"><h6> *Optional</h6>
+                </div>
             </div>
 
-        </div>
+            <br>
+            <div class="row">    
+                <div class="col-md-2">
+                    <h5>Change Password</h5>
+                </div>
+                <div class="col-md-offset-2">
+                    <input type="password" placeholder="password" name="password"><h6> *Optional</h6>
+                    <input type="password" placeholder="confirm password" name="passwordConfirm">
+                </div>
+            </div>
+
+            <br><br>
+            <div class="row">
+                <div class="col-md-3">
+                    <!-- outlline does not work... <button class="btn btn-sm btn-success-outline" type="submit">Save Changes</button> -->
+                    <button class="btn btn-sm btn-success" type="submit">Save Changes</button>
+                </div>
+            </div>
+
+            <br><br><br><br>
+            <form method="post" action="#"> <!-- delete account php? -->
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-5">
+                    <button class="btn btn-danger">Delete Profile</button>
+                </div>
+            </div>
+            </form>
+
+        </div><!--close panel body-->
+    </div><!--close main-->
     
     </form>
         
-        <footer class="centered">Copyright 2016, or something like that</footer>
+        <footer class="centered">Copyright 2016 (find footer)</footer>
 
     </body>
     
