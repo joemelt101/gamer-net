@@ -59,7 +59,8 @@ class Registration
             && ($_POST['user_password_new'] === $_POST['user_password_repeat'])
         ) {
             // starts a database connection
-            $this->db_connection = new mysqli('us-cdbr-azure-central-a.cloudapp.net','b3fdfaa18bd9b3', 'fd425182', 'databasedinos');
+            $database = new dbConnection();
+            $this->db_connection = $database->conn;
 
             // change character set to utf8 and check it
             if (!$this->db_connection->set_charset("utf8")) {
@@ -95,8 +96,7 @@ class Registration
                     $this->errors[] = "Sorry, that username / email address is already taken.";
                 } else {
                     // adds the new users data into the database
-                    $sql = "INSERT INTO user (admin,user_name, user_password_hash, user_email, u_fname, u_lname, u_age, u_sex, u_zip, u_exp)
-                            VALUES('0','" . $user_name . "', '" . $user_password_hash . "', '" . $user_email . "', '" . $u_fname . "', '" . $u_lname . "', '" . $u_age . "', '" . $u_sex . "', '" . $u_zip . "', '" . $u_exp . "');";
+                    $sql = "INSERT INTO user (username, email, alias, hash_pass, gender) VALUES (". $user_name . "," . $user_email . "," . $user_name . "," . $user_password_hash . "," . "0)";
                     $query_new_user_insert = $this->db_connection->query($sql);
                     // if user has been added successfully
                     if ($query_new_user_insert) {

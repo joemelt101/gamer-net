@@ -1,8 +1,7 @@
 <!-- View data is defined here -->
 <?php
-
-$isLoggedIn = false;
-
+    require_once('helper.php');
+    $isLoggedIn = $_SESSION['user'];
 ?>
 
 <!-- Actual display of the view is defined here -->
@@ -39,7 +38,6 @@ $isLoggedIn = false;
             {
                 echo ("<li><a href=\"login.php\">Login</a></li>");
             }
-
     ?>        
             <li><a href="search.php">Search</a></li>     
           </ul>

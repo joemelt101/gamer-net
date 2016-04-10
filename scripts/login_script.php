@@ -74,8 +74,8 @@ class Login
                     if (password_verify($_POST['user_password'], $result_row->hash_pass)) {
 
                         // write user data into PHP SESSION, SUPERGLOBALS!
-                        $_SESSION['user_name'] = $result_row->user_name;
-                        $_SESSION['user_email'] = $result_row->user_email;
+                        $_SESSION['user_name'] = $result_row->username;
+                        $_SESSION['user_email'] = $result_row->email;
                         $_SESSION['u_fname'] = $result_row->u_fname;
                         $_SESSION['u_lname'] = $result_row->u_lname;
                         $_SESSION['u_age'] = $result_row->u_age;
@@ -98,13 +98,13 @@ class Login
     }
 
     // function to log the user out
-    public function doLogout()
+    public static function doLogout()
     {
         // make sure you delete all the session data
         $_SESSION = array();
         session_destroy();
         // prompt the user that the have been logged out
-        $this->messages[] = "You have been logged out.";
+       // $this->messages[] = "You have been logged out.";
 
     }
 
