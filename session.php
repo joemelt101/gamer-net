@@ -15,7 +15,11 @@
     */
     function redirect($page)
     {
-        $urlPieces = explode("/", $_SERVER['PHP_SELF']);
+		$urlPath = $_SERVER['PHP_SELF'];
+		$currentPage = basename($urlPath);
+
+
+        $urlPieces = explode("/", $urlPath);
         $length = count($urlPieces) - 1;
         
         /* this allows website to function redirects regardless of what folder
@@ -24,8 +28,8 @@
         $redirectUrl = '';
         for ($i = 0; $i < $length; $i++)
             $redirectUrl .= $urlPieces[$i] . '/';
-    
-        $redirectUrl .= $page;
+  
+		$redirectUrl .= $page;
         if ($currentPage != $page)
         {
             header("Location: " . $redirectUrl);
