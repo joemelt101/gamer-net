@@ -1,7 +1,8 @@
 <!-- View data is defined here -->
 <?php
+    require_once('helper.php');
 
-$isLoggedIn = true;
+    $isLoggedIn = $_SESSION['user'];
 
 ?>
 
@@ -33,11 +34,11 @@ $isLoggedIn = true;
     <?php 
             if ($isLoggedIn)
             {
-                echo("<li><a href=\"#\">Logout</a></li>");
+                echo("<li><a href=\"logout.php\">Logout</a></li>");
             }
             else
             {
-                echo ("<li><a href=\"#\">Login</a></li>");
+                echo ("<li><a href=\"login.php\">Login</a></li>");
             }
 
     ?>        
