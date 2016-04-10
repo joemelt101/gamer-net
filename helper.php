@@ -147,7 +147,7 @@
                     $message = "Sorry, that username / email address is already taken.";
                 } else {
                     // adds the new users data into the database
-                    $sql = "INSERT INTO user (username, email, alias, hash_pass, gender) VALUES ('". $username . "','" . $email . "','" . $username . "','" . $password_hash . "'," . "0)";
+                    $sql = "INSERT INTO user (username, email, alias, salt, hash_pass, gender) VALUES ('". $username . "','" . $email . "','" . $username . "'," . $salt . ",'" . $password_hash . "'," . "0)";
                     $query_new_user_insert = $db->query($sql);
                     // if user has been added successfully
                     if ($query_new_user_insert) {
