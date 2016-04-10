@@ -1,50 +1,159 @@
-<!-- GAMER-NET -- SEARCH PAGE -->
+<!-- GAMER-NET - SEARCH PAGE -->
 <!DOCTYPE html>
 <html>
     <head>
         <title>Gamer-net -- Search</title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
-        <?php require_once('view/views/includes.html'); ?>        
+        <?php require_once('includes.html'); ?>        
         <style>
-            #searchbar
-            {
-                background-color: crimson
+            body{
+                background-color: black;
             }
-            
-            #buttons
+            .panel-heading, .panel-footer
             {
-                background-color: beige;
+                background-color: rgb(34,34,34);
             }
-            
-            #friends-panel
+            .panel-body
             {
-                background-color: aqua;
+                background-color: rgb(150,150,150)
             }
-            
+            .user
+            {
+                border-bottom-style: solid;
+                border-bottom-width: 1px;
+                border-color: rgb(200,200,200);
+                padding: 0px;
+                margin: 0px;
+            }
+            .info
+            {
+                padding: 3% 0 3% 0;
+            }
+            .picture
+            {
+                padding:7% 0 5% 7%; 
+            }
+            .games
         </style>
     </head>
     <body> 
-        <?php require_once('view/views/navbar_component.php'); ?>
+        <?php require_once('navbar_component.php'); ?>
         
-        <div class='panel fixed-container container'>
-            <div class='panel-body'>
+        <div class='container'>
+              
+            <div class='panel-heading'>
                 <div class='row'>
-                    <div id='searchbar' class='col-xs-6'>
-                        col1
-                    </div>
-                    <div id='buttons' class='col-xs-6'>
-                        col2
-                    </div>
-                </div>
-                <div id='friends-panel' class='row'>
-                    <div class='row'>
-                        friend1
-                    </div>
-                    <div class='row'>
-                        friend2
+                    <div class='col-xs-12'>
+                        <div class='input-group input-group-sm'>
+                           <input type='text'class='form-control' placeholder='Search'>
+                           <div class='input-group-btn'>
+                                <button type='submit' class='btn btn-default'>
+                                    <span class='glyphicon glyphicon-search'></span>
+                                </button>
+                                <button type='button' class='btn btn-default'>Username</button>
+                                <button type='button' class='btn btn-default'>Game</button>
+                                <button type='button' class='btn btn-default'>Location</button>          
+                           </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
+            <div class='panel-body fixed-container'>
+                <div class='user row'>
+                    <div class='picture col-xs-4'>
+                        <img src="../images/face.jpg" alt="..." class="img-circle">
+                    </div>
+                    <div class='info col-xs-8'>
+                        <div class='username row'>
+                            <h1>John Doe</h1>
+                        </div>
+                        <div class='userfriends row'>
+                            <h4>Friends</h4>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                        </div>
+                        <div class='games row'>
+                            <h4>Games</h4>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='user row'>
+                    <div class='picture col-xs-4'>
+                        <img src="../images/face.jpg" alt="..." class="img-circle">
+                    </div>
+                    <div class='info col-xs-8'>
+                        <div class='username row'>
+                            <h1>John Doe</h1>
+                        </div>
+                        <div class='userfriends row'>
+                            <h4>Friends</h4>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                        </div>
+                        <div class='games row'>
+                            <h4>Games</h4>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='user row'>
+                    <div class='picture col-xs-4'>
+                        <img src="../images/face.jpg" alt="..." class="img-circle">
+                    </div>
+                    <div class='info col-xs-8'>
+                        <div class='username row'>
+                            <h1>John Doe</h1>
+                        </div>
+                        <div class='userfriends row'>
+                            <h4>Friends</h4>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                        </div>
+                        <div class='games row'>
+                            <h4>Games</h4>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='panel-footer'>
+                <h6><a>Load more</a></h6>
+            </div>
+
+
         </div>
     </body>
 </html>
