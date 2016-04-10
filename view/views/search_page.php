@@ -1,16 +1,16 @@
 <!-- GAMER-NET - SEARCH PAGE -->
-<!DOCTYPE html>
 <html>
     <head>
         <title>Gamer-net -- Search</title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
-        <?php require_once('includes.html'); ?>        
+        <?php require_once('includes.html'); ?>
         <style>
             body{
                 background-color: black;
             }
             .panel-heading, .panel-footer
             {
+                text-align: center;
                 background-color: rgb(34,34,34);
             }
             .panel-body
@@ -31,16 +31,16 @@
             }
             .picture
             {
-                padding:7% 0 5% 7%; 
+                padding:7% 0 5% 7%;
             }
             .games
         </style>
     </head>
-    <body> 
+    <body>
         <?php require_once('navbar_component.php'); ?>
-        
+
         <div class='container'>
-              
+
             <div class='panel-heading'>
                 <div class='row'>
                     <div class='col-xs-12'>
@@ -52,13 +52,12 @@
                                 </button>
                                 <button type='button' class='btn btn-default'>Username</button>
                                 <button type='button' class='btn btn-default'>Game</button>
-                                <button type='button' class='btn btn-default'>Location</button>          
+                                <button type='button' class='btn btn-default'>Location</button>
                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
 
             <div class='panel-body fixed-container'>
                 <div class='user row'>
@@ -149,7 +148,7 @@
                 </div>
             </div>
 
-            <div class='panel-footer'>
+            <div class='panel-footer '>
                 <h6><a>Load more</a></h6>
             </div>
 
