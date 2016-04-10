@@ -188,7 +188,12 @@ body {
                 <button class="btn btn-lg btn-primary btn-block btn-signin" name="loginButton" type="submit">Sign in</button>
             </form><!-- /form -->
             <a href="#" class="forgot-password">
-                Forgot the password?
+                Forgot password?
+            </a>
+            <br><br>
+            Don't have an account?
+            <a href="register_page.php" class="forgot-password">
+                Register
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->
