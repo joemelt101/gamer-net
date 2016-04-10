@@ -178,6 +178,7 @@
                 </div>
             </div>
     </form>
+    
             <br><br><br><br>
             <form method="post" action="#"> <!-- delete account php? -->
             <div class="row">

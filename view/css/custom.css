@@ -3,7 +3,7 @@ body{padding-top:50px}body>.navbar{-webkit-transition:background-color .3s ease-
 .toggle.android { border-radius: 0px;}
 .toggle.android .toggle-handle { border-radius: 0px; }
 #body{
-    background-color: dimgray;
+    /*background-color: dimgray;*/
 }
 .centered{
     margin-left: auto;
