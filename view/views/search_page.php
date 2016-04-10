@@ -33,7 +33,6 @@
             {
                 padding:7% 0 5% 7%;
             }
-            .games
         </style>
     </head>
     <body>
@@ -148,7 +147,7 @@
                 </div>
             </div>
 
-            <div class='panel-footer '>
+            <div class='panel-footer'>
                 <h6><a>Load more</a></h6>
             </div>
 
