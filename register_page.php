@@ -98,37 +98,37 @@ body {
 		<div class="row">
 			<div class="">
 				<div class="panel-body">
-					<form method="POST" action="#" role="form">
+					<form method="POST" action="loginOrRegister.php" role="form">
 						<div class="form-group">
 							<h2 class="text-center">Create account</h2>
 						</div>
 						
 						<div class="form-group">
                             <label class="control-label" for="email">Email</label>
-							<input id="signupEmail" type="email" maxlength="50" class="form-control" placeholder="Email Address">
+							<input id="signupEmail" name="email" type="email" maxlength="50" class="form-control" placeholder="Email Address">
 						</div>
 						<div class="form-group">
                             <label class="control-label" for="repeatEmail"></label>
-							<input id="signupEmailagain" type="email" maxlength="50" class="form-control" placeholder="Repeat Email">
+							<input id="signupEmailagain" name="email2" type="email" maxlength="50" class="form-control" placeholder="Repeat Email">
 						</div>
                         <div class="form-group">
                             <label class="control-label" for="username">Username</label>
-							<input id="username"  maxlength="50" class="form-control" placeholder="Username">
+							<input id="username" name="username" maxlength="50" class="form-control" placeholder="Username">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="signupPassword">Password</label>
-							<input id="signupPassword" type="password" maxlength="25" class="form-control" placeholder="at least 6 characters" length="40">
+							<input id="signupPassword" name="pass" type="password" maxlength="25" class="form-control" placeholder="at least 6 characters" length="40">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="signupPasswordagain">Password again</label>
-							<input id="signupPasswordagain" type="password" maxlength="25" class="form-control" placeholder="Repeat Password">
+							<input id="signupPasswordagain" name="pass2" type="password" maxlength="25" class="form-control" placeholder="Repeat Password">
 						</div>
 						<div class="form-group">
-							<button id="signupSubmit" type="submit" class="btn btn-info btn-block btn-create">Create your account</button>
+							<button id="signupSubmit" name="registerButton" type="submit" class="btn btn-info btn-block btn-create">Create your account</button>
 						</div>
 						<p class="form-group">By creating an account, you agree to our <a href="#">Terms of Use</a> and our <a href="#">Privacy Policy</a>.</p>
 						<hr>
-						<p></p>Already have an account? <a href="#">Sign in</a></p>
+						<p></p>Already have an account? <a href="login.php">Sign in</a></p>
 					</form>
 				</div>
 			</div>

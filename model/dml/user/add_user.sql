@@ -1,3 +1,3 @@
 # create user
-INSERT INTO user(username, salt, hash_pass, gender, age)
+INSERT INTO user(username, email, alias, salt, hash_pass)
 	VALUES(?, ?, ?, ?, ?);
