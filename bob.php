@@ -4,4 +4,6 @@
     $salt = mt_rand();
     echo $salt . "<br>";
 	echo generateHash($salt . "bob");
+
+	echo $_SERVER['PHP_SELF'];
 ?>
