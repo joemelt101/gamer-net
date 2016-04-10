@@ -1,8 +1,7 @@
 <?php
-    session_start();
+	require_once("session.php");
 	session_unset();
 	// destroy the session
 	session_destroy();
-	header("Location: /homer/gamer-net/");
-	exit;
+	redirect("/"); // redirect to landing page
 ?>

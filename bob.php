@@ -5,5 +5,15 @@
     echo $salt . "<br>";
 	echo generateHash($salt . "bob");
 
-	echo $_SERVER['PHP_SELF'];
+    $urlPieces = explode("/", $_SERVER['PHP_SELF']);
+    $length = count($urlPieces) - 1;
+
+
+    $redirectUrl = '';
+    for ($i = 0; $i < $length; $i++)
+        $redirectUrl .= $urlPieces[$i] . '/';
+    
+    $redirectUrl .= "dashboard.php";
+
+    echo $redirectUrl;
 ?>

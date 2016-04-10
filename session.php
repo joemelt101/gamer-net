@@ -9,15 +9,33 @@
     {
         return isset($_SESSION['user']);
     }
+
+    /*
+        redirect to $page if not already on $page
+    */
     function redirect($page)
     {
+        $urlPieces = explode("/", $_SERVER['PHP_SELF']);
+        $length = count($urlPieces) - 1;
+        
+        /* this allows website to function redirects regardless of what folder
+        it resides in on the vm server
+        */
+        $redirectUrl = '';
+        for ($i = 0; $i < $length; $i++)
+            $redirectUrl .= $urlPieces[$i] . '/';
+    
+        $redirectUrl .= $page;
         if ($currentPage != $page)
         {
-            header("Location: /homer/gamer-net/" . $page);
+            header("Location: " . $redirectUrl);
             exit;
         }
     }
 
+    /* prevent user from going to dashboard.php unless logged in
+    prevent user from going to login.php if already logged in
+    */
     if ($currentPage == "login.php" && isLoggedIn())
         redirect("dashboard.php");
     else if ($currentPage == "dashboard.php" && !isLoggedIn())
