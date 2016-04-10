@@ -21,8 +21,6 @@
         $database = new DBConnection();
         $mysqli = $database->conn;
             
-        $uname = $mysqli->real_escape_string(strip_tags($uname, ENT_QUOTES));
-        $pass = $mysqli->real_escape_string(strip_tags($pass, ENT_QUOTES));
             
         //Test to see if their credentials are valid
         $query = 'SELECT * FROM user WHERE username = ? OR email = ?';
@@ -95,12 +93,9 @@
             $message = "Username cannot be shorter than 2 or longer than 64 characters";
         } elseif (!preg_match('/^[a-z\d]{2,64}$/i', $username)) {
             $message = "Username does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters";
-        } elseif (empty($email) || empty($verifyEmail)) {
-            $message = "Emails cannot be empty";
-        } elseif ($email !== $verifyEmail) {
-            $message = "Emails do not match";
-        }
-        elseif (strlen($email) > 64) {
+        } elseif (empty($email)) {
+            $message = "Email cannot be empty";
+        } elseif (strlen($email) > 64) {
             $message = "Email cannot be longer than 64 characters";
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $message = "Your email address is not in a valid email format";
@@ -129,7 +124,7 @@
              // change the input to utf8 and check the connection again
             // change the input to utf8 and check the connection again
             if (!$db->connect_errno) {
-                
+
                 // escaping, additionally removing everything that could be (html/javascript-) code
                 // escaping allows us to prevent any input that could be potentially harmful
                 // AKA javascript/HMTL/SQL injection
@@ -145,9 +140,8 @@
                 $hash_pass = generateHash($salt . $pass);
                 
                 // check to make sure that the username and email address hasn't already been used
-                $query = file_get_contents("model/dml/user/check_user_exists.sql");
-                
-                
+                $query = file_get_contents("model/dml/check_user_exists.sql");
+                return $query;
                 if ($stmt = $db->prepare($query))
                 {
                     $stmt->bind_param("ss", $username, $email);
@@ -161,7 +155,7 @@
                     else
                     {
                         $stmt->close();
-                        $query = file_get_contents("model/dml/user/add_user.sql");
+                        $query = file_get_contents("model/dml/add_user.sql");
                         if ($stmt = $db->prepare($query))
                         {
                             $stmt->bind_param("sssis", $username, $email, $username, $salt, $hash_pass);
@@ -181,11 +175,7 @@
         } else {
             $message = "An unknown error occurred.";
         }
-        if (isset($database))
-        {
-            if ($database->connected())
-                $database->close();
-        }
+        $database->close();
         return $message;
     }
 ?>

@@ -6,13 +6,11 @@
         {
             $uname = $_POST['username'];
             $password = $_POST['password'];
-            echo $uname . $password;
             
             $user = doLogin($uname, $password);
             if (!$user)
             {
                 echo "<p>Username or password is invalid.</p>";
-                
             }
             else
             {
