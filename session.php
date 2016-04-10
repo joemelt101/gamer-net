@@ -13,7 +13,7 @@
     {
         if ($currentPage != $page)
         {
-            header("Location: /homer/gamer-net/" . $page);
+            header("Location: /working/gamer-net/" . $page);
             exit;
         }
     }
