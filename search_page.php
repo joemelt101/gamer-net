@@ -3,7 +3,7 @@
     <head>
         <title>Gamer-net -- Search</title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
-        <?php require_once('includes.html'); ?>
+        <?php require_once('view/views/includes.html'); ?>
         <style>
             body{
                 background-color: black;
@@ -36,7 +36,7 @@
         </style>
     </head>
     <body>
-        <?php require_once('navbar_component.php'); ?>
+        <?php require_once('view/views/navbar_component.php'); ?>
 
         <div class='container'>
 
@@ -61,7 +61,7 @@
             <div class='panel-body fixed-container'>
                 <div class='user row'>
                     <div class='picture col-xs-4'>
-                        <img src="../images/face.jpg" alt="..." class="img-circle">
+                        <img src="view/images/face.jpg" alt="..." class="img-circle">
                     </div>
                     <div class='info col-xs-8'>
                         <div class='username row'>
@@ -69,28 +69,28 @@
                         </div>
                         <div class='userfriends row'>
                             <h4>Friends</h4>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
                         </div>
                         <div class='games row'>
                             <h4>Games</h4>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
                         </div>
                     </div>
                 </div>
 
                 <div class='user row'>
                     <div class='picture col-xs-4'>
-                        <img src="../images/face.jpg" alt="..." class="img-circle">
+                        <img src="view/images/face.jpg" alt="..." class="img-circle">
                     </div>
                     <div class='info col-xs-8'>
                         <div class='username row'>
@@ -98,28 +98,28 @@
                         </div>
                         <div class='userfriends row'>
                             <h4>Friends</h4>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
                         </div>
                         <div class='games row'>
                             <h4>Games</h4>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
                         </div>
                     </div>
                 </div>
 
                 <div class='user row'>
                     <div class='picture col-xs-4'>
-                        <img src="../images/face.jpg" alt="..." class="img-circle">
+                        <img src="view/images/face.jpg" alt="..." class="img-circle">
                     </div>
                     <div class='info col-xs-8'>
                         <div class='username row'>
@@ -127,21 +127,21 @@
                         </div>
                         <div class='userfriends row'>
                             <h4>Friends</h4>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="../images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
                         </div>
                         <div class='games row'>
                             <h4>Games</h4>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="../images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
                         </div>
                     </div>
                 </div>
