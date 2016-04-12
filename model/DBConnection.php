@@ -14,7 +14,7 @@
         }
         public function __construct()
         {
-            $filename = "/var/www/html/.credentials";
+            $filename = "/var/www/.credentials";
             $file = fopen($filename, "r") or die("Unable to open file.");
             
             $this->hostname = self::getLine($file);
