@@ -37,6 +37,40 @@
             #mySlider .slider-track-high {
                 background: #5cb85c;
             }
+            
+            /* ===================================
+            
+                        Art's  CSS changes
+            
+            =====================================*/ 
+            
+            
+                        /*
+             * Card component
+             */
+            .card {
+               
+                background-color: #333;
+            
+                /* just in case there no content*/
+                padding-left: 10px;
+                padding-bottom: 10px;
+                /* shadows and rounded borders */
+                -moz-border-radius: 2px;
+                -webkit-border-radius: 2px;
+                border-radius: 2px;
+                -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            }
+            
+            #saveChanges {
+             margin: 0 auto;   
+            }
+            
+            
+            
+            
         </style>
         <title>G-N Settings</title>  
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
@@ -148,18 +182,174 @@
                     </select>
                 </div>
             </div>
-                    
-            <br><br>
-            <div class="row">    
-                <div class="col-md-2">
-                    <h5>Change Alias<h5>
+             
+                
+            <!--location settings-->
+            <div class="row">
+                <div class="col-lg-4">
+                        <h2>User Settings</h2>
                 </div>
-                <div class="col-md-offset-2">
-                    <input type="text" placeholder="alias" name="alias"><h6> *Optional</h6>
+                <div class="col-lg-4">
+                        
+                </div>
+                <div class="col-lg-4">
+                        <h2>Profile Settings</h2>
+                </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card card-container">    
+                        <br>    
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Alias
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="alias" name="alias">
+                            </div>
+                        </div>
+                            <br>
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Public Email
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="public Email" name="publicEmail">
+                            </div>
+                        </div>
+                            <br>
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Twitch.tv/
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="twtich.tv/" name="twitch">
+                            </div>
+                        </div>
+                            <br>
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Skype
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="skype" name="skype">
+                            </div>
+                        </div>
+
+                            <br>
+                            
+
+
                 </div>
             </div>
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <div class="card card-container">    
+                        <br>    
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Top Game
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="most played game" name="topGame">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Hours Played
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="hours played" name="hoursPlayed">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Main Genre
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="main genre" name="mainGenre">
+                            </div>
+                        </div>
+    
+                            <br>
 
+                         <div class="row">    
+                            <div class="col-md-3">
+                                Main Console
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="main console" name="mainConsole">
+                            </div>
+                        </div>
+                            <br>
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Sub Console
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="sub console" name="subConsole">
+                            </div>
+                        </div>   
+
+                        </div>
+            </div>
+                    
+            </div>
             <br>
+                
+                <div class="row">
+                <div class="col-md-4">
+                  
+                </div>
+                <div class="col-md-4">
+                     <!-- outlline does not work... <button class="btn btn-sm btn-success-outline" type="submit">Save Changes</button> -->
+                    <button class="btn btn-sm btn-success" type="submit" id="saveChanges">Save Changes</button>
+                </div>
+                <div class="col-md-4">
+                  
+                </div>
+            </div>
+                
+            <br>
+            <hr>
+            <br>
+                
+            <div class="row"> 
+                    <div class="col-lg-4"> <h3>Change Password</h3>
+                        <br>
+                        <div class="card card-container">    
+                        <br> 
+                        <div class="row">    
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="password" name="password">
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-md-3">
+                            </div>
+                            <br>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="confirm password" name="passwordConfirm">
+                            </div>
+                        </div>  
+                        
+                        </div>
+                    
+                    </div>
+            </div>
+                
+                <br>
+                    
+                    
+                    
+            <!-- password stuff -->
+             <!--       
             <div class="row">    
                 <div class="col-md-2">
                     <h5>Change Password</h5>
@@ -168,13 +358,13 @@
                     <input type="password" placeholder="password" name="password"><h6> *Optional</h6>
                     <input type="password" placeholder="confirm password" name="passwordConfirm">
                 </div>
-            </div>
+            </div> -->
 
-            <br><br>
+            
             <div class="row">
                 <div class="col-md-3">
                     <!-- outlline does not work... <button class="btn btn-sm btn-success-outline" type="submit">Save Changes</button> -->
-                    <button class="btn btn-sm btn-success" type="submit">Save Changes</button>
+                    <button class="btn btn-sm btn-success" type="submit">Save Password</button>
                 </div>
             </div>
     </form>
