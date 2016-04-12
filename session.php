@@ -44,6 +44,8 @@
     /* prevent user from going to dashboard.php unless logged in
     prevent user from going to login.php if already logged in
     */
+    if (isset($_GET['page']))
+        $currentPage = $_GET['page'];
     if ($currentPage == "login" && isLoggedIn())
         redirect("dashboard");
     else if ($currentPage == "dashboard" && !isLoggedIn())
