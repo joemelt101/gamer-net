@@ -1,7 +1,3 @@
-<?php
-    require "scripts/login_script.php";
-    $login = new Login();
-?>
 <html>
     <head>
   <title>Bootstrap Theme Simply Me</title>
@@ -180,19 +176,24 @@ body {
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin" method="post" action="hello.php">
+            <form class="form-signin" method="post" action="loginOrRegister.php">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" name="user_name" id="login" class="form-control" placeholder="Email address" required autofocus>
-                <input type="password" name="user_password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="text" name="username" id="login" class="form-control" placeholder="Email or Username" required autofocus>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 <div id="remember" class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" name="login" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" name="loginButton" type="submit">Sign in</button>
             </form><!-- /form -->
             <a href="#" class="forgot-password">
-                Forgot the password?
+                Forgot password?
+            </a>
+            <br><br>
+            Don't have an account?
+            <a href="register_page.php" class="forgot-password">
+                Register
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->

@@ -1,8 +1,7 @@
 <!-- View data is defined here -->
 <?php
-
-$isLoggedIn = false;
-
+    require_once('helper.php');
+    $isLoggedIn = $_SESSION['user'];
 ?>
 
 <!-- Actual display of the view is defined here -->
@@ -20,7 +19,7 @@ $isLoggedIn = false;
             
           <a class="navbar-brand" href="index.php">Gamer-Net</a>
             <ul class="nav navbar-nav">
-                    <li><a href="index.php"><span class="glyphicon glyphicon-globe"></span> Home</a></li>
+                    <li><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Near You</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-comment"></span> Messages</a></li>
                     <li><a href="settings.php"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
@@ -39,7 +38,6 @@ $isLoggedIn = false;
             {
                 echo ("<li><a href=\"login.php\">Login</a></li>");
             }
-
     ?>        
             <li><a href="search.php">Search</a></li>     
           </ul>
