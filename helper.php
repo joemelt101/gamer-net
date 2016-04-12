@@ -120,7 +120,6 @@
             $database = new DBConnection();
             $db = $database->conn;
             
-            
             // change character set to utf8 and check it
             if (!$db->set_charset("utf8")) {
                 $message = $db->error;
@@ -145,8 +144,9 @@
                 $hash_pass = generateHash($salt . $pass);
                 
                 // check to make sure that the username and email address hasn't already been used
-                $query = file_get_contents("model/dml/user/check_user_exists.sql");
-                
+                $query = file_get_contents("../model/dml/user/check_user_exists.sql");
+                if ($query == "" || !$query)
+                            return "sql file not found";
                 
                 if ($stmt = $db->prepare($query))
                 {
@@ -161,7 +161,9 @@
                     else
                     {
                         $stmt->close();
-                        $query = file_get_contents("model/dml/user/add_user.sql");
+                        $query = file_get_contents("../model/dml/user/add_user.sql");
+                        if ($query == "" || !$query)
+                            return "sql file not found";
                         if ($stmt = $db->prepare($query))
                         {
                             $stmt->bind_param("sssis", $username, $email, $username, $salt, $hash_pass);

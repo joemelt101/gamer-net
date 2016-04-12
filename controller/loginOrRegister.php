@@ -1,5 +1,5 @@
 <?php
-    require_once("helper.php");
+    require_once("../helper.php");
     if (isset($_POST['loginButton'])) // login button was pressed
     {
         if (isset($_POST['username'], $_POST['password']))
@@ -15,7 +15,7 @@
             else
             {
                 $_SESSION['user'] = serialize($user);
-                redirect("dashboard.php");
+                redirect("../dashboard");
             }
         }
     }
