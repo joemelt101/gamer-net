@@ -192,7 +192,7 @@ body {
             </a>
             <br><br>
             Don't have an account?
-            <a href="register_page.php" class="forgot-password">
+            <a href="register" class="forgot-password">
                 Register
             </a>
         </div><!-- /card-container -->

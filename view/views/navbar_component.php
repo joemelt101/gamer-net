@@ -38,7 +38,7 @@
                 echo ("<li><a href=\"login\">Login</a></li>");
             }
     ?>        
-            <li><a href="search.php">Search</a></li>     
+            <li><a href="search">Search</a></li>     
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

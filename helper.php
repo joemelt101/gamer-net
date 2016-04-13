@@ -69,7 +69,11 @@
        //     echo $hash_pass;
             
             if ($localhash == $hash_pass)
-                return new User($uid, $username, $email, $alias, $gender, $age, $is_admin); 
+            {
+                $user = new User($uid, $username, $email, $alias, $gender, $age, $is_admin);
+                $user->setOnlineStatus(1);
+                return $user;
+            }
             // password hashes matched, this is a valid user
         }
         return false; // password hashes did not match or username didn't exist

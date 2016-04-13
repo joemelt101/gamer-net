@@ -58,7 +58,7 @@
                         if (isset($_SESSION['user']))
                         {
                             $user = User::loadByID($_SESSION['user']);
-                            echo "<h2>Welcome, " . $user->getUsername() . " to your dashboard</h2>";
+                            echo "<h2>Welcome, " . $user->getAlias() . " to your dashboard</h2>";
                         }
                     ?>
                 </div>

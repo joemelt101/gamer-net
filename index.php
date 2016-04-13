@@ -73,7 +73,7 @@
   <div class="intro-text">
     <h1 class="wow fadeInDown"><strong><span class="color">Gamer-Net</span></strong></h1>
     <p class="wow fadeInDown">A Social Networking Platform for Gamers</p>
-    <a href="register_page" class="btn btn-default btn-lg page-scroll wow fadeInUp" data-wow-delay="200ms">Sign Up</a> </div>
+    <a href="register" class="btn btn-default btn-lg page-scroll wow fadeInUp" data-wow-delay="200ms">Sign Up</a> </div>
 </header>
 
 <!-- Services Section -->
