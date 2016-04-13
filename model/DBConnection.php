@@ -33,7 +33,7 @@
             if ($this->conn->connect_error)
                 die("Connection failed: " . $this->conn->connect_error);
         
-            echo "Connected successfully to database.";
+           // echo "Connected successfully to database.";
             
         }
         public function connected()
@@ -46,7 +46,7 @@
             if (isset($this->conn))
             {
                 mysqli_close($this->conn);
-                echo "Database connection closed.";
+             //   echo "Database connection closed.";
             }
         }
     }

@@ -2,8 +2,6 @@
 	require_once('session.php');
     require_once('model/User.php');
 
-    
-
     function generateHash($string)
     {
         for ($i = 0; $i < 50; $i++)
@@ -61,11 +59,14 @@
             if ($uname != $username && $uname != $email)
                 return false;
             
-        
+    //    echo "hello5";
             //Generate the local hash to compare against $dbHash
             $localhash = generateHash($salt . $pass);
             //Compare the local hash and the database hash to see if they're equal
             
+    //      echo "hello6";  
+       //     echo "<br>" . $localhash . "<br>";
+       //     echo $hash_pass;
             
             if ($localhash == $hash_pass)
                 return new User($uid, $username, $email, $alias, $gender, $age, $is_admin); 
@@ -169,7 +170,7 @@
                             $stmt->bind_param("sssis", $username, $email, $username, $salt, $hash_pass);
                             
                             if ($stmt->execute())
-                                $message = "Your account was successfully created. You can now log in.";
+                                $message = "successful registration";
                             else
                                 $message = "Sorry, registration failed. Try again.";
                         }
