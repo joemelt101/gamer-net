@@ -2,7 +2,14 @@
 #Options -Indexes
 Options FollowSymLinks
 
+
+#custom 404 page
+
+
+
 RewriteEngine On
+
+
 
 #leave this commented
 #RewriteBase /
