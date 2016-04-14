@@ -4,7 +4,7 @@
 ?>
 
 <!-- Actual display of the view is defined here -->
-<nav class="navbar navbar-inverse ">
+<nav class="navbar navbar-inverse">
     <div class="container">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
