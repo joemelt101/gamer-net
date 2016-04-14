@@ -119,9 +119,9 @@
       <p>Some of the most popular games on Gamer-Net</p>
     </div>
     <div class="categories">
-      <ul class="cat">
+      <ul class="cat" style="padding-left: 0px; padding-right: 15px;">
         <li>
-          <ol class="type">
+          <ol class="type" style="padding-left: 0px;">
             <li><a href="#" data-filter="*" class="active">All</a></li>
             <li><a href="#" data-filter=".web">PC</a></li>
             <li><a href="#" data-filter=".app">Xbox One</a></li>

@@ -68,6 +68,12 @@
              margin: 0 auto;   
             }
             
+            .left {
+                float: left;
+                padding-left: 15px;
+                
+            }
+            
             
             
             
@@ -301,19 +307,16 @@
             </div>
             <br>
                 
-                <div class="row">
-                <div class="col-md-4">
-                  
-                </div>
-                <div class="col-md-4">
+               
+            
+            
+            <div class="row">
+                <div class="col-md3 left">
                      <!-- outlline does not work... <button class="btn btn-sm btn-success-outline" type="submit">Save Changes</button> -->
-                    <button class="btn btn-sm btn-success" type="submit" id="saveChanges">Save Changes</button>
+                    <button class="btn btn-success" type="submit" id="saveChanges">Save Changes</button>
                 </div>
-                <div class="col-md-4">
-                  
-                </div>
+                <br>
             </div>
-                
             <br>
             <hr>
             <br>
@@ -364,12 +367,14 @@
             <div class="row">
                 <div class="col-md-3">
                     <!-- outlline does not work... <button class="btn btn-sm btn-success-outline" type="submit">Save Changes</button> -->
-                    <button class="btn btn-sm btn-success" type="submit">Save Password</button>
+                    <button class="btn btn-success" type="submit">Save Password</button>
                 </div>
             </div>
     </form>
     
-            <br><br><br><br>
+            
+            <br><br>
+            <hr>
             <form method="post" action="#"> <!-- delete account php? -->
             <div class="row">
                 <div class="col-sm-3 col-sm-offset-5">
@@ -377,7 +382,7 @@
                 </div>
             </div>
             </form>
-
+</div>
         </div><!--close panel body-->
     </div><!--close main-->
         
