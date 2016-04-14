@@ -1,5 +1,6 @@
 <?php
     require_once("helper.php");
+
     if (isset($_POST['loginButton'])) // login button was pressed
     {
         if (isset($_POST['username'], $_POST['password']))

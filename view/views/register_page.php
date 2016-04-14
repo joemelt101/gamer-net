@@ -1,6 +1,6 @@
 <html>
     <head>
-  <title>Bootstrap Theme Simply Me</title>
+  <title>Register</title>
 
         
         
@@ -98,7 +98,7 @@ body {
 		<div class="row">
 			<div class="">
 				<div class="panel-body">
-					<form method="POST" action="loginOrRegister.php" role="form">
+					<form method="POST" action="register.php" role="form">
 						<div class="form-group">
 							<h2 class="text-center">Create account</h2>
 						</div>

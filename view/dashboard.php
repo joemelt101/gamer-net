@@ -1,7 +1,4 @@
-<?php
-    require_once("helper.php");
-?>
-
+<?php require_once("helper.php"); ?>
 <!DOCTYPE html>
 
 <html>
@@ -60,8 +57,8 @@
                         
                         if (isset($_SESSION['user']))
                         {
-                            $user = unserialize($_SESSION['user']);
-                        echo "<h2>Welcome, " . $user->getUsername() . " to your dashboard</h2>";
+                            $user = User::loadByID($_SESSION['user']);
+                            echo "<h2>Welcome, " . $user->getAlias() . " to your dashboard</h2>";
                         }
                     ?>
                 </div>

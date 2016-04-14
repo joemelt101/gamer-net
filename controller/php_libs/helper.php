@@ -1,6 +1,8 @@
 <?php
-	require_once('session.php');
-    require_once('model/User.php');
+	require_once('controller/php_libs/session.php');
+	require_once('model/User.php');
+
+    
 
     function generateHash($string)
     {
@@ -59,21 +61,14 @@
             if ($uname != $username && $uname != $email)
                 return false;
             
-    //    echo "hello5";
+        
             //Generate the local hash to compare against $dbHash
             $localhash = generateHash($salt . $pass);
             //Compare the local hash and the database hash to see if they're equal
             
-    //      echo "hello6";  
-       //     echo "<br>" . $localhash . "<br>";
-       //     echo $hash_pass;
             
             if ($localhash == $hash_pass)
-            {
-                $user = new User($uid, $username, $email, $alias, $gender, $age, $is_admin);
-                $user->setOnlineStatus(1);
-                return $user;
-            }
+                return new User($uid, $username, $email, $alias, $gender, $age, $is_admin); 
             // password hashes matched, this is a valid user
         }
         return false; // password hashes did not match or username didn't exist
@@ -125,6 +120,7 @@
             $database = new DBConnection();
             $db = $database->conn;
             
+            
             // change character set to utf8 and check it
             if (!$db->set_charset("utf8")) {
                 $message = $db->error;
@@ -149,9 +145,8 @@
                 $hash_pass = generateHash($salt . $pass);
                 
                 // check to make sure that the username and email address hasn't already been used
-                $query = file_get_contents("../model/dml/user/check_user_exists.sql");
-                if ($query == "" || !$query)
-                            return "sql file not found";
+                $query = file_get_contents("model/dml/user/check_user_exists.sql");
+                
                 
                 if ($stmt = $db->prepare($query))
                 {
@@ -166,15 +161,13 @@
                     else
                     {
                         $stmt->close();
-                        $query = file_get_contents("../model/dml/user/add_user.sql");
-                        if ($query == "" || !$query)
-                            return "sql file not found";
+                        $query = file_get_contents("model/dml/user/add_user.sql");
                         if ($stmt = $db->prepare($query))
                         {
                             $stmt->bind_param("sssis", $username, $email, $username, $salt, $hash_pass);
                             
                             if ($stmt->execute())
-                                $message = "successful registration";
+                                $message = "Your account was successfully created. You can now log in.";
                             else
                                 $message = "Sorry, registration failed. Try again.";
                         }
