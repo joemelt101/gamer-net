@@ -16,7 +16,7 @@ class Controller
     }
     public function listFriends()
     {
-        $user->getFriends();
+        $this->user->getFriends();
     }
 }
 
