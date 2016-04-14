@@ -1,9 +1,6 @@
 <?php
     session_start();
-	require_once("model/DBConnection.php");
     
-    
-    $currentPage = basename($_SERVER['PHP_SELF']);
 
     function isLoggedIn()
     {

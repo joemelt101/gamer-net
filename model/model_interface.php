@@ -21,7 +21,7 @@
             $this->age = $age;
             $this->is_admin = $is_admin;
         }
-        //create user object by querying database with $_SESSION['user']
+        //create user object by querying database with $uid
         public static function loadByID($uid)
         {
             if (isset($uid))
