@@ -1,0 +1,64 @@
+DIRECTORY
+
+gamer-net/
+|
+|--documentation...
+|
+|--views/
+|  |    
+|  |--navbar.php
+|  |--dashboard.php
+|  |--friends.php
+|  |--register.php
+|  |--search.php
+|  |--settings.php
+|  |--viewfriend.php
+|  |--login.php
+|  |
+|  |--CSS/
+|  |  |--headers
+|  |  |  |--bootstrap
+|  |  |
+|  |  |--navbar.css
+|  |  |--dashboard.css
+|  |  |--friends.css
+|  |  |--register.css
+|  |  |--search.css
+|  |  |--settings.css
+|  |  |--register.css
+|  |  |--viewfriend.css
+|  |  |--login.css
+|  |
+|  |--js/
+|     |
+|     |--jquery-2.2.2.min.js
+|     |--bootstrap.min.js
+|
+|--controller/
+|  |
+|  |--dashboard_controller.php
+|  |--friends_controller.php
+|  |--register_controller.php
+|  |--search_controller.php
+|  |--settings_controller.php
+|  |--viewfriend_controller.php
+|  |--login_controller.php
+|
+|
+|--model/
+|  |
+|  |--model_interface.php
+|  |--DBconnection.php
+|  |--DML
+|     |--contact_info
+|     |--game
+|     |--location
+|     |--relationship
+|     |--user
+|     |--user_games
+
+|--README.md
+|--.htacces
+|--index.php
+|--page.php
+|--.gitignore
