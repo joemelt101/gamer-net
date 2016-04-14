@@ -1,25 +1,22 @@
 <?php
-
-require_once('controller/php_libs/helper.php');
-
-
 class Controller
 {
-    public function grabData()
-    {
-        if (isLoggedIn() == false)
-        {
-            redirect('login.php');          
-        }
-        
-        $object = new StdClass;
-        
-        return $object;
-    }
+    private $user;
     
-    public function grabViewLocation()
+    public function __construct()
     {
-        return "view/views/friends_page.php";
+        if (!isLoggedIn())
+        {
+            redirect('login');          
+        }
+        else
+        {
+            $this->user = User::loadByID($_SESSION['user']);
+        }
+    }
+    public function listFriends()
+    {
+        $user->getFriends();
     }
 }
 

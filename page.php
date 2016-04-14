@@ -1,9 +1,17 @@
 <?php
-    require_once("helper.php");
-	$page = empty($_GET['page']) ? "index" : $_GET['page'];
+    require_once('controller/php_libs/helper.php');
 	
-	$contentUrl = "view/" . $page . ".php";
-	if (!file_exists($contentUrl))
-		$contentUrl = "view/404.html";
-	require_once $contentUrl;
+	if (!empty($_GET['page']))
+    {
+        $page = $_GET['page'];
+        $contentUrl = "view/views/" . $page . "_page.php";
+        if (!file_exists($contentUrl))
+            $contentUrl = "view/views/404.html";
+        else
+        {
+            require_once("controller/controllers/" . $page . "_controller.php");
+            $controller = new Controller();
+        }
+        require_once($contentUrl);
+    }
 ?>

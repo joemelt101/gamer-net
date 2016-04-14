@@ -1,40 +1,23 @@
 <?php
-
-require_once('controller/php_libs/helper.php');
-
-class Controller
-{
-    public function grabData()
+    class Controller
     {
-        if (isLoggedIn() == false)
+        private $user;
+        public function __construct()
         {
-            redirect("login.php");
-        }
-        
-        $object = new StdClass;
-        
-        //here we access the model to retrieve valid data
-        if (isset($_POST['module']))
-        {
-            
-            //'print' module of code
-            if ($_POST['module'] == 'print')
+            if (!isLoggedIn())
             {
-                //return the username as the data object
-                return $_POST['name'];
+                redirect("login");
             }
-            
-            //other modules go here to handle different forms
-            //the module is set by the 
+            else
+            {
+                $this->user = User::loadByID($_SESSION['user']);
+            }
         }
-        
-        return "Default";
+        public function updateSettings()
+        {
+            $user = $this->user;
+            $user->getOnlineStatus();
+            echo ($user->updateSettings("bob", 0, 25)? "Update was successful.":"Update failed.");
+        }
     }
-    
-    public function grabViewLocation()
-    {
-        return "view/views/settings_controller.php";
-    }
-}
-
 ?>

@@ -1,11 +1,29 @@
 <?php
 
+/* not needed
 require_once('controller/php_libs/session.php');
 require_once('controller/php_libs/helper.php');
+*/
 
 class Controller
 {
-
+    private $user;
+    public function __construct()
+    {
+        if (!isLoggedIn())
+        {
+            redirect("login");
+        }
+        else
+        {
+            $this->user = User::loadByID($_SESSION['user']);
+        }
+    }
+    public function echoUsername()
+    {
+        echo $this->user->getUsername();
+    }
+/*
     public function grabData()
     {
         $object = new StdClass;
@@ -37,6 +55,7 @@ class Controller
     {
         return "view/views/dashboard_page.php";
     }
+    */
 }
 
 ?>

@@ -31,7 +31,7 @@
     <?php 
             if ($isLoggedIn)
             {
-                echo("<li><a href=\"controller/logout.php\">Logout</a></li>");
+                echo("<li><a href=\"controller/controllers/logout.php\">Logout</a></li>");
             }
             else
             {

@@ -1,16 +1,12 @@
 <?php
 
-require_once("controller/php_libs/session.php");
-require_once("controller/php_libs/helper.php");
-
 class Controller
 {
-
-    public function grabData()
+    public function __construct()
     {
-        if (isLoggedIn() == true)
+        if (isLoggedIn())
         {
-            redirect("dashboard.php");
+            redirect("dashboard");
         }
 
         if (isset($_POST['loginButton'])) // login button was pressed
@@ -20,24 +16,9 @@ class Controller
                 $uname = $_POST['username'];
                 $password = $_POST['password'];
 
-                $user = doLogin($uname, $password);
-                
-                if (!$user)
-                {
-                    redirect("login.php");
-                }
-                else
-                {
-                    $_SESSION['user'] = serialize($user);
-                    redirect("dashboard.php");
-                }
+                login($uname, $password);
             }
         }
-    }
-    
-    public function grabViewLocation()
-    {
-        return "view/views/login_page.php";
     }
 }
 
