@@ -1,4 +1,4 @@
 # update user
 UPDATE user
-SET alias=?, salt=?, hash_pass=?
+SET alias=?, gender=?, age=?
 WHERE user_id=?;

@@ -15,7 +15,7 @@ DELETE FROM user WHERE user_id = ?;
 
 # update user
 UPDATE user
-SET alias=?, salt=?, hash_pass=?
+SET alias=?, gender=?, age=?
 WHERE user_id=?;
 
 # user logs on
@@ -39,6 +39,16 @@ users should not be able to register with an email or username
 that already exists in the database
 */
 SELECT username, email FROM user WHERE username=? OR email=?;
+
+# get user ?s data
+SELECT username, email, alias, gender, age, availability, is_admin FROM user WHERE user_id=?;
+
+# get user's online status
+UPDATE user SET availability=? WHERE user_id=?;
+
+# get user's online status
+SELECT availability FROM user WHERE user_id=?;
+
 
 
 

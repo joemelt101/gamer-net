@@ -22,6 +22,10 @@
         $urlPieces = explode("/", $urlPath);
         $length = count($urlPieces) - 1;
         
+        if ($page == '' && $currentPage != 'index.php')
+            $length = 3;
+        
+        
         /* this allows website to function redirects regardless of what folder
         it resides in on the vm server
         */
@@ -40,8 +44,10 @@
     /* prevent user from going to dashboard.php unless logged in
     prevent user from going to login.php if already logged in
     */
-    if ($currentPage == "login.php" && isLoggedIn())
-        redirect("dashboard.php");
-    else if ($currentPage == "dashboard.php" && !isLoggedIn())
-        redirect("login.php");
+    if (isset($_GET['page']))
+        $currentPage = $_GET['page'];
+    if ($currentPage == "login" && isLoggedIn())
+        redirect("dashboard");
+    else if ($currentPage == "dashboard" && !isLoggedIn())
+        redirect("login");
 ?>

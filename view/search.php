@@ -1,3 +1,10 @@
+<?php
+    if (isLoggedIn())
+    {
+        $user = User::loadByID($_SESSION['user']);
+        $user->getFriends();
+    }
+?>
 <!-- GAMER-NET - SEARCH PAGE -->
 <html>
     <head>
