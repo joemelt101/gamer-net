@@ -1,3 +1,11 @@
+<?php
+    if (isLoggedIn())
+    {
+        $user = User::loadByID($_SESSION['user']);
+        $user->getOnlineStatus();
+        echo ($user->updateSettings("bob", 0, 25)? "Update was successful.":"Update failed.");
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
