@@ -48,14 +48,14 @@
         </style>
     </head>
     
-    <body>
+    <body id="dg">
         <?php require_once('view/views/navbar_component.php'); ?>
         
         
         <div class="container-fixed container">
             <div class="panel panel-default">
                 
-                <div class="panel-heading">
+                <div class="panel-heading" id="blueGrey">
                     <?php
                         
                         if (isset($_SESSION['user']))
@@ -66,7 +66,7 @@
                     ?>
                 </div>
                 
-                <div class="panel-body">
+                <div class="panel-body" id="lg">
                     
                     <!-- 2 Columns for this Layout -->
                     <div class="row">

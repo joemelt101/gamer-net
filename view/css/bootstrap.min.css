@@ -1,0 +1,39 @@
+            .panel{
+                border-color: #171515;
+            }
+            
+            .panel-default > .panel-heading {
+                
+                border-color: #171515;
+            
+            }
+
+            hr {
+                
+                border-color: #171515;
+            
+            }
+            
+            
+            #lg {
+               
+                background-color: #2E3338;
+                color: #C8C8C8;
+                
+            }
+            
+            
+            #dg {
+                
+                background-color: #272B30;
+                color: #C8C8C8;
+                
+            }
+
+        
+            #blueGrey {
+                
+                background-color: #3E444C;
+                color: #C8C8C8;
+                
+            }

@@ -2,7 +2,7 @@
 <html>
     <head>
         
-        <link rel="stylesheet" type="text/css" href="custom.css">
+        <link rel="stylesheet" type="text/css" href="art.css">
         <!--css, to be moved? moved-->
         <style>
             .toggle.android { 
@@ -10,9 +10,6 @@
             }
             .toggle.android .toggle-handle { 
                 border-radius: 0px; 
-            }
-            #body{
-                /*background-color: dimgray;*/
             }
             .centered{
                 display: block;
@@ -38,6 +35,10 @@
                 background: #5cb85c;
             }
             
+            
+            
+          
+
             /* ===================================
             
                         Art's  CSS changes
@@ -106,13 +107,13 @@
 
     </head>
     
-    <body id="body">
+    <body id="dg">
     <form action="#" method="post">
         <?php require_once('view/views/navbar_component.php');
         ?>
 
         
-        <div class="panel panel-default container-fixed container">
+        <div class="panel panel-default container-fixed container" id="lg">
             <div class="panel-body"> <!--box-->
 
             <!--location settings-->
