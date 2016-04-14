@@ -2,23 +2,31 @@ DIRECTORY
 
 gamer-net/
 |
-|--documentation...
+|--documentation
+|  |--directory.txt
+|  |--gamer-net.wiki
+|  |--RequirementsAnalysis.md
+|  |--README.md
 |
-|--views/
-|  |    
-|  |--navbar.php
-|  |--dashboard.php
-|  |--friends.php
-|  |--register.php
-|  |--search.php
-|  |--settings.php
-|  |--viewfriend.php
-|  |--login.php
+|--view/
+|  |
+|  |--README.md
+|  |--images
+|  |--fonts
+|  |
+|  |--views
+|  |  |--navbar_component.php
+|  |  |--dashboard_page.php
+|  |  |--friends_page.php
+|  |  |--register_page.php
+|  |  |--search_page.php
+|  |  |--settings_page.php
+|  |  |--viewfriend_page.php
+|  |  |--login_page.php
 |  |
 |  |--CSS/
-|  |  |--headers
-|  |  |  |--bootstrap
-|  |  |
+|  |  |--bootstrap.min.css (point to this in final version)
+|  |  |--bootstrap.css (point to this to test)
 |  |  |--navbar.css
 |  |  |--dashboard.css
 |  |  |--friends.css
@@ -43,6 +51,7 @@ gamer-net/
 |  |--settings_controller.php
 |  |--viewfriend_controller.php
 |  |--login_controller.php
+|  |--logout.php
 |
 |
 |--model/
@@ -56,7 +65,8 @@ gamer-net/
 |     |--relationship
 |     |--user
 |     |--user_games
-
+|
+|--LICENSE
 |--README.md
 |--.htacces
 |--index.php
