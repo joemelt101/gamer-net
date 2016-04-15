@@ -80,5 +80,49 @@
                     return "An error occurred, password was not changed.";
             }
         }
+        public function getAbout()
+        {
+            return $this->user->getAbout();
+        }
+        public function setAbout($about)
+        {
+            if (isset($about))
+            {
+
+                if ($this->user->setAbout($about))
+                {
+                    echo "About me updated.";
+                }
+                else
+                {
+                    echo "Error, about me did not update.";
+                }
+                echo "<br>";
+            }
+            
+        }
+        public function setLocation($city, $state, $zip_code)
+        {
+            if ($this->user->setLocation($city, $state, $zip_code))
+            {
+                echo "Location updated.<br>";
+            }
+            else
+                echo "Error, location did not update.<br>";
+        }
+        public function getLocation()
+        {
+            $location = $this->user->getLocation();
+            if (!empty($location[0]) || !empty($location[1]) || !empty($location[2]))
+                return "city: " . $location[0] . "<br>state: " . $location[1] . "<br>zip code: " . $location[2] . "<br>";
+            
+            else
+                return "empty";
+            
+        }
+        public function addLocation($city, $state, $zip_code)
+        {
+            $this->user->addLocation($city, $state, $zip_code);
+        }
     }
 ?>

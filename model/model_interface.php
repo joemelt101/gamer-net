@@ -463,5 +463,131 @@ see changePassword()
             $database->close();
             return false;
         }
+        public function getAbout()
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //    echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/user/getAbout.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                $stmt->bind_param("i", $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                 
+                $stmt->store_result();
+                
+                $stmt->bind_result($about);
+            
+                
+                $stmt->fetch();
+                
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $about;
+            }
+        }
+        public function setAbout($about)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;    
+            $query = file_get_contents(__DIR__ . "/dml/user/setAbout.sql");
+            
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("si", $about, $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+       //         $stmt->store_result();
+      //          $stmt->fetch();
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+            $database->close();
+            
+            return false;
+        }
+        public function getLocation()
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //    echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/location/get_location.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                $stmt->bind_param("i", $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                 
+                $stmt->store_result();
+                
+                $stmt->bind_result($city, $state, $zip_code);
+            
+                
+                $stmt->fetch();
+                $location = array();
+                $location[0] = $city;
+                $location[1] = $state;
+             //   echo $zip_code;
+                $location[2] = $zip_code;
+               // echo $location[2];
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $location;
+            }
+        }
+        public function setLocation($city, $state, $zip_code)
+        {
+        //    echo "model: " . $zip_code . "<br>";
+            $database = new DBConnection();
+            $mysqli = $database->conn;    
+            $query = file_get_contents(__DIR__ . "/dml/location/update_location.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+            //    echo $zip_code;
+                $stmt->bind_param("ssii", $city, $state, $zip_code, $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+      //          $stmt->store_result();
+
+      //          $stmt->fetch();
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+            $database->close();
+            
+            return false;
+        }
+        public function addLocation($city, $state, $zip_code)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;    
+            $query = file_get_contents(__DIR__ . "/dml/location/add_location.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("issi", $this->uid, $city, $state, $zip_code);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+      //          $stmt->store_result();
+      //          $stmt->fetch();
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+            $database->close();
+            
+            return false;
+        }
     }
 ?>

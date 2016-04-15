@@ -51,9 +51,11 @@ SELECT salt, hash_pass FROM user WHERE user_id=?;
 # set user ?s password
 UPDATE user SET salt=?, hash_pass=? WHERE user_id=?;
 
+#set about me for user=?
+UPDATE user SET about=? WHERE user_id=?;
 
-
-
+#get about me for user=?
+SELECT about FROM user WHERE user_id=?;
 
 
 
@@ -160,6 +162,8 @@ UPDATE contactInfo SET platform=?, username=? WHERE contact_id=?;
 
 #get all contact info for user=?
 SELECT contact_id, platform, username FROM contactInfo WHERE user_id=?;
+
+
 
 
 
