@@ -1,5 +1,13 @@
 <?php
-    $controller->updateSettings();
+/*
+    $controller->addContactInfo('facebook', 'bobsburgers');
+    $controller->displayContactInfo();
+    $controller->updateContactInfo(3, "xbox gamertag", "420xNoScope");
+    $controller->displaycontactInfo();
+    $controller->deleteContactInfo(3);
+*/
+    $controller->displayContactInfo();
+    
 ?>
 <!DOCTYPE html>
 <html>

@@ -49,6 +49,15 @@ UPDATE user SET availability=? WHERE user_id=?;
 # get user's online status
 SELECT availability FROM user WHERE user_id=?;
 
+# get user ?s password
+SELECT salt, hash_pass FROM user WHERE user_id=?;
+
+# set user ?s password
+UPDATE user SET salt=?, hash_pass=? WHERE user_id=?;
+
+
+
+
 
 
 
@@ -143,17 +152,18 @@ ORDER BY name;
 /* contact_info
 a user has 0-many contact_infos
 */
-#add contact info tag for user ?
+#add contact info tag for user=?
 INSERT INTO contactInfo(user_id, platform, username)
 	VALUES(?, ?, ?);
 
-#delete contact info tag for user ?
-DELETE FROM contactInfo WHERE user_id=? AND platform=?;
+#delete contact info tag
+DELETE FROM contactInfo WHERE contact_id=?;
 
 #update contact info tag for user
-UPDATE contactInfo
-SET username=?
-WHERE user_id=? AND platform=?;
+UPDATE contactInfo SET platform=?, username=? WHERE contact_id=?;
+
+#get all contact info for user=?
+SELECT contact_id, platform, username FROM contactInfo WHERE user_id=?;
 
 
 
