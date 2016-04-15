@@ -2,3 +2,5 @@
 .DS_Store
 .credentials
 private/
+launch.json
+.vscode
