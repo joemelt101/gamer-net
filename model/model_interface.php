@@ -32,7 +32,7 @@
                 $uname = $mysqli->real_escape_string(strip_tags($uname, ENT_QUOTES));
                 $pass = $mysqli->real_escape_string(strip_tags($pass, ENT_QUOTES));
             
-                $query = file_get_contents(__DIR__ . "/dml/user/getUser.sql");
+                $query = file_get_contents(__DIR__ . "/dml/user/getUserByID.sql");
                // echo $query;
                 if ($stmt = $mysqli->prepare($query))
                 {
@@ -176,19 +176,58 @@ see changePassword()
             return false; // update was unsuccessful
         }
         
-        /*
-        Not as straight forward as the others because not storing
-        the password, salt, or hash in a user object attribute ever
-        This function will only get called when user is changing password.
-        
-        NOTE: it might be a good idea to make this static and just pass in the user_id
-        That way it can be used in loginOrRegister.php and reduce repetitive code.
-        */
-        public function getPassword()
+        public function setPass($newPass)
         {
-            // query database for current salt and password
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+                    
+            $query = file_get_contents(__DIR__ . "/dml/user/setPass.sql");
             
+            if ($stmt = $mysqli->prepare($query))
+            {
+                mt_srand();
+                $salt = mt_rand();
+                $hash_pass = generateHash($salt . $newPass);
+                $stmt->bind_param("isi", $salt, $hash_pass, $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+            $database->close();
+            return false;
+        }
+        
+        // function will be used when user want's to change password
+        public function getPass()
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+                    
+            $saltAndHash;    
+            $query = file_get_contents(__DIR__ . "/dml/user/getPass.sql");
             
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("i", $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                //  echo "hello2";
+                $stmt->store_result();
+                $stmt->bind_result($salt, $hash_pass);
+                $stmt->fetch();
+                
+                $saltAndHash[] = $salt;
+                $saltAndHash[] = $hash_pass;
+            }
+            $stmt->close(); // close prepare statement
+            $database->close(); // close database connection
+            
+            return $saltAndHash;
         }
         public function getUID()
         {
@@ -224,8 +263,6 @@ see changePassword()
            
             if (is_numeric($status))
             {
-                
-                echo $status;
                 $database = new DBConnection();
                 $mysqli = $database->conn;
                 if ($status != 0 && $status != 1) // error handle for wrong input
@@ -235,11 +272,9 @@ see changePassword()
                     
                 
                 $query = file_get_contents(__DIR__ . "/dml/user/setOnlineStatus.sql");
-                echo $query;
                 
                 if ($stmt = $mysqli->prepare($query))
                 {
-                    //Get the stored salt and hash as $dbSalt and $dbHash
                     $stmt->bind_param("ii", $status, $this->uid);
                     if (!$stmt->execute())
                         echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
@@ -321,7 +356,238 @@ see changePassword()
                 $database->close(); // close database connection
             }
         }
-    }
+        
+        /* returns an array of contact info where the platform is the key
+        and the username is the value
+        
+        if user has no contact info, returns an empty array
+        */
+        public function getContactInfo()
+        {
+            $contactInfo = array();
+            
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //    echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/contactInfo/getContactInfo.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("i", $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                $stmt->store_result();
+                
+                if ($stmt->num_rows != 0)
+                {
+                    $stmt->bind_result($contact_id, $platform, $username);
+                
+                    
+                
+                    while ($stmt->fetch())
+                    {
+                        $info[0] = $platform;
+                        $info[1] = $username;
+                        $contactInfo[$contact_id] = $info;
+                    }
+                }
+                
 
-    
+            
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+            }
+            return $contactInfo;   
+        }
+        public function addContactInfo($platform, $username)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+                    
+            $query = file_get_contents(__DIR__ . "/dml/contactInfo/addContactInfo.sql");
+            
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("iss", $this->uid, $platform, $username);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+            $database->close();
+            return false;
+        }
+        public function updateContactInfo($contact_id, $platform, $username)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+                    
+            $query = file_get_contents(__DIR__ . "/dml/contactInfo/updateContactInfo.sql");
+            
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("ssi", $platform, $username, $contact_id);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+            $database->close();
+            return false;
+        }
+        public function deleteContactInfo($contact_id)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+                    
+            $query = file_get_contents(__DIR__ . "/dml/contactInfo/deleteContactInfo.sql");
+            
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("i", $contact_id);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+            $database->close();
+            return false;
+        }
+        public function getAbout()
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //    echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/user/getAbout.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                $stmt->bind_param("i", $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                 
+                $stmt->store_result();
+                
+                $stmt->bind_result($about);
+            
+                
+                $stmt->fetch();
+                
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $about;
+            }
+        }
+        public function setAbout($about)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;    
+            $query = file_get_contents(__DIR__ . "/dml/user/setAbout.sql");
+            
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("si", $about, $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+       //         $stmt->store_result();
+      //          $stmt->fetch();
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+            $database->close();
+            
+            return false;
+        }
+        public function getLocation()
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //    echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/location/get_location.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                $stmt->bind_param("i", $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                 
+                $stmt->store_result();
+                
+                $stmt->bind_result($city, $state, $zip_code);
+            
+                
+                $stmt->fetch();
+                $location = array();
+                $location[0] = $city;
+                $location[1] = $state;
+             //   echo $zip_code;
+                $location[2] = $zip_code;
+               // echo $location[2];
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $location;
+            }
+        }
+        public function setLocation($city, $state, $zip_code)
+        {
+        //    echo "model: " . $zip_code . "<br>";
+            $database = new DBConnection();
+            $mysqli = $database->conn;    
+            $query = file_get_contents(__DIR__ . "/dml/location/update_location.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+            //    echo $zip_code;
+                $stmt->bind_param("ssii", $city, $state, $zip_code, $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+      //          $stmt->store_result();
+
+      //          $stmt->fetch();
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+            $database->close();
+            
+            return false;
+        }
+        public function addLocation($city, $state, $zip_code)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;    
+            $query = file_get_contents(__DIR__ . "/dml/location/add_location.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("issi", $this->uid, $city, $state, $zip_code);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+      //          $stmt->store_result();
+      //          $stmt->fetch();
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+            $database->close();
+            
+            return false;
+        }
+    }
 ?>

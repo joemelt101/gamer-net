@@ -23,7 +23,6 @@
         else
         {
             $_SESSION['user'] = $user->getUID();
-            $user->setOnlineStatus(1);
             redirect("dashboard");
         }
     }
@@ -40,7 +39,7 @@
         $pass = $mysqli->real_escape_string(strip_tags($pass, ENT_QUOTES));
             
         //Test to see if their credentials are valid
-        $query = 'SELECT * FROM user WHERE username = ? OR email = ?';
+        $query = file_get_contents(__DIR__ . "/../../model/dml/user/user_logs_on.sql");
         if ($stmt = $mysqli->prepare($query))
         {
             //echo "hello";
@@ -83,8 +82,12 @@
             
             
             if ($localhash == $hash_pass)
-                return new User($uid, $username, $email, $alias, $gender, $age, $is_admin); 
+            {
+                $user = new User($uid, $username, $email, $alias, $gender, $age, $is_admin); 
             // password hashes matched, this is a valid user
+                $user->setOnlineStatus(1);
+                return $user;
+            }
         }
         return false; // password hashes did not match or username didn't exist
     }
