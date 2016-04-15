@@ -32,7 +32,7 @@
                 $uname = $mysqli->real_escape_string(strip_tags($uname, ENT_QUOTES));
                 $pass = $mysqli->real_escape_string(strip_tags($pass, ENT_QUOTES));
             
-                $query = file_get_contents(__DIR__ . "/dml/user/getUser.sql");
+                $query = file_get_contents(__DIR__ . "/dml/user/getUserByID.sql");
                // echo $query;
                 if ($stmt = $mysqli->prepare($query))
                 {
