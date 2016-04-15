@@ -39,10 +39,10 @@ class Controller
             $message = "Password and password repeat are not the same";
         } elseif (strlen($pass) < 6) {
             $message = "Password has a minimum length of 6 characters";
-        } elseif (strlen($username) > 64 || strlen($username) < 2) {
-            $message = "Username cannot be shorter than 2 or longer than 64 characters";
-        } elseif (!preg_match('/^[a-z\d]{2,64}$/i', $username)) {
-            $message = "Username does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters";
+        } elseif (strlen($username) > 20 || strlen($username) < 2) {
+            $message = "Username cannot be shorter than 2 or longer than 20 characters";
+        } elseif (!preg_match('/^[a-z\d]{2,20}$/i', $username)) {
+            $message = "Username does not fit the name scheme: only a-Z and numbers are allowed, 2 to 20 characters";
         } elseif (empty($email) || empty($verifyEmail)) {
             $message = "Emails cannot be empty";
         } elseif ($email !== $verifyEmail) {
@@ -53,9 +53,9 @@ class Controller
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $message = "Your email address is not in a valid email format";
         } elseif (!empty($username)
-            && strlen($username) <= 64
+            && strlen($username) <= 20
             && strlen($username) >= 2
-            && preg_match('/^[a-z\d]{2,64}$/i', $username)
+            && preg_match('/^[a-z\d]{2,20}$/i', $username)
             && !empty($email)
             && strlen($email) <= 64
             && filter_var($email, FILTER_VALIDATE_EMAIL)
