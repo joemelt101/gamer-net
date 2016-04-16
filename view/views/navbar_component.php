@@ -3,6 +3,12 @@
     $isLoggedIn = $_SESSION['user'];
 ?>
 
+<style>
+ 
+   
+
+</style>
+
 <!-- Actual display of the view is defined here -->
 <nav class="navbar navbar-inverse">
     <div class="container">
