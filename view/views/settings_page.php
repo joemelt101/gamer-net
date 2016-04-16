@@ -102,7 +102,11 @@
              margin: 0 auto;   
             }
             
-            
+            .left {
+                float: left;
+                padding-left: 15px;
+                
+            }
             
             
         </style>
@@ -134,13 +138,13 @@
 
     </head>
     
-    <body id="body">
+    <body id="dg">
     <form action="#" method="post">
         <?php require_once('view/views/navbar_component.php');
         ?>
 
         
-        <div class="panel panel-default container-fixed container">
+        <div class="panel panel-default container-fixed container" id="lg">
             <div class="panel-body"> <!--box-->
 
             <!--location settings-->

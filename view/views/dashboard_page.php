@@ -44,18 +44,18 @@
         </style>
     </head>
     
-    <body>
+    <body id="dg">
         <?php require_once('view/views/navbar_component.php'); ?>
         
         
         <div class="container-fixed container">
             <div class="panel panel-default">
                 
-                <div class="panel-heading">
+                <div class="panel-heading" id="blueGrey">
                     <h2>Welcome, <?php $controller->echoUsername(); ?> to your dashboard</h2>
                 </div>
                 
-                <div class="panel-body">
+                <div class="panel-body" id="lg">
                     
                     <!-- 2 Columns for this Layout -->
                     <div class="row">
