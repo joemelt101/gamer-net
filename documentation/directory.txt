@@ -1,0 +1,74 @@
+DIRECTORY
+
+gamer-net/
+|
+|--documentation
+|  |--directory.txt
+|  |--gamer-net.wiki
+|  |--RequirementsAnalysis.md
+|  |--README.md
+|
+|--view/
+|  |
+|  |--README.md
+|  |--images
+|  |--fonts
+|  |
+|  |--views
+|  |  |--navbar_component.php
+|  |  |--dashboard_page.php
+|  |  |--friends_page.php
+|  |  |--register_page.php
+|  |  |--search_page.php
+|  |  |--settings_page.php
+|  |  |--viewfriend_page.php
+|  |  |--login_page.php
+|  |
+|  |--CSS/
+|  |  |--bootstrap.min.css (point to this in final version)
+|  |  |--bootstrap.css (point to this to test)
+|  |  |--navbar.css
+|  |  |--dashboard.css
+|  |  |--friends.css
+|  |  |--register.css
+|  |  |--search.css
+|  |  |--settings.css
+|  |  |--register.css
+|  |  |--viewfriend.css
+|  |  |--login.css
+|  |
+|  |--js/
+|     |
+|     |--jquery-2.2.2.min.js
+|     |--bootstrap.min.js
+|
+|--controller/
+|  |
+|  |--dashboard_controller.php
+|  |--friends_controller.php
+|  |--register_controller.php
+|  |--search_controller.php
+|  |--settings_controller.php
+|  |--viewfriend_controller.php
+|  |--login_controller.php
+|  |--logout.php
+|
+|
+|--model/
+|  |
+|  |--model_interface.php
+|  |--DBconnection.php
+|  |--DML
+|     |--contact_info
+|     |--game
+|     |--location
+|     |--relationship
+|     |--user
+|     |--user_games
+|
+|--LICENSE
+|--README.md
+|--.htacces
+|--index.php
+|--page.php
+|--.gitignore

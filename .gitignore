@@ -1,6 +1,8 @@
 .DS_STORE
 .DS_Store
 .credentials
+.vscode
 private/
 launch.json
 .vscode
+test.php
