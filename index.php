@@ -417,7 +417,7 @@
         <button type="submit" class="btn btn-default">Send Message</button>
       </form>
       <div class="social">
-        <ul>
+        <ul style="padding-left: 0px !important;">
           <li><a href="#"><i class="fa fa-twitter"></i></a></li>
           <li><a href="#"><i class="fa fa-github"></i></a></li>
           <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
