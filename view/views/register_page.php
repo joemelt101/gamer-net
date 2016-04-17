@@ -1,6 +1,6 @@
 <html>
     <head>
-  <title>Register</title>
+  <title>G-N Register</title>
 
         
         
