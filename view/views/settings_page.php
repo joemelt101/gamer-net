@@ -37,8 +37,14 @@
     <head>
         
         <link rel="stylesheet" type="text/css" href="custom.css">
+        
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <!--css, to be moved? moved-->
         <style>
+            
+            
             .toggle.android { 
                 border-radius: 0px;
             }
@@ -220,6 +226,69 @@
                     </select>
                 </div>
             </div>
+            <br>                
+            <hr>
+            <br>
+                
+             <!--About me / status-->
+            <div class="row">
+                <div class="col-lg-12 centered">
+                        <h2>About Me</h2>
+                </div>
+            </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card card-container">    
+                        <br>    
+                        <div class="row">    
+                            <div class="col-md-3">
+                                About Me
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="About Me" name="aboutMe">
+                            </div>
+                        </div>
+                            <br>
+                           
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Status
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="Status" name="status">
+                            </div>
+                        </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Availabiltiy
+                                </div>
+                              <div class="dropdown">
+                              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Status
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                  <li><a>Online</a></li>
+                                  <li><a>Away</a></li>
+                                  <li><a>Offline</a></li>
+                              </ul>
+                            </div>
+                        </div>
+                            <br>
+                        
+                            
+                    </div>
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+                        
+                
+            <br>   
+            <hr>    
+            <br>
              
                 
             <!--location settings-->
@@ -343,7 +412,7 @@
                 <div class="col-md-4">
                   
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 text-center">
                      <!-- outlline does not work... <button class="btn btn-sm btn-success-outline" type="submit">Save Changes</button> -->
                     <button class="btn btn-sm btn-success" type="submit" id="saveChanges">Save Changes</button>
                 </div>
@@ -410,8 +479,13 @@
             <br><br><br><br>
             <form method="post" action="#"> <!-- delete account php? -->
             <div class="row">
-                <div class="col-sm-3 col-sm-offset-5">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4 text-center">
+                <div class="col-sm-4 text-center">
                     <button class="btn btn-danger">Delete Profile</button>
+                </div>
+                <div class="col-sm-4">
                 </div>
             </div>
             </form>
