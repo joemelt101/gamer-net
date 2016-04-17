@@ -3,4 +3,6 @@
 .credentials
 .vscode
 private/
+launch.json
+.vscode
 test.php
