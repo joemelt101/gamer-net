@@ -3,4 +3,5 @@
 .credentials
 .vscode
 private/
-test.php
+launch.json
+.vscode

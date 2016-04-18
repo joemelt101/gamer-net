@@ -64,7 +64,7 @@
                         <div class="col-sm-8">
                             
                             <!-- Link to Friends -->
-                            <h3>Friends <small>edit</small></h3>
+                            <h3>Friends</h3>
 
                             <div class="row">
                                 <div class="col-sm-2 dark">
@@ -91,7 +91,7 @@
                             
                             <!-- Link to Friends -->
                             <div class="top30">
-                                <h3>Games You Play <small>edit</small></h3>
+                                <h3>Games You Play</h3>
 
                                 <div class="row">
                                     <div class="col-sm-2 dark">
