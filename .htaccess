@@ -1,0 +1,25 @@
+#prevents users from being able to see active directory
+#Options -Indexes
+Options FollowSymLinks
+
+
+#custom 404 page
+
+
+
+RewriteEngine On
+
+
+
+#leave this commented
+#RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^homer/gamer-net/(.*)$ http://cyberdyn3.centralus.cloudapp.azure.com/homer/gamer-net/page.php?page=$1 [NC,L]
+
+
+#golden
+RewriteRule ^(.*)$ page.php?page=$1 [NC,L]
+
+#RewriteRule ^gamer-net/(.*)$ gamer-net/page.php?page=$1 [NC,L]

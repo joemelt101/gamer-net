@@ -1,11 +1,10 @@
 <!-- View data is defined here -->
 <?php
-    require_once('helper.php');
     $isLoggedIn = $_SESSION['user'];
 ?>
 
 <!-- Actual display of the view is defined here -->
-<nav class="navbar navbar-inverse ">
+<nav class="navbar navbar-inverse">
     <div class="container">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -22,7 +21,7 @@
                     <li><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Near You</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-comment"></span> Messages</a></li>
-                    <li><a href="settings.php"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                    <li><a href="settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
             </ul>
         </div>
 
@@ -32,14 +31,14 @@
     <?php 
             if ($isLoggedIn)
             {
-                echo("<li><a href=\"logout.php\">Logout</a></li>");
+                echo("<li><a href=\"controller/controllers/logout.php\">Logout</a></li>");
             }
             else
             {
-                echo ("<li><a href=\"login.php\">Login</a></li>");
+                echo ("<li><a href=\"login\">Login</a></li>");
             }
     ?>        
-            <li><a href="search.php">Search</a></li>     
+            <li><a href="search">Search</a></li>     
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
