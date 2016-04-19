@@ -204,7 +204,7 @@
                 App Development, Branding
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="view/landing_page/img/portfolio/bo3.png" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/bo3.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 pc">
