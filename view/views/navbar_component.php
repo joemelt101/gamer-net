@@ -18,9 +18,8 @@
             
           <a class="navbar-brand" href="index.php">Gamer-Net</a>
             <ul class="nav navbar-nav">
-                    <li><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Near You</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-comment"></span> Messages</a></li>
+                    <li><a href="dashboard"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="search"><span class="glyphicon glyphicon-search"></span> Search</a></li>     
                     <li><a href="settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
             </ul>
         </div>
@@ -38,7 +37,6 @@
                 echo ("<li><a href=\"login\">Login</a></li>");
             }
     ?>        
-            <li><a href="search">Search</a></li>     
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

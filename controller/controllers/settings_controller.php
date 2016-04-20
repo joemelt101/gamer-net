@@ -88,7 +88,6 @@
         {
             if (isset($about))
             {
-
                 if ($this->user->setAbout($about))
                 {
                     echo "About me updated.";

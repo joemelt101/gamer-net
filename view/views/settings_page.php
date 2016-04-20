@@ -7,9 +7,8 @@
     $controller->deleteContactInfo(3);
 */
 //    $controller->displayContactInfo();
-
-    $controller->setAbout("WOOOOOOOOOOO!!!!!<br>urlsauce.com/R<br>urlsauce.com/i<br>");
-    echo $controller->getAbout();
+    //$controller->setAbout("WOOOOOOOOOOO!!!!!<br>urlsauce.com/R<br>urlsauce.com/i<br>");
+    $controller->getAbout();
 
     
 
@@ -18,7 +17,7 @@
     $zip_code = 65201;
   //  echo $zip_code;
     
-    $updateButtonPressed = true;
+    $updateButtonPressed = false;
     if ($updateButtonPressed)
     {
         if ($location = $controller->getLocation() == "empty")
@@ -29,7 +28,7 @@
         }
         $location = $controller->getLocation();
     }
-    echo isset($location) ? $location : $controller->getLocation();
+    isset($location) ? $location : $controller->getLocation();
 
 ?>
 <!DOCTYPE html>
