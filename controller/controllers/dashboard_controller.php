@@ -19,6 +19,7 @@ class Controller
         $data = new stdClass();
         $user = User::loadByID($_SESSION['user']);
         $data->username = $user->getUsername();
+        $data->games = Game::getGames();
         
         return $data;
     }

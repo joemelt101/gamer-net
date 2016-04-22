@@ -10,6 +10,7 @@
         private $genre;
         private $year;
         private $type;
+        private $description;
         
         public function __construct($gid, $name, $developer, $platform, $genre, $year, $type, $description)
         {
@@ -91,6 +92,74 @@
                 
                 return NULL;
             }
+        }
+        public static function getGames()
+        {
+                $database = new DBConnection();
+                $mysqli = $database->conn;
+            
+                $query = file_get_contents(__DIR__ . "/dml/game/list_games.sql");
+               // echo $query;
+                if ($stmt = $mysqli->prepare($query))
+                {
+                    //echo "hello";
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                    if (!$stmt->execute())
+                        echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                    $stmt->store_result();
+                    //  echo "hello3";
+                    $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+            
+                    //   echo "hello4";
+            
+                    $games = NULL;
+                    while ($stmt->fetch())
+                    {
+                        $games[] = new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                    }
+            
+                    $stmt->close(); // close prepare statement
+                    $database->close(); // close database connection
+                    
+                    
+                    return $games;
+                }
+            return NULL;
+        }
+        
+        public function getGid()
+        {
+            return $this->gid;
+        }
+        public function getName()
+        {
+            return $this->name;
+        }
+        public function getDeveloper()
+        {
+            return $this->developer;
+        }
+        public function getPlatform()
+        {
+            return $this->platform;
+        }
+        public function getGenre()
+        {
+            return $this->genre;
+        }
+        public function getYear()
+        {
+            return $this->year;
+        }
+        public function getType()
+        {
+            return $this->type;
+        }
+        public function getDescription()
+        {
+            return $this->description;
         }
     }
 
@@ -725,13 +794,34 @@ see changePassword()
         {
             return $this->doRelation($fid, "block_user.sql");
         }
+        public function doGameListOp($gid, $filename)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            $query = file_get_contents(__DIR__ . "/dml/user_games/" . $filename);
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("ii", $this->uid, $gid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+
+            $database->close();
+            
+            return false;
+        }
         public function addGame($gid)
         {
-            
+            return $this->doGameListOp($gid, "add_game_to_user's_games.sql");
         }
         public function removeGame($gid)
         {
-            
+            return $this->doGameListOp($gid, "del_game_to_user's_games.sql");
         }
         public function getGames()
         {

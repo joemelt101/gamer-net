@@ -1,4 +1,18 @@
+<?php
+    $games = $data->games;
+    echo "Name:                                      Developer:               Platform:          Genre:           Year:      Type:               Description:                             <br>";
+    foreach ($games as $game)
+    {
+        echo $game->getName(), " | ",
+        $game->getDeveloper(), " | ",
+        $game->getPlatform(), " | ",
+        $game->getGenre(), " | ",
+        $game->getYear(), " | ",
+        $game->getType(), " | ",
+        $game->getDescription(), "<br>";
+    }
 
+?>
 <!DOCTYPE html>
 
 <html>
