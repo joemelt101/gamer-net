@@ -7,7 +7,7 @@
     $controller->deleteContactInfo(3);
 */
 //    $controller->displayContactInfo();
-
+/*
     $controller->setAbout("WOOOOOOOOOOO!!!!!<br>urlsauce.com/R<br>urlsauce.com/i<br>");
     echo $controller->getAbout();
 
@@ -30,7 +30,7 @@
         $location = $controller->getLocation();
     }
     echo isset($location) ? $location : $controller->getLocation();
-
+*/
 ?>
 <!DOCTYPE html>
 <html>

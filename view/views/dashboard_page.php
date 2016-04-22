@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html>
@@ -52,7 +53,7 @@
             <div class="panel panel-default">
                 
                 <div class="panel-heading">
-                    <h2>Welcome, <?php $controller->echoUsername(); ?> to your dashboard</h2>
+                    <h2>Welcome, <?php echo $data->username; ?> to your dashboard</h2>
                 </div>
                 
                 <div class="panel-body">

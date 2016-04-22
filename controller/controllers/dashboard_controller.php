@@ -7,21 +7,20 @@ require_once('controller/php_libs/helper.php');
 
 class Controller
 {
-    private $user;
     public function __construct()
     {
         if (!isLoggedIn())
         {
             redirect("login");
         }
-        else
-        {
-            $this->user = User::loadByID($_SESSION['user']);
-        }
     }
-    public function echoUsername()
+    public function getData()
     {
-        echo $this->user->getUsername();
+        $data = new stdClass();
+        $user = User::loadByID($_SESSION['user']);
+        $data->username = $user->getUsername();
+        
+        return $data;
     }
 /*
     public function grabData()

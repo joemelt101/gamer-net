@@ -1,6 +1,4 @@
-<?php
-    $controller->listFriends();
-?>
+
 <!DOCTYPE html>
 
 <html>
@@ -65,7 +63,12 @@
                 
                 <div class="panel-group">
                     <div class="panel panel-default">
-                        <div class="panel-body center">
+
+                            <?php
+                                foreach($data as $friend)
+                                {
+                                    ?>
+                                                            <div class="panel-body center">
                             <div class="col-sm-4">
                                 <div>
                                     <a href="linkto.profile">
@@ -74,14 +77,19 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <a href="linkto.profile">
-                                    <h4>Username</h4>
-                                </a>
-                                <h5>Age: xx</h5>
-                                <h5>Location: /*location*/</h5>
-                                <h5>Gender: M/F</h5>
-                                <h5>Availabile: Y/N</h5>
-                            </div>
+                                    
+                                    <?php
+                                    echo "<a href='linkto.profile'>", 
+                                        "<h4>", 
+                                            $friend->username,
+                                        "</h4>", 
+                                    "</a>",
+                                    "<h5>Age: ", $friend->age, "</h5>",
+                                    "<h5>Location: ", "</h5>",
+                                    "<h5>Gender: ", $friend->gender, "</h5>",
+                                    "<h5>Availabile: ", $friend->status, "</h5>";
+                                    ?>
+                                                            </div>
                             <div class="col-sm-4">
                                 <h4>Games I'm playing</h4>
                                 <div>
@@ -100,6 +108,10 @@
 
                             </div-->
                         </div>
+                        <?php
+                                }
+                            ?>
+
                     </div>
                     <div class="rightAlign padding">
                         <button type="button" class="btn btn-primary">Unfriend</button>

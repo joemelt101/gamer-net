@@ -75,8 +75,8 @@ UPDATE location SET city=?, state=?, zip_code=? WHERE user_id=?;
 /* game
 */
 # create game
-INSERT INTO game(developer, year, name, genre, type, platform)
-VALUES(?, ?, ?, ?, ?, ?);
+INSERT INTO game(name, developer, platform, genre, year, type, description)
+	VALUES(?, ?, ?, ?, ?, ?, ?);
 
 #search for game by name/developer
 SELECT name, developer FROM game
@@ -101,6 +101,9 @@ SELECT * FROM game WHERE type=0 ORDER BY name;
 
 #list all board games
 SELECT * FROM game WHERE type=1 ORDER BY name;
+
+#search for game with game_id=?
+SELECT * FROM game WHERE game_id=?;
 
 
 

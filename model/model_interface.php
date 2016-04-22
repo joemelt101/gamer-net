@@ -1,6 +1,99 @@
 <?php
     require_once(__DIR__ . "/DBConnection.php");
 
+    class Game
+    {
+        private $gid;
+        private $name;
+        private $developer;
+        private $platform;
+        private $genre;
+        private $year;
+        private $type;
+        
+        public function __construct($gid, $name, $developer, $platform, $genre, $year, $type, $description)
+        {
+            $this->gid = $gid;
+            $this->name = $name;
+            $this->developer = $developer;
+            $this->platform = $platform;
+            $this->genre = $genre;
+            $this->year = $year;
+            $this->type = $type;
+            $this->description = $description;
+        }
+        /*
+        adds a "new" game to the database
+        */
+        public static function addGame($name, $developer, $platform, $genre, $year, $type, $description)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            $query = file_get_contents(__DIR__ . "/dml/game/add_game.sql");
+               // echo $query;
+            if ($stmt = $mysqli->prepare($query))
+            {
+                //echo "hello";
+                //Get the stored salt and hash as $dbSalt and $dbHash
+                $stmt->bind_param("ssssiis", $name, $developer, $platform, $genre, $year, $type, $description);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                $stmt->store_result();
+                    //  echo "hello3";
+            
+                    //   echo "hello4";
+            
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return true;
+            }
+            
+            return NULL;
+        }
+        /*
+        used to create game objects from the game_ids located in the user's game list
+        */
+        public static function loadByID($gid)
+        {
+            if (isset($gid))
+            { 
+                $database = new DBConnection();
+                $mysqli = $database->conn;
+            
+                $query = file_get_contents(__DIR__ . "/dml/game/getGameByID.sql");
+               // echo $query;
+                if ($stmt = $mysqli->prepare($query))
+                {
+                    //echo "hello";
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                    $stmt->bind_param("i", $gid);
+                    if (!$stmt->execute())
+                        echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                    $stmt->store_result();
+                    //  echo "hello3";
+                    $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+            
+                    //   echo "hello4";
+            
+                    $stmt->fetch();
+            
+                    $stmt->close(); // close prepare statement
+                    $database->close(); // close database connection
+                    
+                    
+                    return new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                }
+                
+                return NULL;
+            }
+        }
+    }
+
     class User
     {
         private $uid;
@@ -309,53 +402,15 @@ see changePassword()
                 
                 $stmt->bind_result($availability);
                 
-                if ($stmt->fetch())
-                {
-                    if ($availability == 0)
-                        echo $this->username, " is currently offline", "<br>";
-                    else if ($availability == 1)
-                        echo $this->username, " is currently online", "<br>";
-                }
-            
+                $stmt->fetch();
                 $stmt->close(); // close prepare statement
                 $database->close(); // close database connection
             }
+            
+            return $availability;
         }
         
-        public function getFriends()
-        {
-            $database = new DBConnection();
-            $mysqli = $database->conn;
-            
-            //    echo "hello";
-            $query = file_get_contents(__DIR__ . "/dml/relationship/list_friends.sql");
-            if ($stmt = $mysqli->prepare($query))
-            {
-                //echo "hello";
-                    //Get the stored salt and hash as $dbSalt and $dbHash
-                $stmt->bind_param("i", $this->uid);
-                if (!$stmt->execute())
-                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-            
-                    //  echo "hello2";
-                $stmt->store_result();
-                
-                $stmt->bind_result($fid, $friend, $type);
-                
-                while ($stmt->fetch())
-                {
-                    if ($type == 2)
-                        echo $friend, " is currently a friend", "<br>";
-                    else if ($type == 0)
-                        echo $friend, " is pending friend request", "<br>";
-                    else if ($type == 1)
-                        echo $friend, " wants to be your friend", "<br>";
-                }
-            
-                $stmt->close(); // close prepare statement
-                $database->close(); // close database connection
-            }
-        }
+
         
         /* returns an array of contact info where the platform is the key
         and the username is the value
@@ -588,6 +643,117 @@ see changePassword()
             $database->close();
             
             return false;
+        }
+        /*
+        this function will return an array of friendids and their type,
+        the order will be by their alias (but alias will not be included)
+        */
+        public function getFriends()
+        {
+            $friends = NULL;
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //    echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/relationship/list_friends.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("i", $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                $stmt->store_result();
+                
+                $stmt->bind_result($fid, $type);
+                
+                while ($stmt->fetch())
+                {
+                    $friends[$fid] = $type;
+                }
+            
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+            }
+            return $friends;
+        }
+        /*
+        handles all friend operations since all of them require the same parameters (user_id, friend_id) and because they are either update, insert, or delete queries, so the only difference is the query
+        */
+        public function doRelation($fid, $filename)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            $query = file_get_contents(__DIR__ . "/dml/relationship/" . $filename);
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("iiii", $this->uid, $fid, $fid, $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+      //          $stmt->store_result();
+      //          $stmt->fetch();
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                
+                return true;
+            }
+            $database->close();
+            
+            return false;
+        }
+            
+        public function requestFriend($fid)
+        {
+            return doRelation($fid, "friend_request.sql");
+        }
+        public function acceptFriend($fid)
+        {
+            return doRelation($fid, "friend_accept.sql");
+        }
+        public function remove($fid)
+        {
+            return doRelation($fid, "del_decline_unblock.sql");
+        }
+        public function block($fid)
+        {
+            return doRelation($fid, "block_user.sql");
+        }
+        public function addGame($gid)
+        {
+            
+        }
+        public function removeGame($gid)
+        {
+            
+        }
+        public function getGames()
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //    echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/user_games/list_user's_games.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                //echo "hello";
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                $stmt->bind_param("i", $this->uid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                $stmt->store_result();
+                
+                $stmt->bind_result($gid, $name, $developer, $platform, $genre, $year, $type, $description);
+                
+                while ($stmt->fetch())
+                {
+                    echo $name, " developed by ", $developer, "<br>";
+                }
+            
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+            }
         }
     }
 ?>
