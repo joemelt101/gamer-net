@@ -62,13 +62,11 @@
                 <h3>Your Friends</h3>
                 
                 <div class="panel-group">
+                    <?php
+                    foreach($data as $friend)
+                    { ?>
                     <div class="panel panel-default">
-
-                            <?php
-                                foreach($data as $friend)
-                                {
-                                    ?>
-                                                            <div class="panel-body center">
+                        <div class="panel-body center">
                             <div class="col-sm-4">
                                 <div>
                                     <a href="linkto.profile">
@@ -77,19 +75,25 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                    
-                                    <?php
-                                    echo "<a href='linkto.profile'>", 
-                                        "<h4>", 
-                                            $friend->username,
-                                        "</h4>", 
-                                    "</a>",
-                                    "<h5>Age: ", $friend->age, "</h5>",
-                                    "<h5>Location: ", "</h5>",
-                                    "<h5>Gender: ", $friend->gender, "</h5>",
-                                    "<h5>Availabile: ", $friend->status, "</h5>";
+                                <a href="linkto.profile">
+                                    <h4><?php echo $friend->username;?></h4>
+                                </a>
+                                <h5><?php echo $friend->type;?></h5>
+                                <h5>Age: <?php echo $friend->age;?></h5>
+                                <h5>Location: 
+                                    <?php 
+                                        $location = $friend->location;
+                                        if ($location[0] != NULL && $location[1] != NULL && $location[2] != 0)
+                                            echo $location[0], ", ", $location[1], " ", $location[2];
+                                        else if ($location[0] != NULL && $location[1] != NULL && $location[2] == 0)
+                                            echo $location[0], ", ", $location[1];
+                                        else
+                                            echo "unknown";
                                     ?>
-                                                            </div>
+                                </h5>
+                                <h5>Gender: <?php echo $friend->gender;?></h5>
+                                <h5>Availabile: <?php echo $friend->status;?></h5>
+                            </div>
                             <div class="col-sm-4">
                                 <h4>Games I'm playing</h4>
                                 <div>
@@ -108,11 +112,8 @@
 
                             </div-->
                         </div>
-                        <?php
-                                }
-                            ?>
-
                     </div>
+                    <?php } ?>
                     <div class="rightAlign padding">
                         <button type="button" class="btn btn-primary">Unfriend</button>
                         <input type="checkbox" checked data-toggle="toggle">

@@ -33,7 +33,8 @@ class Controller
                 $friend->alias = $fUser->getAlias();
                 $friend->age = $fUser->getAge();
                 $friend->gender = $fUser->getGender();
-                $friend->status = $fUser->getOnlineStatus(); 
+                $friend->status = $fUser->getOnlineStatus();
+                $friend->location = $fUser->getLocation(); // array containing city, state, zip code
                 if ($type != 3)
                 {
                     

@@ -684,19 +684,26 @@ see changePassword()
         {
             $database = new DBConnection();
             $mysqli = $database->conn;
-            $query = file_get_contents(__DIR__ . "/dml/relationship/" . $filename);
-            if ($stmt = $mysqli->prepare($query))
+            
+            $queries = explode(";", file_get_contents(__DIR__ . "/dml/relationship/" . $filename));
+            if ($stmt = $mysqli->prepare($queries[0]))
             {
-                $stmt->bind_param("iiii", $this->uid, $fid, $fid, $this->uid);
+                $stmt->bind_param("ii", $this->uid, $fid);
                 if (!$stmt->execute())
                     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-      //          $stmt->store_result();
-      //          $stmt->fetch();
                 $stmt->close(); // close prepare statement
-                $database->close(); // close database connection
+                if ($stmt = $mysqli->prepare($queries[1]))
+                {
+                    $stmt->bind_param("ii", $fid, $this->uid);
+                    if (!$stmt->execute())
+                        echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                    $stmt->close(); // close prepare statement
+                    $database->close(); // close database connection
                 
-                return true;
+                    return true;
+                }
             }
+
             $database->close();
             
             return false;
@@ -704,19 +711,19 @@ see changePassword()
             
         public function requestFriend($fid)
         {
-            return doRelation($fid, "friend_request.sql");
+            return $this->doRelation($fid, "friend_request.sql");
         }
         public function acceptFriend($fid)
         {
-            return doRelation($fid, "friend_accept.sql");
+            return $this->doRelation($fid, "friend_accept.sql");
         }
         public function remove($fid)
         {
-            return doRelation($fid, "del_decline_unblock.sql");
+            return $this->doRelation($fid, "del_decline_unblock.sql");
         }
         public function block($fid)
         {
-            return doRelation($fid, "block_user.sql");
+            return $this->doRelation($fid, "block_user.sql");
         }
         public function addGame($gid)
         {
