@@ -856,5 +856,44 @@ see changePassword()
                 $database->close(); // close database connection
             }
         }
+        public static function searchUser($username)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //    echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/user/search_for_users.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                //echo "hello";
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                $userSearch = '%' . $username . '%';
+                $stmt->bind_param("ss", $userSearch, $userSearch);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                $stmt->store_result();
+                
+                $stmt->bind_result($uid, $username, $alias);
+                
+                $users = NULL;
+                while ($stmt->fetch())
+                {
+                    $user = new stdClass();
+                    $user->uid = $uid;
+                    $user->username = $username;
+                    $user->alias = $alias;
+                    
+                    $users[] = $user; // add user to users array
+                }
+            
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $users;
+            }
+            
+            return NULL;
+        }
     }
 ?>
