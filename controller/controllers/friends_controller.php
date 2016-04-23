@@ -49,6 +49,7 @@ class Controller
                             $pending[] = $friend;
                             break;
                         default: // currently friends
+                            $friend->type = "";
                             $friends[] = $friend;
                             break;
                     }

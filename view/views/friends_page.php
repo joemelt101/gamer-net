@@ -64,7 +64,7 @@
                 <div class="panel-group">
                     <?php
                     foreach($data as $friend)
-                    { ?>
+                    {?>
                     <div class="panel panel-default">
                         <div class="panel-body center">
                             <div class="col-sm-4">
@@ -95,6 +95,7 @@
                                 <h5>Availabile: <?php echo $friend->status;?></h5>
                             </div>
                             <div class="col-sm-4">
+                                
                                 <h4>Games I'm playing</h4>
                                 <div>
                                     <li>Dankey Kang</li>
@@ -104,6 +105,24 @@
                                 </div>
                                 
                             </div>
+                        <div class="rightAlign padding">
+                            <?php
+
+                                $buttonLabel = "";
+                                if ($friend->type == "")
+                                    $buttonLabel = "Unfriend";
+                                else if ($friend->type == "pending request")
+                                    $buttonLabel = "Cancel";
+                                else if ($friend->type == "wants to be friends")
+                                {
+                                    echo "<button type='button' class='btn btn-primary' name='Accept'>Accept</button>";
+                                    $buttonLabel = "Decline";
+                                }
+                                else
+                                    $buttonLabel = "Unblock";
+                                echo "<button type='button' class='btn btn-primary' name='", $buttonLabel, "'>", $buttonLabel, "</button>";
+                            ?>
+                        </div>
                             
                             <!--div class="col-sm-3 middle">
                                 <button type="button" class="btn btn-primary">Unfriend</button>
@@ -113,11 +132,9 @@
                             </div-->
                         </div>
                     </div>
+
                     <?php } ?>
-                    <div class="rightAlign padding">
-                        <button type="button" class="btn btn-primary">Unfriend</button>
-                        <input type="checkbox" checked data-toggle="toggle">
-                    </div>
+
 
                 </div>
             </div>

@@ -786,7 +786,7 @@ see changePassword()
         {
             return $this->doRelation($fid, "friend_accept.sql");
         }
-        public function remove($fid)
+        public function removeUser($fid)
         {
             return $this->doRelation($fid, "del_decline_unblock.sql");
         }
