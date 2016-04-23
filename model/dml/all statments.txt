@@ -24,9 +24,9 @@ SELECT user_id, username, email, alias, salt, hash_pass, gender, age, availabili
 SELECT username, alias FROM user ORDER BY alias;
 
 #search for user by username or alias
-SELECT username, alias FROM user
-WHERE username=? OR alias=?
-ORDER BY alias;
+SELECT user_id, username, alias FROM user
+	WHERE username LIKE ? OR alias LIKE ?
+		ORDER BY alias;
 
 
 /*search for user by username and email
@@ -193,22 +193,20 @@ UPDATE relationship
 UPDATE relationship
 	SET type='2' WHERE user_id=? AND friend_id=?;
 
-#user ? declines user ?’s friend request or user ? deletes user ? as a friend
+#user ? declines user ?’s friend request or user ? deletes user ? as a friend or user ? unblocks user ?
 DELETE FROM relationship WHERE user_id=? AND friend_id=?;
 DELETE FROM relationship WHERE user_id=? AND friend_id=?;
 
-#user ? sends user ? a friend request
-UPDATE relationship SET type=‘3’ WHERE user_id=? AND friend_id=?;
-UPDATE relationship SET type=‘4’ WHERE user_id=? AND friend_id=?;
+#user ? blocks friend ?
+UPDATE relationship SET type=3 WHERE user_id=? AND friend_id=?;
+UPDATE relationship SET type=4 WHERE user_id=? AND friend_id=?;
 
-#show user ?’s friend/pending friend list
-SELECT friend_id, user.alias AS friend, type FROM relationship
-JOIN user ON relationship.friend_id = user.user_id
-WHERE relationship.user_id=? AND type != 3 AND type != 4
-ORDER BY friend;
+#user ? blocks user ?
+INSERT INTO relationship VALUES(?, ?, 3);
+INSERT INTO relationship VALUES(?, ?, 4);
 
-#show user ?’s blocked users list
-SELECT friend_id AS uid, user.alias AS blocked FROM relationship
+#show user ?’s friend/pending friend list/blocked users list
+SELECT friend_id, type FROM relationship
 JOIN user ON relationship.friend_id = user.user_id
-WHERE relationship.user_id=? AND type=3
-ORDER BY blocked;
+WHERE relationship.user_id=?
+ORDER BY user.alias;
