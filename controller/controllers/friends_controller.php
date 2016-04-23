@@ -14,6 +14,31 @@ class Controller
         // we know user will be set before this function is ever called
         $user = User::loadByID($_SESSION['user']);
         
+        //block duffman2113
+       // $user->block(12); 
+        
+        
+        
+        if (isset($_POST['Cancel']))
+        {
+            $user->removeUser($_POST['Cancel']);
+        }
+        else if (isset($_POST['Accept']))
+        {
+            $user->acceptFriend($_POST['Accept']);
+        }
+        else if (isset($_POST['Decline']))
+        {
+            $user->removeUser($_POST['Decline']);
+        }
+        else if (isset($_POST['Unfriend']))
+        {
+            $user->removeUser($_POST['Unfriend']);
+        }
+        else if (isset($_POST['Unblock']))
+        {
+            $user->removeUser($_POST['Unblock']);
+        }   
         // gets all friend ids in the form of an array
         $friendIds = $user->getFriends();
         $pending = NULL;
@@ -29,6 +54,7 @@ class Controller
                 $fUser = User::loadByID($fid);
                 
                 $friend = new stdClass();
+                $friend->id = $fUser->getUID();
                 $friend->username = $fUser->getUsername();
                 $friend->alias = $fUser->getAlias();
                 $friend->age = $fUser->getAge();
@@ -64,10 +90,19 @@ class Controller
         }
         
         if ($pending != NULL) // if user has pending friends, append to beginning of list
-            $friends = array_merge($pending, $friends);
+        {
+            if ($friends != NULL)
+                $friends = array_merge($pending, $friends);
+            else
+                $friends = $pending;
+        }
         if ($blocked != NULL) // if this user has blocked 'friends', append them to end of list
-            $friends = array_merge($friends, $blocked);
-        
+        {
+            if ($friends != NULL)
+                $friends = array_merge($friends, $blocked);
+            else
+                $friends = $blocked;
+        }
         return $friends;
     }
 }

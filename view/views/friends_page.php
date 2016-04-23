@@ -60,11 +60,12 @@
         <div class="panel container-fixed container">
             <div class="panel-body">
                 <h3>Your Friends</h3>
-                
+                <form action="friends" method="POST">
                 <div class="panel-group">
                     <?php
                     foreach($data as $friend)
                     {?>
+                    
                     <div class="panel panel-default">
                         <div class="panel-body center">
                             <div class="col-sm-4">
@@ -107,7 +108,7 @@
                             </div>
                         <div class="rightAlign padding">
                             <?php
-
+                                $value = $friend->id;
                                 $buttonLabel = "";
                                 if ($friend->type == "")
                                     $buttonLabel = "Unfriend";
@@ -115,12 +116,14 @@
                                     $buttonLabel = "Cancel";
                                 else if ($friend->type == "wants to be friends")
                                 {
-                                    echo "<button type='button' class='btn btn-primary' name='Accept'>Accept</button>";
+                                    echo "<button type='submit' class='btn btn-primary' name='Accept' value='", $value, "'>Accept</button>";
                                     $buttonLabel = "Decline";
                                 }
                                 else
                                     $buttonLabel = "Unblock";
-                                echo "<button type='button' class='btn btn-primary' name='", $buttonLabel, "'>", $buttonLabel, "</button>";
+                     
+                                
+                                echo "<button type='submit' class='btn btn-primary' name='", $buttonLabel, "' value='", $value, "'>", $buttonLabel, "</button>";
                             ?>
                         </div>
                             
@@ -137,6 +140,7 @@
 
 
                 </div>
+                </form>
             </div>
         </div>
     </body>

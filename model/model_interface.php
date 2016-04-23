@@ -792,7 +792,11 @@ see changePassword()
         }
         public function block($fid)
         {
-            return $this->doRelation($fid, "block_user.sql");
+            // block current friend
+            if (array_key_exists($fid, $this->getFriends()))
+                $this->doRelation($fid, "block_friend.sql");
+            else // block user that is not currently a friend
+                $this->doRelation($fid, "block_user.sql");
         }
         public function doGameListOp($gid, $filename)
         {
