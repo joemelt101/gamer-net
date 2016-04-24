@@ -16,6 +16,8 @@ class Controller
         $data->uid = $user->getUID();
         $data->username = $user->getUsername();
         $data->games = Game::getGames();
+        
+        // function located in helper.php
         $data->friends = getFriends($user);
         
         return $data;
