@@ -1,47 +1,4 @@
-<?php
-/*
-    $controller->addContactInfo('facebook', 'bobsburgers');
-    $controller->displayContactInfo();
-    $controller->updateContactInfo(3, "xbox gamertag", "420xNoScope");
-    $controller->displaycontactInfo();
-    $controller->deleteContactInfo(3);
-*/
-//    $controller->displayContactInfo();
-<<<<<<< HEAD
-/*
-    $controller->setAbout("WOOOOOOOOOOO!!!!!<br>urlsauce.com/R<br>urlsauce.com/i<br>");
-    echo $controller->getAbout();
-=======
-    //$controller->setAbout("WOOOOOOOOOOO!!!!!<br>urlsauce.com/R<br>urlsauce.com/i<br>");
-    $controller->getAbout();
->>>>>>> premaster
 
-    
-
-    $city = "Columbia";
-    $state = "Missouri (Misery)";
-    $zip_code = 65201;
-  //  echo $zip_code;
-    
-    $updateButtonPressed = false;
-    if ($updateButtonPressed)
-    {
-        if ($location = $controller->getLocation() == "empty")
-            $controller->addLocation($city, $state, $zip_code);
-        else
-        {
-            $controller->setLocation($city, $state, $zip_code);
-        }
-        $location = $controller->getLocation();
-    }
-<<<<<<< HEAD
-    echo isset($location) ? $location : $controller->getLocation();
-*/
-=======
-    isset($location) ? $location : $controller->getLocation();
-
->>>>>>> premaster
-?>
 <!DOCTYPE html>
 <html>
     <head>

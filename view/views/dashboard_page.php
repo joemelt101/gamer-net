@@ -50,19 +50,14 @@
         </style>
     </head>
     
-<<<<<<< HEAD
-    <body>
-        <?php require_once(__DIR__ . '/navbar_component.php'); ?>
-=======
     <body id="dg">
-        <?php require_once('view/views/navbar_component.php'); ?>
->>>>>>> premaster
+        <?php require_once(__DIR__ . '/navbar_component.php'); ?>
         
         
         <div class="container-fixed container">
             <div class="panel panel-default">
                 
-<<<<<<< HEAD
+
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-sm-6">
@@ -124,10 +119,6 @@
                             }    
                         ?>
                     </div>
-=======
-                <div class="panel-heading" id="blueGrey">
-                    <h2>Welcome, <?php $controller->echoUsername(); ?> to your dashboard</h2>
->>>>>>> premaster
                 </div>
                 
                 <div class="panel-body" id="lg">
