@@ -314,6 +314,50 @@
             $this->age = $age;
             $this->is_admin = $is_admin;
         }
+        public static function loadByUsername($username)
+        {
+            if (isset($username))
+            { 
+                $database = new DBConnection();
+                $mysqli = $database->conn;
+            
+                $uname = $mysqli->real_escape_string(strip_tags($uname, ENT_QUOTES));
+                $pass = $mysqli->real_escape_string(strip_tags($pass, ENT_QUOTES));
+            
+                $query = file_get_contents(__DIR__ . "/dml/user/getUserByUsername.sql");
+               // echo $query;
+                if ($stmt = $mysqli->prepare($query))
+                {
+                    //echo "hello";
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                    $stmt->bind_param("s", $username);
+                    if (!$stmt->execute())
+                        echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                    $stmt->store_result();
+                    //  echo "hello3";
+                    $stmt->bind_result($user_id, $email, $alias, $gender, $age, $availability, $is_admin);
+            
+                    //   echo "hello4";
+            
+                    if (!$stmt->fetch())
+                        return NULL;
+            
+                    //    echo "<br><p>uname= " . $uname . "</p>";
+       //     echo "<br><p>username=" .  $username ."</p>";
+       //     echo "<br><p>email=" .  $email ."</p>";
+            
+                    $stmt->close(); // close prepare statement
+                    $database->close(); // close database connection
+                    
+                    
+                    return new self($user_id, $username, $email, $alias, $gender, $age, $availability, $is_admin);
+                }
+                
+                return NULL;
+            }
+        }
         //create user object by querying database with $uid
         public static function loadByID($uid)
         {
@@ -342,7 +386,8 @@
             
                     //   echo "hello4";
             
-                    $stmt->fetch();
+                    if (!$stmt->fetch())
+                        return NULL;
             
                     //    echo "<br><p>uname= " . $uname . "</p>";
        //     echo "<br><p>username=" .  $username ."</p>";
@@ -976,16 +1021,21 @@ see changePassword()
                     //  echo "hello2";
                 $stmt->store_result();
                 
-                $stmt->bind_result($gid, $name, $developer, $platform, $genre, $year, $type, $description);
+                $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
                 
+                $games = NULL;
                 while ($stmt->fetch())
                 {
-                    echo $name, " developed by ", $developer, "<br>";
+                  //  echo $name;
+                    $games[] = new Game($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
                 }
             
                 $stmt->close(); // close prepare statement
                 $database->close(); // close database connection
+                return $games;
             }
+            $database->close();
+            return NULL;
         }
         public static function searchUser($username)
         {

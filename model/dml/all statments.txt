@@ -39,6 +39,9 @@ SELECT username, email FROM user WHERE username=? OR email=?;
 # get user ?s data
 SELECT username, email, alias, gender, age, availability, is_admin FROM user WHERE user_id=?;
 
+# get user data where username=?
+SELECT user_id, email, alias, gender, age, availability, is_admin FROM user WHERE username=?;
+
 # set user's online status; used whenever user logs on/off
 UPDATE user SET availability=? WHERE user_id=?;
 

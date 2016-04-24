@@ -53,7 +53,7 @@
             <div class="panel panel-default">
                 
                 <div class="panel-heading">
-                    <h2>Welcome, <?php echo $data->username; ?> to your dashboard</h2>
+                    <h2><?php echo $data->welcome;?></h2>
                 </div>
                 
                 <div class="panel-body">
@@ -121,7 +121,7 @@
                             <!-- About Me -->
                             <div class="top30">
                                 <h3>About Me</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <?php echo $data->about;?>
                             </div>
                             
                         </div>
@@ -138,14 +138,36 @@
                             
                             <div>
                                 <h4>Contact Information:</h4>
-                                <address>
+                        <!--        <address>
                                   <strong>Twitter, Inc.</strong><br>
                                   1355 Market Street, Suite 900<br>
                                   San Francisco, CA 94103<br>
                                   <abbr title="Phone">P:</abbr> (123) 456-7890
+                                </address> -->
+                                <address>
+                                    <?php
+                                        $location = $data->location;
+                                        if (isset($location[0]))
+                                            echo $location[0];
+                                        if (isset($location[1]))
+                                        {
+                                            if (isset($location[0]))
+                                                echo ", ";
+                                            echo $location[1];
+                                        }
+                                        if (isset($location[2]))
+                                        {
+                                            if (isset($location[0]) || isset($location[1]))
+                                                echo " ";
+                                            echo $location[2];
+                                        }
+                                    ?><br>
                                 </address>
+                                
+                                
+                             <!-- this should only be shown if user is viewing another user's profile   
                                 <h4>Status</h4>
-                                <p>Feeling pretty good right now! Loving Starcraft 2!!!!</p>
+                                <p>Feeling pretty good right now! Loving Starcraft 2!!!!</p> -->
                             </div>
                         </div>
                     </div>
