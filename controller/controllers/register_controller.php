@@ -7,7 +7,6 @@ class Controller
         {
             redirect("dashboard");   
         }
-        
         if (isset($_POST['email'], $_POST['email2'], $_POST['username'], 
         $_POST['pass'], $_POST['pass2']))
         {
@@ -20,6 +19,10 @@ class Controller
             else
                 echo $registerMessage;
         }
+    }
+    public function getData()
+    {   
+        return NULL;
     }
     static function doRegister()
     {

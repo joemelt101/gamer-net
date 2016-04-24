@@ -2,7 +2,7 @@
     <head>
         <title>This is my page!</title>  
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
-        <?php require_once('/view/views/includes.html'); ?>
+        <?php require_once('/view/views/includes.php'); ?>
     </head>
     
     <body>

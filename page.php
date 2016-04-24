@@ -11,7 +11,9 @@
         {
             require_once("controller/controllers/" . $page . "_controller.php");
             $controller = new Controller();
+            $data = $controller->getData();
         }
+        $relativePath = getRelativePath();
         require_once($contentUrl);
     }
 ?>
