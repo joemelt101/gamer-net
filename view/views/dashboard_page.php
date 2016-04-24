@@ -82,24 +82,31 @@
                             <h3>Friends <small>edit</small></h3>
 
                             <div class="row">
-                                <div class="col-sm-2 dark">
-                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
+                                <?php
+                                if (isset($data->friends))
+                                {
+                                    $friends = $data->friends;
+                                    $numOfFriends = count($friends);
+                                    
+                                    for ($i = 0; $i < $numOfFriends && $i < 6; $i++)
+                                    {
+                                        $friend = $friends[$i];
+                                        if ($friend->type == "") // currently friends
+                                        {
+                                ?>
+                                    <div class="col-sm-2 dark">
+                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br /><?php echo $friend->alias;?></p>
+                                    <h6><?php
+                                            if ($friend->alias != $friend->username)
+                                                echo $friend->username;
+                                        ?></h6>
                                 </div>
-                                <div class="col-sm-2 dark">
-                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
-                                </div>
-                                <div class="col-sm-2 dark">
-                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
-                                </div>
-                                <div class="col-sm-2 dark">
-                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
-                                </div>
-                                <div class="col-sm-2 dark">
-                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
-                                </div>
-                                <div class="col-sm-2 dark">
-                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
-                                </div>
+                                <?php
+                                        }
+                                    }
+                                }
+                                ?>
+                                
                             </div>
                             
                             <!-- A list of Games -->
@@ -161,13 +168,6 @@
                             </div>
                         </div>
                     </div>
-                    <form action="dashboard" method='GET'>
-                        First name:<br>
-                        <input type="text" name="firstname"><br>
-                        Last name:<br>
-                        <input type="text" name="lastname">
-                        <input type='submit'>
-                    </form>
                 </div>
                 
             </div>

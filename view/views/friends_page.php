@@ -63,7 +63,7 @@
                 <form action="friends" method="POST">
                 <div class="panel-group">
                     <?php
-                    foreach($data as $friend)
+                    foreach($data->friends as $friend)
                     {?>
                     
                     <div class="panel panel-default">

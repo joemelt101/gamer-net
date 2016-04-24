@@ -1,10 +1,5 @@
 <?php
 
-/* not needed
-require_once('controller/php_libs/session.php');
-require_once('controller/php_libs/helper.php');
-*/
-
 class Controller
 {
     public function __construct()
@@ -18,8 +13,10 @@ class Controller
     {
         $data = new stdClass();
         $user = User::loadByID($_SESSION['user']);
+        $data->uid = $user->getUID();
         $data->username = $user->getUsername();
         $data->games = Game::getGames();
+        $data->friends = getFriends($user);
         
         return $data;
     }
