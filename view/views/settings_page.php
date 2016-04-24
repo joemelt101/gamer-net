@@ -7,9 +7,14 @@
     $controller->deleteContactInfo(3);
 */
 //    $controller->displayContactInfo();
+<<<<<<< HEAD
 /*
     $controller->setAbout("WOOOOOOOOOOO!!!!!<br>urlsauce.com/R<br>urlsauce.com/i<br>");
     echo $controller->getAbout();
+=======
+    //$controller->setAbout("WOOOOOOOOOOO!!!!!<br>urlsauce.com/R<br>urlsauce.com/i<br>");
+    $controller->getAbout();
+>>>>>>> premaster
 
     
 
@@ -18,7 +23,7 @@
     $zip_code = 65201;
   //  echo $zip_code;
     
-    $updateButtonPressed = true;
+    $updateButtonPressed = false;
     if ($updateButtonPressed)
     {
         if ($location = $controller->getLocation() == "empty")
@@ -29,8 +34,13 @@
         }
         $location = $controller->getLocation();
     }
+<<<<<<< HEAD
     echo isset($location) ? $location : $controller->getLocation();
 */
+=======
+    isset($location) ? $location : $controller->getLocation();
+
+>>>>>>> premaster
 ?>
 <!DOCTYPE html>
 <html>
@@ -102,7 +112,11 @@
              margin: 0 auto;   
             }
             
-            
+            .left {
+                float: left;
+                padding-left: 15px;
+                
+            }
             
             
         </style>
@@ -134,100 +148,41 @@
 
     </head>
     
-    <body id="body">
+    <body id="dg">
     <form action="#" method="post">
         <?php require_once('view/views/navbar_component.php');
         ?>
 
         
-        <div class="panel panel-default container-fixed container">
+        <div class="panel panel-default container-fixed container" id="lg">
             <div class="panel-body"> <!--box-->
 
             <!--location settings-->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Location Settings</h2>
-                </div>
-            </div>
-                    
-            <!--range section-->
-            <div class="row">        
-                <div class="col-md-3">
-                    <h3 class="">Range</h3>
-                </div>
-                <!--div class="col-md-8"></div>blank mid spacing-->
-                <!--mi/km toggle-->
-                <div class="col-md-offset-11">
-                    <!--<input id="units-toggle" checked type="checkbox" data-style="android" data-onstyle="success" data-offstyle="success" data-toggle="toggle" data-on="mi" data-off="km">-->
-                <input id="units-toggle" checked type="checkbox" data-style="" data-onstyle="success" data-offstyle="success" data-toggle="toggle" data-on="mi" data-off="km" name="distanceUnits">
-
-                </div>
-            </div> 
-                
-            <!--range slider, needs both bootstrap and js-->
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- <input id="mySlider" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="25"> -->
-
-                    <input id="mySlider" type="text" name="distance">
-
-                    <!--shows number when sliding, does not really work if clicked-->
-                    <span id="CurrentSliderValLabel"> : <span id="mySliderVal"></span></span>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                      
-                       <script type="text/javascript">// Instantiate a slider
-                            var mySlider = $("input.slider").slider();
-
-                            // Call a method on the slider
-                            var value = mySlider.slider('getValue');
-
-
-                            // // For non-getter methods, you can chain together commands
-                            // mySlider
-                            //     .slider('setValue', 5)
-                            //     .slider('setValue', 7);
-                        </script>
-
-                        <script type="text/javascript">
-                        $("#mySlider").slider({ id: "mySlider", min: 0, max: 200, value: 50, step:5 });
-                        $("#mySlider").on("slide", function(slideEvt) {
-                            $("#mySliderVal").text(slideEvt.value);
-                        });</script>
-
-                        
-           
-                </div>
-            </div>
             <br>
-                
-            <!--area display section-->
-            <div class="row">
-                
-                <div class="form-group col-xs-3">
-                    <label for="areaDisplay"><h3>Area Display</h3></label>
-                    <select class="form-control" id="areaDisplay">
-                        <option>[City], [State]</option>
-                        <option>[State] Area</option>
-                        <option>Anonymous -> minimizes location features</option>
-                    </select>
+               <div class="row">
+                <div class="col-lg-4">
+                        
                 </div>
-            </div>
-             
+                <div class="col-lg-4 text-center">
+                        <h2>Settings</h2>    
+                </div>
+                <div class="col-lg-4">
+                        
+                </div>
+                </div>
+                <br>  
                 
+            <br><hr><br>
             <!--location settings-->
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4 text-center">
                         <h2>User Settings</h2>
                 </div>
-                <div class="col-lg-4">
-                        
+                <div class="col-lg-4 text-center">
+                        <h2>Location Settings</h2>    
                 </div>
-                <div class="col-lg-4">
-                        <h2>Profile Settings</h2>
+                <div class="col-lg-4 text-center">
+                        <h2>Game Settings</h2>
                 </div>
                 </div>
                 <br>
@@ -241,7 +196,7 @@
                                 Alias
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="alias" name="alias">
+                                <input type="text" placeholder="Alias" name="alias">
                             </div>
                         </div>
                             <br>
@@ -250,84 +205,75 @@
                                 Public Email
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="public Email" name="publicEmail">
+                                <input type="text" placeholder="Public Email" name="publicEmail">
                             </div>
                         </div>
                             <br>
-                        <div class="row">    
-                            <div class="col-md-3">
-                                Twitch.tv/
-                            </div>
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="twtich.tv/" name="twitch">
-                            </div>
-                        </div>
-                            <br>
-                        <div class="row">    
-                            <div class="col-md-3">
-                                Skype
-                            </div>
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="skype" name="skype">
-                            </div>
-                        </div>
-
-                            <br>
+                       
                             
 
 
                 </div>
             </div>
-                    <div class="col-lg-4"></div>
+                    
+                    
                     <div class="col-lg-4">
                         <div class="card card-container">    
                         <br>    
                         <div class="row">    
                             <div class="col-md-3">
-                                Top Game
+                                City
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="most played game" name="topGame">
+                                <input type="text" placeholder="City" name="city">
                             </div>
                         </div>
                         <br>
                         <div class="row">    
                             <div class="col-md-3">
-                                Hours Played
+                                State
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="hours played" name="hoursPlayed">
+                                <input type="text" placeholder="State" name="state">
                             </div>
                         </div>
                         <br>
                         <div class="row">    
                             <div class="col-md-3">
-                                Main Genre
+                                Zipcode
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="main genre" name="mainGenre">
+                                <input type="text" placeholder="Zipcode" name="zipcode">
                             </div>
                         </div>
     
-                            <br>
-
-                         <div class="row">    
-                            <div class="col-md-3">
-                                Main Console
-                            </div>
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="main console" name="mainConsole">
-                            </div>
+                            <br> 
                         </div>
-                            <br>
+                    </div>
+                    
+                    
+                    <div class="col-lg-4">
+                        <div class="card card-container">    
+                        <br>    
                         <div class="row">    
                             <div class="col-md-3">
-                                Sub Console
+                                Platform
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="sub console" name="subConsole">
+                                <input type="text" placeholder="Platform" name="platform">
                             </div>
-                        </div>   
+                        </div>
+                        <br>
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Genre
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="Genre" name="genre">
+                            </div>
+                        </div>
+    
+                            <br>   
 
                         </div>
             </div>
@@ -336,24 +282,113 @@
             <br>
                 
                 <div class="row">
-                <div class="col-md-4">
-                  
-                </div>
-                <div class="col-md-4">
-                     <!-- outlline does not work... <button class="btn btn-sm btn-success-outline" type="submit">Save Changes</button> -->
-                    <button class="btn btn-sm btn-success" type="submit" id="saveChanges">Save Changes</button>
-                </div>
-                <div class="col-md-4">
-                  
+                <div class="col-sm-3 col-sm-offset-5">
+                    <button class="btn btn-success">Save Changes</button>
                 </div>
             </div>
-                
+                </form>    
             <br>
             <hr>
             <br>
-                
+            
+            <form action="#" method="post">    
             <div class="row"> 
-                    <div class="col-lg-4"> <h3>Change Password</h3>
+                <div class="col-lg-4"> </div>
+                    <div class="col-lg-4"> <h3 class="text-center">Add Game</h3>
+                        <br>
+                        <div class="card card-container">    
+                        <br> 
+                        <div class="row">    
+                            <div class="col-md-3">Name
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="Name" name="gameName">
+                            </div>
+                        </div>
+                            <br>
+                        <div class="row">    
+                            <div class="col-md-3">Developer
+                            </div>
+                            
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="Developer" name="gameDev">
+                            </div>
+                        </div>
+                             <br>
+                        <div class="row">    
+                            <div class="col-md-3">Platform
+                            </div>
+                            
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="Platform" name="gamePlat">
+                            </div>
+                        </div>
+                            
+                             <br>
+                        <div class="row">    
+                            <div class="col-md-3">Genre
+                            </div>
+                            
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="Genre" name="gameGenre">
+                            </div>
+                        </div>
+                            
+                             <br>
+                        <div class="row">    
+                            <div class="col-md-3">Year
+                            </div>
+                            
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="Year" name="gameYear">
+                            </div>
+                        </div> 
+                            
+                             <br>
+                        <div class="row">    
+                            <div class="col-md-3">Type
+                            </div>
+                            
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="Type" name="gameType">
+                            </div>
+                        </div>
+                            
+                             <br>
+                        <div class="row">    
+                            <div class="col-md-3">Description
+                            </div>
+                            
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="Description" name="gameDesc">
+                            </div>
+                        </div>  
+                        
+                        </div>
+                    
+                    </div>
+                <div class="col-lg-4"> </div>
+            </div>
+                
+                <br>
+                    
+
+
+            
+           <div class="row">
+                <div class="col-sm-3 col-sm-offset-5">
+                    <button class="btn btn-success">Add Game</button>
+                </div>
+            </div>
+    </form>
+            
+            <br><hr><br>
+            
+            
+            <form action="#" method="post">    
+            <div class="row "> 
+                <div class="col-lg-4"> </div>
+                    <div class="col-lg-4"> <h3 class="text-center">Change Password</h3>
                         <br>
                         <div class="card card-container">    
                         <br> 
@@ -376,34 +411,21 @@
                         </div>
                     
                     </div>
+                <div class="col-lg-4"> </div>
             </div>
                 
                 <br>
-                    
-                    
-                    
-            <!-- password stuff -->
-             <!--       
-            <div class="row">    
-                <div class="col-md-2">
-                    <h5>Change Password</h5>
-                </div>
-                <div class="col-md-offset-2">
-                    <input type="password" placeholder="password" name="password"><h6> *Optional</h6>
-                    <input type="password" placeholder="confirm password" name="passwordConfirm">
-                </div>
-            </div> -->
+            
 
             
-            <div class="row">
-                <div class="col-md-3">
-                    <!-- outlline does not work... <button class="btn btn-sm btn-success-outline" type="submit">Save Changes</button> -->
-                    <button class="btn btn-sm btn-success" type="submit">Save Password</button>
+           <div class="row">
+                <div class="col-sm-3 col-sm-offset-5">
+                    <button class="btn btn-success">Save Password</button>
                 </div>
             </div>
     </form>
     
-            <br><br><br><br>
+            <br><br> <hr><br><br>
             <form method="post" action="#"> <!-- delete account php? -->
             <div class="row">
                 <div class="col-sm-3 col-sm-offset-5">

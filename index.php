@@ -55,8 +55,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#home" class="page-scroll">Home</a></li>
-        <li><a href="#services-section" class="page-scroll">Mission</a></li>
-        <li><a href="#works-section" class="page-scroll">Games</a></li>
+        <li><a href="#mission-section" class="page-scroll">Mission</a></li>
+        <li><a href="#games-section" class="page-scroll">Games</a></li>
         <li><a href="#about-section" class="page-scroll">About</a></li>
         <li><a href="#team-section" class="page-scroll">Team</a></li>
         <li><a href="#testimonials-section" class="page-scroll">Testimonials</a></li>
@@ -77,7 +77,7 @@
 </header>
 
 <!-- Services Section -->
-<div id="services-section" class="text-center">
+<div id="mission-section" class="text-center">
   <div class="container">
     <div class="section-title wow fadeInDown">
       <h2>Our <strong>Mission</strong></h2>
@@ -101,13 +101,13 @@
       </div>
       <div class="col-md-3 col-sm-6 service wow fadeInUp" data-wow-delay="800ms"> <i class="fa fa-rocket"></i>
         <h4><strong>Gaming</strong></h4>
-        <p>Gaming is always mroe fun when you are playing with friends. Sign up for a free account and start connecting today!</p>
+        <p>Gaming is always more fun when you are playing with friends. Sign up for a free account and start connecting today!</p>
       </div>
     </div>
   </div>
 </div>
 <!-- Portfolio Section -->
-<div id="works-section" class="text-center">
+<div id="games-section" class="text-center">
   <div class="container"> <!-- Container -->
     <div class="section-title wow fadeInDown">
       <h2>Top <strong>Games</strong></h2>
@@ -116,13 +116,13 @@
       <p>Some of the most popular games on Gamer-Net</p>
     </div>
     <div class="categories">
-      <ul class="cat">
+      <ul class="cat" style="padding-left: 0px; padding-right: 15px;">
         <li>
-          <ol class="type">
+          <ol class="type" style="padding-left: 0px;">
             <li><a href="#" data-filter="*" class="active">All</a></li>
-            <li><a href="#" data-filter=".web">PC</a></li>
-            <li><a href="#" data-filter=".app">Xbox One</a></li>
-            <li><a href="#" data-filter=".branding">PS4</a></li>
+            <li><a href="#" data-filter=".pc">PC</a></li>
+            <li><a href="#" data-filter=".xbox">Xbox One</a></li>
+            <li><a href="#" data-filter=".ps4">PS4</a></li>
           </ol>
         </li>
       </ul>
@@ -130,7 +130,7 @@
     </div>
     <div class="row">
       <div class="portfolio-items">
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
+        <div class="col-sm-6 col-md-3 col-lg-3 pc">
           <div class="portfolio-item wow fadeInUp" data-wow-delay="200ms">
             <div class="hover-bg"> <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
               <div class="hover-text">
@@ -138,10 +138,10 @@
                 Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="view/landing_page/img/portfolio/01.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/csgo.png" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 app">
+        <div class="col-sm-6 col-md-3 col-lg-3 xbox">
           <div class="portfolio-item wow fadeInUp" data-wow-delay="400ms">
             <div class="hover-bg"> <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
               <div class="hover-text">
@@ -149,10 +149,10 @@
                 App Development
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="view/landing_page/img/portfolio/02.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/GTAV.png" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
+        <div class="col-sm-6 col-md-3 col-lg-3 pc">
           <div class="portfolio-item wow fadeInUp" data-wow-delay="600ms">
             <div class="hover-bg"> <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
               <div class="hover-text">
@@ -160,10 +160,10 @@
                Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="view/landing_page/img/portfolio/03.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/H1Z1.png" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
+        <div class="col-sm-6 col-md-3 col-lg-3 pc">
           <div class="portfolio-item wow fadeInUp" data-wow-delay="800ms">
             <div class="hover-bg"> <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
               <div class="hover-text">
@@ -171,10 +171,10 @@
                 Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="view/landing_page/img/portfolio/04.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/dota.png" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 app">
+        <div class="col-sm-6 col-md-3 col-lg-3 xbox">
           <div class="portfolio-item wow fadeInUp" data-wow-delay="1000ms">
             <div class="hover-bg"> <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
               <div class="hover-text">
@@ -182,10 +182,10 @@
                 App Development
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="view/landing_page/img/portfolio/05.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/destiny.png" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 branding">
+        <div class="col-sm-6 col-md-3 col-lg-3 ps4">
           <div class="portfolio-item wow fadeInUp" data-wow-delay="1200ms">
             <div class="hover-bg"> <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
               <div class="hover-text">
@@ -193,10 +193,10 @@
                 Branding
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="view/landing_page/img/portfolio/06.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/swbf.png" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 branding app">
+        <div class="col-sm-6 col-md-3 col-lg-3 ps4 xbox">
           <div class="portfolio-item wow fadeInUp" data-wow-delay="1400ms">
             <div class="hover-bg"> <a href="#portfolioModal7" class="portfolio-link" data-toggle="modal">
               <div class="hover-text">
@@ -204,10 +204,10 @@
                 App Development, Branding
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="view/landing_page/img/portfolio/07.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/bo3.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
+        <div class="col-sm-6 col-md-3 col-lg-3 pc">
           <div class="portfolio-item wow fadeInUp" data-wow-delay="1600ms">
             <div class="hover-bg"> <a href="#portfolioModal8" class="portfolio-link" data-toggle="modal">
               <div class="hover-text">
@@ -215,7 +215,7 @@
                 Web Design
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="view/landing_page/img/portfolio/08.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/darksouls.png" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
       </div>
@@ -254,7 +254,7 @@
       <h2>Meet the <strong>Team</strong></h2>
       <hr>
       <div class="clearfix"></div>      
-      <p>Our team here at Gamer-Net</p>
+      <p>Our team at Gamer-Net</p>
     </div>
     <div id="row">
       <div class="col-md-4 col-sm-6 team wow fadeInUp" data-wow-delay="200ms">
@@ -314,14 +314,14 @@
         </div>
       </div>
       <div class="col-md-4 col-sm-6 team wow fadeInUp" data-wow-delay="400ms">
-        <div class="thumbnail"> <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="..." class="img-circle team-img">
+        <div class="thumbnail"> <img src="https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg" alt="Benjamin Liu image" class="img-circle team-img">
           <div class="caption">
-            <h3>Ben</h3>
+            <h3>Benjamin Liu</h3>
             <p>Back End / Data Management</p>
                         <ul class="list-inline">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/blbenjaminliu" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="https://github.com/BLbenjaminliu" target="_blank"><i class="fa fa-github"></i></a></li>
+              <li><a href="https://twitter.com/BLbenjaminliu" target="_blank"><i class="fa fa-twitter"></i></a></li>
             </ul>
           </div>
         </div>
@@ -363,7 +363,7 @@
           </div>
           <div class="item">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at duis sed dapibus leo nec ornare diam.</p>
-            <p><strong>John DOEn</strong>, CEO, Company.</p>
+            <p><strong>John DOE</strong>, CEO, Company.</p>
           </div>
         </div>
       </div>
@@ -388,12 +388,12 @@
         <p>support@gamer-net.com</p>
       </div>
       <div class="col-md-4"> <i class="fa fa-phone fa-2x"></i>
-        <p> +1 800 666 6666</p>
+        <p> +1 573 867 5309</p>
       </div>
       <div class="clearfix"></div>
     </div>
     <div class="col-md-8 col-md-offset-2 wow fadeInUp" data-wow-delay="400ms">
-	<h3>Leave us a message</h3>
+  <h3>Leave us a message</h3>
       <form name="sentMessage" id="contactForm" novalidate>
         <div class="row">
           <div class="col-md-6">
@@ -417,9 +417,9 @@
         <button type="submit" class="btn btn-default">Send Message</button>
       </form>
       <div class="social">
-        <ul>
+        <ul style="padding-left: 0px !important;">
           <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fa fa-github"></i></a></li>
+          <li><a href="https://github.com/joemelt101/gamer-net/wiki" target="_blank"><i class="fa fa-github"></i></a></li>
           <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
         </ul>
       </div>
@@ -428,7 +428,7 @@
 </div>
 <div id="footer">
   <div class="container">
-      <p>Copyright © Tempo. Design by <a href="http://www.templategarden.com" rel="nofollow">TemplateGarden</a></p>
+      <p>Copyright © Tempo. Design by <a href="http://www.templategarden.com" target="_blank" rel="nofollow">TemplateGarden</a></p>
   </div>
 </div>
 
