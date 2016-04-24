@@ -7,8 +7,14 @@
     $controller->deleteContactInfo(3);
 */
 //    $controller->displayContactInfo();
+<<<<<<< HEAD
+/*
+    $controller->setAbout("WOOOOOOOOOOO!!!!!<br>urlsauce.com/R<br>urlsauce.com/i<br>");
+    echo $controller->getAbout();
+=======
     //$controller->setAbout("WOOOOOOOOOOO!!!!!<br>urlsauce.com/R<br>urlsauce.com/i<br>");
     $controller->getAbout();
+>>>>>>> premaster
 
     
 
@@ -28,8 +34,13 @@
         }
         $location = $controller->getLocation();
     }
+<<<<<<< HEAD
+    echo isset($location) ? $location : $controller->getLocation();
+*/
+=======
     isset($location) ? $location : $controller->getLocation();
 
+>>>>>>> premaster
 ?>
 <!DOCTYPE html>
 <html>
@@ -132,7 +143,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.0/css/bootstrap-slider.min.css">
 
 
-        <?php require_once('view/views/includes.html');
+        <?php require_once('view/views/includes.php');
         ?>
 
     </head>
