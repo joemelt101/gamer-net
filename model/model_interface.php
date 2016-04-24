@@ -889,6 +889,34 @@ see changePassword()
             
             return false;
         }
+        public function getFriend($fid)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //    echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/relationship/getFriend.sql");
+          //  echo $query;
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("ii", $this->uid, $fid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                $stmt->store_result();
+                
+                $stmt->bind_result($type);
+                
+                if (!$stmt->fetch())
+                    return -1;
+            
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $type;
+            }
+            return -1;
+        }
         /*
         this function will return an array of friendids and their type,
         the order will be by their alias (but alias will not be included)

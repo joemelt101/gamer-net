@@ -3,7 +3,12 @@
 
 <html>
     <head>
-        <title>Dashboard</title>
+        <title><?php 
+            if (isset($_GET['user']))
+                echo "Profile | ", $data->alias;
+            else
+                echo "Dashboard";
+        ?></title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
         <?php require_once(__DIR__ . '/includes.php'); ?>
         
@@ -53,7 +58,56 @@
             <div class="panel panel-default">
                 
                 <div class="panel-heading">
-                    <h2><?php echo $data->welcome;?></h2>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <h2><?php echo $data->welcome;?></h2>
+                        </div>
+                        <?php
+                            if (isset($_GET['user']))
+                            {
+                                if ($data->loggedUser)
+                                {
+                                    // prevent user from being able to add himself
+                                    if ($data->loggedUser->getUsername() != $data->username)
+                                    {
+                                        //need to add logic for checking if already friend, etc.
+                                        $type = $data->loggedUser->getFriend($data->uid);
+                                        $value = "Send Friend Request";
+                                        
+                                        if ($type != -1) // not currently a 'friend' of any kind
+                                        {
+                                            switch ($type)
+                                            {
+                                                case 0:
+                                                    $value = "Cancel Request";
+                                                    break;
+                                                case 1:
+                                                    $value = "Accept Request";
+                                                    break;
+                                                case 2:
+                                                    $value = "Remove Friend";
+                                                    break;
+                                                case 3:
+                                                    $value = "Unblock";
+                                                    break;
+                                                default: //user tried to view someone's page who blocked them
+                                                    redirect("dashboard");
+                                                    break;
+                                            }
+                                        }
+                        ?>
+                            <div class="col-sm-2">
+                                <form action="" method="POST">
+                                    <input class="btn btn-default" name="friendButton" type=submit value="<?php echo $value;?>">
+                                </form>
+                            </div>
+                            
+                        <?php
+                                    }
+                                }
+                            }    
+                        ?>
+                    </div>
                 </div>
                 
                 <div class="panel-body">

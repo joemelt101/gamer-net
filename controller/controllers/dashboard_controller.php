@@ -20,11 +20,29 @@ class Controller
             $user = User::loadByID($_SESSION['user']);
         }
         else // this is a different user's dashboard
+        {
             $user = User::loadByUsername($_GET['user']);
+            if (isLoggedIn())
+            {
+                $data->loggedUser = User::loadByID($_SESSION['user']);
+            }
+        }
         
         if ($user == NULL)
             redirect("404");
         $data->uid = $user->getUID();
+        
+        if (isset($_POST['friendButton']))
+        {
+            $value = $_POST['friendButton'];
+            if ($value == "Send Friend Request")
+                $data->loggedUser->requestFriend($data->uid);
+            else if ($value == "Cancel Request" || $value == "Remove Friend" || $value == "Unblock")
+                $data->loggedUser->removeUser($data->uid);
+            else if ($value == "Accept Request")
+                $data->loggedUser->acceptFriend($data->uid);
+        }
+        
         $data->alias = $user->getAlias();
         
         if (!isset($_GET['user']))
