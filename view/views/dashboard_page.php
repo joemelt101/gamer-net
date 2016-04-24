@@ -19,7 +19,7 @@
     <head>
         <title>Dashboard</title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
-        <?php require_once('view/views/includes.html'); ?>
+        <?php require_once(__DIR__ . '/includes.html'); ?>
         
         <style>
             a {
@@ -60,7 +60,7 @@
     </head>
     
     <body>
-        <?php require_once('view/views/navbar_component.php'); ?>
+        <?php require_once(__DIR__ . '/navbar_component.php'); ?>
         
         
         <div class="container-fixed container">
@@ -161,6 +161,13 @@
                             </div>
                         </div>
                     </div>
+                    <form action="dashboard" method='GET'>
+                        First name:<br>
+                        <input type="text" name="firstname"><br>
+                        Last name:<br>
+                        <input type="text" name="lastname">
+                        <input type='submit'>
+                    </form>
                 </div>
                 
             </div>
