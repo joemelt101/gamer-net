@@ -1,61 +1,78 @@
 <?php
 
-/* not needed
-require_once('controller/php_libs/session.php');
-require_once('controller/php_libs/helper.php');
-*/
-
 class Controller
 {
-    private $user;
     public function __construct()
     {
-        if (!isLoggedIn())
-        {
-            redirect("login");
-        }
-        else
-        {
-            $this->user = User::loadByID($_SESSION['user']);
-        }
+
     }
-    public function echoUsername()
+    public function getData()
     {
-        echo $this->user->getUsername();
-    }
-/*
-    public function grabData()
-    {
-        $object = new StdClass;
-       
-	if (isLoggedIn() == false)
-	{
-		redirect("login.php");
-	}
- 
-        //here we access the model to retrieve valid data
-        if (isset($_POST['module']))
+        $data = new stdClass();
+        $user = NULL;
+        if (!isset($_GET['user'])) //this is the logged in user's dashboard
         {
+            // user should not be able to view self dashboard if not logged in
+            if (!isLoggedIn())
+                redirect("login");
             
-            //'print' module of code
-            if ($_POST['module'] == 'print')
+            // session variable will be assigned thanks to above control statement
+            $user = User::loadByID($_SESSION['user']);
+        }
+        else // this is a different user's dashboard
+        {
+            $user = User::loadByUsername($_GET['user']);
+            if (isLoggedIn())
             {
-                //return the username as the data object
-                return $_POST['name'];
+                $data->loggedUser = User::loadByID($_SESSION['user']);
             }
-            
-            //other modules go here to handle different forms
-            //the module is set by the 
         }
         
-        return "Default";
+        if ($user == NULL)
+            redirect("404");
+        $data->uid = $user->getUID();
+        
+        if (isset($_POST['friendButton']))
+        {
+            $value = $_POST['friendButton'];
+            if ($value == "Send Friend Request")
+                $data->loggedUser->requestFriend($data->uid);
+            else if ($value == "Cancel Request" || $value == "Remove Friend" || $value == "Unblock")
+                $data->loggedUser->removeUser($data->uid);
+            else if ($value == "Accept Request")
+                $data->loggedUser->acceptFriend($data->uid);
+        }
+        else if (isset($_POST['blockButton']))
+        {
+            $data->loggedUser->block($data->uid);
+        }
+        
+        $data->alias = $user->getAlias();
+        
+        if (!isset($_GET['user']))
+            $data->welcome = "Welcome, " . $data->alias . " to your dashboard";
+        else
+        {
+            $data->username = $user->getUsername();
+            if ($data->alias != $data->username)
+            {
+                $data->welcome = $data->alias . " (" . $data->username . ")";
+            }
+            else
+                $data->welcome = $data->alias;
+        }
+        
+        $data->games = $user->getGames();
+       // foreach($data->games as $game)
+      //      echo $game->getName();
+        
+        // function located in helper.php
+        $data->friends = getFriends($user);
+        $data->location = $user->getLocation();
+        $data->about = $user->getAbout();
+        
+        return $data;
     }
-    
-    public function grabViewLocation()
-    {
-        return "view/views/dashboard_page.php";
-    }
-    */
 }
 
 ?>

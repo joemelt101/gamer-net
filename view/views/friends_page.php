@@ -1,6 +1,4 @@
-<?php
-    $controller->listFriends();
-?>
+
 <!DOCTYPE html>
 
 <html>
@@ -53,7 +51,7 @@
             
         </style>
         
-        <?php require_once('view/views/includes.html'); ?>
+        <?php require_once('view/views/includes.php'); ?>
     </head>
     
     <body>
@@ -62,8 +60,12 @@
         <div class="panel container-fixed container">
             <div class="panel-body">
                 <h3>Your Friends</h3>
-                
+                <form action="friends" method="POST">
                 <div class="panel-group">
+                    <?php
+                    foreach($data->friends as $friend)
+                    {?>
+                    
                     <div class="panel panel-default">
                         <div class="panel-body center">
                             <div class="col-sm-4">
@@ -75,14 +77,26 @@
                             </div>
                             <div class="col-sm-4">
                                 <a href="linkto.profile">
-                                    <h4>Username</h4>
+                                    <h4><?php echo $friend->username;?></h4>
                                 </a>
-                                <h5>Age: xx</h5>
-                                <h5>Location: /*location*/</h5>
-                                <h5>Gender: M/F</h5>
-                                <h5>Availabile: Y/N</h5>
+                                <h5><?php echo $friend->type;?></h5>
+                                <h5>Age: <?php echo $friend->age;?></h5>
+                                <h5>Location: 
+                                    <?php 
+                                        $location = $friend->location;
+                                        if ($location[0] != NULL && $location[1] != NULL && $location[2] != 0)
+                                            echo $location[0], ", ", $location[1], " ", $location[2];
+                                        else if ($location[0] != NULL && $location[1] != NULL && $location[2] == 0)
+                                            echo $location[0], ", ", $location[1];
+                                        else
+                                            echo "unknown";
+                                    ?>
+                                </h5>
+                                <h5>Gender: <?php echo $friend->gender;?></h5>
+                                <h5>Availabile: <?php echo $friend->status;?></h5>
                             </div>
                             <div class="col-sm-4">
+                                
                                 <h4>Games I'm playing</h4>
                                 <div>
                                     <li>Dankey Kang</li>
@@ -92,6 +106,26 @@
                                 </div>
                                 
                             </div>
+                        <div class="rightAlign padding">
+                            <?php
+                                $value = $friend->id;
+                                $buttonLabel = "";
+                                if ($friend->type == "")
+                                    $buttonLabel = "Unfriend";
+                                else if ($friend->type == "pending request")
+                                    $buttonLabel = "Cancel";
+                                else if ($friend->type == "wants to be friends")
+                                {
+                                    echo "<button type='submit' class='btn btn-primary' name='Accept' value='", $value, "'>Accept</button>";
+                                    $buttonLabel = "Decline";
+                                }
+                                else
+                                    $buttonLabel = "Unblock";
+                     
+                                
+                                echo "<button type='submit' class='btn btn-primary' name='", $buttonLabel, "' value='", $value, "'>", $buttonLabel, "</button>";
+                            ?>
+                        </div>
                             
                             <!--div class="col-sm-3 middle">
                                 <button type="button" class="btn btn-primary">Unfriend</button>
@@ -101,12 +135,12 @@
                             </div-->
                         </div>
                     </div>
-                    <div class="rightAlign padding">
-                        <button type="button" class="btn btn-primary">Unfriend</button>
-                        <input type="checkbox" checked data-toggle="toggle">
-                    </div>
+
+                    <?php } ?>
+
 
                 </div>
+                </form>
             </div>
         </div>
     </body>

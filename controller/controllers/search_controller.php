@@ -2,31 +2,44 @@
 
 class Controller
 {
-    public function grabData()
+    public function getData()
     {
-        $object = new StdClass;
+        $data = NULL;
         
-        //here we access the model to retrieve valid data
-        if (isset($_POST['module']))
+        if (isset($_POST['searchBox']))
         {
-            
-            //'print' module of code
-            if ($_POST['module'] == 'print')
+            $searchString = $_POST['searchBox'];
+            if (isset($_POST['searchType']))
             {
-                //return the username as the data object
-                return $_POST['name'];
+                $data = new stdClass();
+                
+                $searchType = $_POST['searchType'];
+                switch ($searchType)
+                {
+                    case "userSearch":
+                        $data->users = User::searchUser($searchString);
+                        break;
+                    case "gameSearch":
+                        $data->games = Game::searchGame($searchString);
+                        break;
+                    default: //location
+                        $data->locations = Location::searchLocation($searchString);
+                        break;
+                }
+                
+                
+                
             }
             
-            //other modules go here to handle different forms
-            //the module is set by the 
         }
         
-        return "Default";
-    }
-    
-    public function grabViewLocation()
-    {
-        return "view/views/search_page.php";
+
+        
+        
+        
+        
+        
+        return $data;
     }
 }
 
