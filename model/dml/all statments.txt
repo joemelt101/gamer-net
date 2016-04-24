@@ -24,9 +24,9 @@ SELECT user_id, username, email, alias, salt, hash_pass, gender, age, availabili
 SELECT username, alias FROM user ORDER BY alias;
 
 #search for user by username or alias
-SELECT user_id, username, alias FROM user
-	WHERE username LIKE ? OR alias LIKE ?
-		ORDER BY alias;
+SELECT username, alias FROM user
+WHERE username=? OR alias=?
+ORDER BY alias;
 
 
 /*search for user by username and email
@@ -38,9 +38,6 @@ SELECT username, email FROM user WHERE username=? OR email=?;
 
 # get user ?s data
 SELECT username, email, alias, gender, age, availability, is_admin FROM user WHERE user_id=?;
-
-# get user data where username=?
-SELECT user_id, email, alias, gender, age, availability, is_admin FROM user WHERE username=?;
 
 # set user's online status; used whenever user logs on/off
 UPDATE user SET availability=? WHERE user_id=?;
@@ -72,21 +69,19 @@ INSERT INTO location (user_id, city, state, zip_code) VALUES(?, ?, ?, ?);
 # edit location for user_id=?
 UPDATE location SET city=?, state=?, zip_code=? WHERE user_id=?;
 
-# get location where user_id=?
-SELECT city, state, zip_code FROM location WHERE user_id=?;
 
-# search for location(s) by city, state, or zip code
-SELECT * FROM location WHERE city LIKE ? OR state LIKE ? OR zip_code LIKE ?;
 
 
 /* game
 */
 # create game
-INSERT INTO game(name, developer, platform, genre, year, type, description)
-	VALUES(?, ?, ?, ?, ?, ?, ?);
+INSERT INTO game(developer, year, name, genre, type, platform)
+VALUES(?, ?, ?, ?, ?, ?);
 
-#search for games by name or developer
-SELECT * FROM game WHERE name LIKE ? OR developer LIKE ? ORDER BY name;
+#search for game by name/developer
+SELECT name, developer FROM game
+WHERE name=? OR developer=?
+ORDER BY name;
 
 #list all games by name
 SELECT * FROM game ORDER BY name;
@@ -106,9 +101,6 @@ SELECT * FROM game WHERE type=0 ORDER BY name;
 
 #list all board games
 SELECT * FROM game WHERE type=1 ORDER BY name;
-
-#search for game with game_id=?
-SELECT * FROM game WHERE game_id=?;
 
 
 
@@ -198,25 +190,22 @@ UPDATE relationship
 UPDATE relationship
 	SET type='2' WHERE user_id=? AND friend_id=?;
 
-#user ? declines user ?’s friend request or user ? deletes user ? as a friend or user ? unblocks user ?
+#user ? declines user ?’s friend request or user ? deletes user ? as a friend
 DELETE FROM relationship WHERE user_id=? AND friend_id=?;
 DELETE FROM relationship WHERE user_id=? AND friend_id=?;
 
-#user ? blocks friend ?
-UPDATE relationship SET type=3 WHERE user_id=? AND friend_id=?;
-UPDATE relationship SET type=4 WHERE user_id=? AND friend_id=?;
+#user ? sends user ? a friend request
+UPDATE relationship SET type=‘3’ WHERE user_id=? AND friend_id=?;
+UPDATE relationship SET type=‘4’ WHERE user_id=? AND friend_id=?;
 
-#user ? blocks user ?
-INSERT INTO relationship VALUES(?, ?, 3);
-INSERT INTO relationship VALUES(?, ?, 4);
-
-#show user ?’s friend/pending friend list/blocked users list
-SELECT friend_id, type FROM relationship
+#show user ?’s friend/pending friend list
+SELECT friend_id, user.alias AS friend, type FROM relationship
 JOIN user ON relationship.friend_id = user.user_id
-WHERE relationship.user_id=?
-ORDER BY user.alias;
+WHERE relationship.user_id=? AND type != 3 AND type != 4
+ORDER BY friend;
 
-#check if user has a friend with friend_id=?
-SELECT type FROM relationship
+#show user ?’s blocked users list
+SELECT friend_id AS uid, user.alias AS blocked FROM relationship
 JOIN user ON relationship.friend_id = user.user_id
-WHERE relationship.user_id=? AND friend_id=?;
+WHERE relationship.user_id=? AND type=3
+ORDER BY blocked;

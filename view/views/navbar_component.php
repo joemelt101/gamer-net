@@ -16,18 +16,11 @@
             <span class="icon-bar"></span>
           </button>
             
-          <a class="navbar-brand" href="<?php echo $relativePath; ?>index.php">Gamer-Net</a>
+          <a class="navbar-brand" href="index.php">Gamer-Net</a>
             <ul class="nav navbar-nav">
-<<<<<<< HEAD
-                    <li><a href="<?php echo $relativePath;?>index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Near You</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-comment"></span> Messages</a></li>
-                    <li><a href="<?php echo $relativePath;?>settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-=======
                     <li><a href="dashboard"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     <li><a href="search"><span class="glyphicon glyphicon-search"></span> Search</a></li>     
                     <li><a href="settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
->>>>>>> premaster
             </ul>
         </div>
 
@@ -37,17 +30,13 @@
     <?php 
             if ($isLoggedIn)
             {
-                echo("<li><a href=\"" . $relativePath .  "controller/controllers/logout.php\">Logout</a></li>");
+                echo("<li><a href=\"controller/controllers/logout.php\">Logout</a></li>");
             }
             else
             {
-                echo ("<li><a href=\"" . $relativePath . "login\">Login</a></li>");
+                echo ("<li><a href=\"login\">Login</a></li>");
             }
     ?>        
-<<<<<<< HEAD
-            <li><a href="<?php echo $relativePath;?>search">Search</a></li>     
-=======
->>>>>>> premaster
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

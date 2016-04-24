@@ -12,16 +12,7 @@
     */
     function redirect($page)
     {
-        $redirectUrl = getRelativePath() . $page;
-        if ($currentPage != $page)
-        {
-            header("Location: " . $redirectUrl);
-            exit;
-        }
-    }
-    function getRelativePath()
-    {
-        $urlPath = $_SERVER['PHP_SELF'];
+		$urlPath = $_SERVER['PHP_SELF'];
 		$currentPage = basename($urlPath);
 
 
@@ -34,7 +25,12 @@
         $redirectUrl = '';
         for ($i = 0; $i < $length; $i++)
             $redirectUrl .= $urlPieces[$i] . '/';
-        
-        return $redirectUrl;
+  
+		$redirectUrl .= $page;
+        if ($currentPage != $page)
+        {
+            header("Location: " . $redirectUrl);
+            exit;
+        }
     }
 ?>
