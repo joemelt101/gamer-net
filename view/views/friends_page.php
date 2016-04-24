@@ -51,7 +51,7 @@
             
         </style>
         
-        <?php require_once('view/views/includes.html'); ?>
+        <?php require_once('view/views/includes.php'); ?>
     </head>
     
     <body>

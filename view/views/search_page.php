@@ -4,7 +4,7 @@
     <head>
         <title>Gamer-net -- Search</title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
-        <?php require_once('view/views/includes.html'); ?>
+        <?php require_once('view/views/includes.php'); ?>
         <style>
             body{
                 background-color: black;

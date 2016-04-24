@@ -19,7 +19,7 @@
     <head>
         <title>Dashboard</title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
-        <?php require_once(__DIR__ . '/includes.html'); ?>
+        <?php require_once(__DIR__ . '/includes.php'); ?>
         
         <style>
             a {

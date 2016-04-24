@@ -13,6 +13,7 @@
             $controller = new Controller();
             $data = $controller->getData();
         }
+        $relativePath = getRelativePath();
         require_once($contentUrl);
     }
 ?>

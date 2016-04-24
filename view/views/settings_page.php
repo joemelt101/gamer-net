@@ -129,7 +129,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.0/css/bootstrap-slider.min.css">
 
 
-        <?php require_once('view/views/includes.html');
+        <?php require_once('view/views/includes.php');
         ?>
 
     </head>
