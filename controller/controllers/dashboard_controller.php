@@ -42,6 +42,10 @@ class Controller
             else if ($value == "Accept Request")
                 $data->loggedUser->acceptFriend($data->uid);
         }
+        else if (isset($_POST['blockButton']))
+        {
+            $data->loggedUser->block($data->uid);
+        }
         
         $data->alias = $user->getAlias();
         

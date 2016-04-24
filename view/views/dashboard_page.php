@@ -59,7 +59,7 @@
                 
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-sm-9">
+                        <div class="col-sm-6">
                             <h2><?php echo $data->welcome;?></h2>
                         </div>
                         <?php
@@ -67,7 +67,7 @@
                             {
                                 if ($data->loggedUser)
                                 {
-                                    // prevent user from being able to add himself
+                                    // prevent user from being able to add/block himself
                                     if ($data->loggedUser->getUsername() != $data->username)
                                     {
                                         //need to add logic for checking if already friend, etc.
@@ -96,13 +96,23 @@
                                             }
                                         }
                         ?>
-                            <div class="col-sm-2">
-                                <form action="" method="POST">
+                            <form action="" method="POST">
+                                <div class="col-sm-3">    
                                     <input class="btn btn-default" name="friendButton" type=submit value="<?php echo $value;?>">
-                                </form>
-                            </div>
-                            
+                                </div>
+                                <?php
+                                    if ($value != "Unblock")
+                                    {?>
+                                
+                                    <div class="col-sm-2">
+                                    <input class="btn btn-default" name="blockButton" type="submit" value="Block">
+                                    </div>
+                                
+        <?php  /* so apparently you need at least one space after <?php or there will be a compile error*/?>
+                                <?php }?>
+                            </form>
                         <?php
+                                        
                                     }
                                 }
                             }    
