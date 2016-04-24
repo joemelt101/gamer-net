@@ -69,7 +69,11 @@ INSERT INTO location (user_id, city, state, zip_code) VALUES(?, ?, ?, ?);
 # edit location for user_id=?
 UPDATE location SET city=?, state=?, zip_code=? WHERE user_id=?;
 
+# get location where user_id=?
+SELECT city, state, zip_code FROM location WHERE user_id=?;
 
+# search for location(s) by city, state, or zip code
+SELECT * FROM location WHERE city LIKE ? OR state LIKE ? OR zip_code LIKE ?;
 
 
 /* game
@@ -78,10 +82,8 @@ UPDATE location SET city=?, state=?, zip_code=? WHERE user_id=?;
 INSERT INTO game(name, developer, platform, genre, year, type, description)
 	VALUES(?, ?, ?, ?, ?, ?, ?);
 
-#search for game by name/developer
-SELECT name, developer FROM game
-WHERE name=? OR developer=?
-ORDER BY name;
+#search for games by name or developer
+SELECT * FROM game WHERE name LIKE ? OR developer LIKE ? ORDER BY name;
 
 #list all games by name
 SELECT * FROM game ORDER BY name;

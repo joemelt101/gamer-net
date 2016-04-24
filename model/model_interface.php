@@ -1,5 +1,104 @@
 <?php
     require_once(__DIR__ . "/DBConnection.php");
+    class Location
+    {
+        private $uid;
+        private $city;
+        private $state;
+        private $zip_code;
+        
+        public function __construct($uid, $city, $state, $zip_code)
+        {
+            $this->uid = $uid;
+            $this->city = $city;
+            $this->state = $state;
+            $this->zip_code = $zip_code;
+        }
+        public function getUser()
+        {
+            
+        }
+        public function getCity()
+        {
+            return $this->city;
+        }
+        public function getState()
+        {
+            return $this->state;
+        }
+        public function getZip()
+        {
+            return $this->zip_code;
+        }
+        public static function loadByID($uid)
+        {
+            if (isset($uid))
+            { 
+                $database = new DBConnection();
+                $mysqli = $database->conn;
+            
+                $query = file_get_contents(__DIR__ . "/dml/location/get_location.sql");
+               // echo $query;
+                if ($stmt = $mysqli->prepare($query))
+                {
+                    //echo "hello";
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                    $stmt->bind_param("i", $uid);
+                    if (!$stmt->execute())
+                        echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                    $stmt->store_result();
+                    //  echo "hello3";
+                    $stmt->bind_result($city, $state, $zip_code);
+            
+                    //   echo "hello4";
+            
+                    $stmt->fetch();
+            
+                    $stmt->close(); // close prepare statement
+                    $database->close(); // close database connection
+                    
+                    
+                    return new self($uid, $city, $state, $zip_code);
+                }
+            }
+            return NULL;
+        }
+        public static function searchLocation($location)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //    echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/location/search_for_locations.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $cityOrStateSearch = '%' . $location . '%';
+                $zipSearch = $location . '%';
+                $stmt->bind_param("sss", $cityOrStateSearch, $cityOrStateSearch, $zipSearch);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                $stmt->store_result();
+                
+                $stmt->bind_result($user_id, $city, $state, $zip_code);
+                
+                $locations = NULL;
+                while ($stmt->fetch())
+                {
+                    $locations[] = new self($user_id, $city, $state, $zip_code);
+                }
+            
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $locations;
+            }
+            
+            return NULL;
+        }
+    }
 
     class Game
     {
@@ -89,9 +188,8 @@
                     
                     return new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
                 }
-                
-                return NULL;
             }
+            return NULL;
         }
         public static function getGames()
         {
@@ -126,6 +224,39 @@
                     
                     return $games;
                 }
+            return NULL;
+        }
+        public static function searchGame($game)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //    echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/game/search_for_games.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $gameSearch = '%' . $game . '%';
+                $developerSearch = $game . '%';
+                $stmt->bind_param("ss", $gameSearch, $developerSearch);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                $stmt->store_result();
+                
+                $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                
+                $games = NULL;
+                while ($stmt->fetch())
+                {
+                    $games[] = new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                }
+            
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $games;
+            }
+            
             return NULL;
         }
         

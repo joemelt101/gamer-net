@@ -20,8 +20,10 @@ class Controller
                         $data->users = User::searchUser($searchString);
                         break;
                     case "gameSearch":
+                        $data->games = Game::searchGame($searchString);
                         break;
                     default: //location
+                        $data->locations = Location::searchLocation($searchString);
                         break;
                 }
                 

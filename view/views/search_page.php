@@ -1,3 +1,4 @@
+
 <!-- GAMER-NET - SEARCH PAGE -->
 <html>
     <head>
@@ -72,7 +73,13 @@
 
             <div class='panel-body fixed-container'>
                 <?php
-                foreach ($data->users as $user)
+                if (isset($data->games))
+                    foreach($data->games as $game)
+                    {
+                        echo $game->getName(), "<br>";
+                    }
+                else if (isset($data->users))
+                    foreach ($data->users as $user)
                 {?>
                 <div class='user row'>
                     <div class='picture col-xs-4'>
@@ -107,7 +114,13 @@
                         </div>
                     </div>
                 </div><?php
-                }?>
+                }
+                else if (isset($data->locations))
+                    foreach ($data->locations as $location)
+                    {
+                        echo $location->getCity(), ", ", $location->getState(), " ", $location->getZip(), "<br>";
+                    }
+                ?>
             </div>
 
             <div class='panel-footer'>
