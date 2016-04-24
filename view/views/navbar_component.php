@@ -19,8 +19,8 @@
           <a class="navbar-brand" href="<?php echo $relativePath; ?>index.php">Gamer-Net</a>
             <ul class="nav navbar-nav">
                 <li><a href="<?php echo $relativePath; ?>dashboard"><span class="glyphicon glyphicon-home">Home</span></a></li>
-                <li><a href="<?php echo $relativePath; ?>search"><span class="glyphicon glyphicon-home">Search</span></a></li>
-                <li><a href="<?php echo $relativePath; ?>settings"><span class="glyphicon glyphicon-home">Settings</span></a></li>
+                <li><a href="<?php echo $relativePath; ?>search"><span class="glyphicon glyphicon-search">Search</span></a></li>
+                <li><a href="<?php echo $relativePath; ?>settings"><span class="glyphicon glyphicon-cog">Settings</span></a></li>
             </ul>
         </div>
 
