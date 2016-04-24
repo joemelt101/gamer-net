@@ -160,5 +160,6 @@
                 $friends = $blocked;
         }
         return $friends;
-    }   
+    }
+
 ?>

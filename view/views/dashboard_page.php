@@ -1,18 +1,4 @@
-<?php
-    $games = $data->games;
-    echo "Name:                                      Developer:               Platform:          Genre:           Year:      Type:               Description:                             <br>";
-    foreach ($games as $game)
-    {
-        echo $game->getName(), " | ",
-        $game->getDeveloper(), " | ",
-        $game->getPlatform(), " | ",
-        $game->getGenre(), " | ",
-        $game->getYear(), " | ",
-        $game->getType(), " | ",
-        $game->getDescription(), "<br>";
-    }
 
-?>
 <!DOCTYPE html>
 
 <html>
@@ -116,24 +102,19 @@
                                 <h3>Games You Play <small>edit</small></h3>
 
                                 <div class="row">
+                                <?php
+                                    if (isset($data->games))
+                                    {
+                                        $games = $data->games;
+                                        $numOfGames = count($games);
+                                        for ($i = 0; $i < $numOfGames && $i < 6; $i++)
+                                        {?>
                                     <div class="col-sm-2 dark">
-                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
+                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br /><?php echo $games[$i]->getName(); ?></p>
                                     </div>
-                                    <div class="col-sm-2 dark">
-                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
-                                    </div>
-                                    <div class="col-sm-2 dark">
-                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
-                                    </div>
-                                    <div class="col-sm-2 dark">
-                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
-                                    </div>
-                                    <div class="col-sm-2 dark">
-                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
-                                    </div>
-                                    <div class="col-sm-2 dark">
-                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
-                                    </div>
+                                    <?php
+                                        }
+                                    }?>
                                 </div>
                             </div>
                             
