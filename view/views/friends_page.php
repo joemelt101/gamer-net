@@ -70,7 +70,7 @@
                         <div class="panel-body center">
                             <div class="col-sm-4">
                                 <div>
-                                    <a href="linkto.profile">
+                                    <a href="user/<?php echo $friend->username;?>">
                                         <img src="view/images/thumbnail.svg" alt="Profile picture">
                                     </a>
                                 </div>
