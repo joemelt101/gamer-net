@@ -49,15 +49,13 @@
             .top30 { margin-top:30px; }
         </style>
     </head>
-    
-    <body>
+    <body id="dg">
         <?php require_once(__DIR__ . '/navbar_component.php'); ?>
         
         
         <div class="container-fixed container">
             <div class="panel panel-default">
-                
-                <div class="panel-heading">
+                <div class="panel-heading" id="blueGrey">
                     <div class="row">
                         <div class="col-sm-6">
                             <h2><?php echo $data->welcome;?></h2>
@@ -120,7 +118,7 @@
                     </div>
                 </div>
                 
-                <div class="panel-body">
+                <div class="panel-body" id="lg">
                     
                     <!-- 2 Columns for this Layout -->
                     <div class="row">
@@ -129,7 +127,7 @@
                         <div class="col-sm-8">
                             
                             <!-- Link to Friends -->
-                            <h3>Friends <small>edit</small></h3>
+                            <h3>Friends</h3>
 
                             <div class="row">
                                 <?php
@@ -163,7 +161,7 @@
                             
                             <!-- Link to Friends -->
                             <div class="top30">
-                                <h3>Games You Play <small>edit</small></h3>
+                                <h3>Games You Play</h3>
 
                                 <div class="row">
                                 <?php

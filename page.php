@@ -5,6 +5,7 @@
     {
         $page = $_GET['page'];
         $contentUrl = "view/views/" . $page . "_page.php";
+        $relativePath = getRelativePath();
         if (!file_exists($contentUrl))
             $contentUrl = "view/views/404.html";
         else
@@ -13,7 +14,7 @@
             $controller = new Controller();
             $data = $controller->getData();
         }
-        $relativePath = getRelativePath();
+        
         require_once($contentUrl);
     }
 ?>

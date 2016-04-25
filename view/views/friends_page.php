@@ -54,7 +54,7 @@
         <?php require_once('view/views/includes.php'); ?>
     </head>
     
-    <body>
+    <body id="dg">
         <?php require_once('view/views/navbar_component.php'); ?>
         
         <div class="panel container-fixed container">
