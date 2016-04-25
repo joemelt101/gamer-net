@@ -2,6 +2,11 @@
 Provides a place for people to find others to play their favorite games with and make new friends!
 [http://cyberdyn3.centralus.cloudapp.azure.com/sprint4_final/gamer-net/](http://cyberdyn3.centralus.cloudapp.azure.com/sprint4_final/gamer-net/ "Link to project")
 
+### Installation Instructions
+git clone this repo
+install credentials file
+run MYSQL table setup statements
+
 #### Group 12 - Members:
 - Homer Gaidarski
 - Benjamin Liu
