@@ -3,9 +3,16 @@ Provides a place for people to find others to play their favorite games with and
 [http://cyberdyn3.centralus.cloudapp.azure.com/sprint4_final/gamer-net/](http://cyberdyn3.centralus.cloudapp.azure.com/sprint4_final/gamer-net/ "Link to project")
 
 ### Installation Instructions
-git clone this repo
-install credentials file
-run MYSQL table setup statements
+git clone this repo  
+install credentials file for the database (check model/DBConnection.php for location)  
+The format for the credentials file is laid out below
+```
+localhost
+username
+password
+```
+run MYSQL table setup statements (in Wiki)  
+open website in browser  
 
 #### Group 12 - Members:
 - Homer Gaidarski
