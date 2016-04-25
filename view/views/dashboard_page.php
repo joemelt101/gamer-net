@@ -127,8 +127,14 @@
                         <div class="col-sm-8">
                             
                             <!-- Link to Friends -->
-                            <h3>Friends</h3>
-
+                            <?php 
+                                if ($_GET['user'] != $friend->username) {
+                                    echo "<h3>Friends</h3>";
+                                }
+                                else {
+                                    echo "<a href = \"friends\"><h3>Friends</h3></a>";
+                                }
+                            ?>
                             <div class="row">
                                 <?php
                                 if (isset($data->friends))

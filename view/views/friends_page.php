@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <a href="linkto.profile">
+                                <a href="user/<?php echo $friend->username;?>">
                                     <h4><?php echo $friend->username;?></h4>
                                 </a>
                                 <h5><?php echo $friend->type;?></h5>
