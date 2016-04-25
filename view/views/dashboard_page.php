@@ -149,11 +149,16 @@
                                         {
                                 ?>
                                     <div class="col-sm-2 dark">
-                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br /><?php echo $friend->alias;?></p>
+                                    <?php echo "<a href = user/" , $friend->username;?>
+                                        <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />
+                                            <h6 class = "text-center"><?php echo $friend->alias;?></h6>
+                                        </p>
+                                    </a>
                                     <h6><?php
                                             if ($friend->alias != $friend->username)
                                                 echo $friend->username;
-                                        ?></h6>
+                                        ?>
+                                    </h6>
                                 </div>
                                 <?php
                                         }
