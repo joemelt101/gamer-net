@@ -1,5 +1,16 @@
-# gamer-net
+# Gamer-Net
 Provides a place for people to find others to play their favorite games with and make new friends!
+[http://cyberdyn3.centralus.cloudapp.azure.com/sprint4_final/gamer-net/](http://cyberdyn3.centralus.cloudapp.azure.com/sprint4_final/gamer-net/ "Link to project")
+
+#### Group 12 - Members:
+- Homer Gaidarski
+- Benjamin Liu
+- Arthur Martin
+- Carlos Martinez
+- Kean Mattingly
+- Jared Melton
+
+### [Click here for Gamer-Net help (Wiki)](https://github.com/joemelt101/gamer-net/wiki)
 
 # Workflow Instructions
 1. Find issue assigned to you
