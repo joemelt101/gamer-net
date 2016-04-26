@@ -4,6 +4,7 @@
         private $user;
         public function __construct()
         {
+<<<<<<< HEAD
             if (!isLoggedIn())
             {
                 redirect("login");
@@ -122,6 +123,9 @@
         public function addLocation($city, $state, $zip_code)
         {
             $this->user->addLocation($city, $state, $zip_code);
+=======
+            redirect('login');
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
         }
     }
 ?>

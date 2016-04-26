@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 /*
     $controller->addContactInfo('facebook', 'bobsburgers');
@@ -31,6 +32,9 @@
     isset($location) ? $location : $controller->getLocation();
 
 ?>
+=======
+
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
 <!DOCTYPE html>
 <html>
     <head>
@@ -198,7 +202,17 @@
                             </div>
                         </div>
                             <br>
-                       
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Profile Picture
+                            </div>
+                            <div class="col-md-offset-3">
+                                <label class="control-label"></label>
+    <input id="input-2" name="input2[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true">
+                            </div>
+                        </div>
+                            
+                                
                             
 
 

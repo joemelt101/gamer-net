@@ -56,26 +56,41 @@
         <?php require_once('view/views/includes.html'); ?>
     </head>
     
-    <body>
+    <body id="dg">
         <?php require_once('view/views/navbar_component.php'); ?>
         
-        <div class="panel container-fixed container">
-            <div class="panel-body">
+        <div class="panel container-fixed container" id="lg">
+            <div class="panel-body" >
                 <h3>Your Friends</h3>
+<<<<<<< HEAD
                 
                 <div class="panel-group">
                     <div class="panel panel-default">
+=======
+                <form action="friends" method="POST">
+                <div class="panel-group" style="background-color: #2E3338 !important;">
+                    <?php
+                    foreach($data->friends as $friend)
+                    {?>
+                    
+                    <div class="panel panel-default" style="background-color: #2E3338 !important;">
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
                         <div class="panel-body center">
                             <div class="col-sm-4">
                                 <div>
-                                    <a href="linkto.profile">
+                                    <a href="user/<?php echo $friend->username;?>">
                                         <img src="view/images/thumbnail.svg" alt="Profile picture">
                                     </a>
                                 </div>
                             </div>
                             <div class="col-sm-4">
+<<<<<<< HEAD
                                 <a href="linkto.profile">
                                     <h4>Username</h4>
+=======
+                                <a href="user/<?php echo $friend->username;?>">
+                                    <h4><?php echo $friend->username;?></h4>
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
                                 </a>
                                 <h5>Age: xx</h5>
                                 <h5>Location: /*location*/</h5>

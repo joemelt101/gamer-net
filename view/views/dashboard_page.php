@@ -43,16 +43,85 @@
             .top30 { margin-top:30px; }
         </style>
     </head>
+<<<<<<< HEAD
     
     <body id="dg">
         <?php require_once('view/views/navbar_component.php'); ?>
+=======
+    <body id="dg">
+        <?php require_once(__DIR__ . '/navbar_component.php'); ?>
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
         
         
         <div class="container-fixed container">
             <div class="panel panel-default">
+<<<<<<< HEAD
                 
                 <div class="panel-heading" id="blueGrey">
                     <h2>Welcome, <?php $controller->echoUsername(); ?> to your dashboard</h2>
+=======
+                <div class="panel-heading" id="blueGrey">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2><?php echo $data->welcome;?></h2>
+                        </div>
+                        <?php
+                            if (isset($_GET['user']))
+                            {
+                                if ($data->loggedUser)
+                                {
+                                    // prevent user from being able to add/block himself
+                                    if ($data->loggedUser->getUsername() != $data->username)
+                                    {
+                                        //need to add logic for checking if already friend, etc.
+                                        $type = $data->loggedUser->getFriend($data->uid);
+                                        $value = "Send Friend Request";
+                                        
+                                        if ($type != -1) // not currently a 'friend' of any kind
+                                        {
+                                            switch ($type)
+                                            {
+                                                case 0:
+                                                    $value = "Cancel Request";
+                                                    break;
+                                                case 1:
+                                                    $value = "Accept Request";
+                                                    break;
+                                                case 2:
+                                                    $value = "Remove Friend";
+                                                    break;
+                                                case 3:
+                                                    $value = "Unblock";
+                                                    break;
+                                                default: //user tried to view someone's page who blocked them
+                                                    redirect("dashboard");
+                                                    break;
+                                            }
+                                        }
+                        ?>
+                            <form action="" method="POST">
+                                <div class="col-sm-3">    
+                                    <input class="btn btn-default" name="friendButton" type=submit value="<?php echo $value;?>">
+                                </div>
+                                <?php
+                                    if ($value != "Unblock")
+                                    {?>
+                                
+                                    <div class="col-sm-2">
+                                    <input class="btn btn-default" name="blockButton" type="submit" value="Block">
+                                    </div>
+                                
+        <?php  /* so apparently you need at least one space after <?php or there will be a compile error*/?>
+                                <?php }?>
+                            </form>
+                        <?php
+                                        
+                                    }
+                                }
+                            }    
+                        ?>
+                    </div>
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
                 </div>
                 
                 <div class="panel-body" id="lg">
@@ -64,9 +133,16 @@
                         <div class="col-sm-8">
                             
                             <!-- Link to Friends -->
-                            <h3>Friends</h3>
-
+                            <?php 
+                                if ($_GET['user'] != $friend->username) {
+                                    echo "<h3>Friends</h3>";
+                                }
+                                else {
+                                    echo "<a href = \"friends\"><h3>Friends</h3></a>";
+                                }
+                            ?>
                             <div class="row">
+<<<<<<< HEAD
                                 <div class="col-sm-2 dark">
                                     <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
                                 </div>
@@ -84,6 +160,33 @@
                                 </div>
                                 <div class="col-sm-2 dark">
                                     <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
+=======
+                                <?php
+                                if (isset($data->friends))
+                                {
+                                    $friends = $data->friends;
+                                    $numOfFriends = count($friends);
+                                    
+                                    for ($i = 0; $i < $numOfFriends && $i < 6; $i++)
+                                    {
+                                        $friend = $friends[$i];
+                                        if ($friend->type == "") // currently friends
+                                        {
+                                ?>
+                                    <div class="col-sm-2 dark">
+                                    <a href ="<?php echo $relativePath;?>user/<?php echo $friend->username;?>">
+                                        <p class="text-center">
+                                            <span class="glyphicon text-large glyphicon-user"></span>
+                                            <br />
+                                            <h6 class = "text-center"><?php echo $friend->alias;?></h6>
+                                        </p>
+                                    </a>
+                                    <h6><?php
+                                            if ($friend->alias != $friend->username)
+                                                echo $friend->username;
+                                        ?>
+                                    </h6>
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
                                 </div>
                             </div>
                             

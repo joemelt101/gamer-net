@@ -60,11 +60,14 @@
 
             <div class='panel-body fixed-container'>
                 <div class='user row'>
-                    <div class='picture col-xs-4'>
-                        <img src="view/images/face.jpg" alt="..." class="img-circle">
-                    </div>
+                    <a href = "user/<?php echo $user->username;?>">
+                        <div class='picture col-xs-4'>
+                            <img src="view/images/face.jpg" alt="..." class="img-circle">
+                        </div>
+                    </a>
                     <div class='info col-xs-8'>
                         <div class='username row'>
+<<<<<<< HEAD
                             <h1>John Doe</h1>
                         </div>
                         <div class='userfriends row'>
@@ -95,6 +98,15 @@
                     <div class='info col-xs-8'>
                         <div class='username row'>
                             <h1>John Doe</h1>
+=======
+                            <a href = "user/<?php echo $user->username;?>">
+                                <h1><?php echo $user->alias?></h1>
+                            </a>
+                            <?php
+                                if ($user->alias != $user->username)
+                                    echo "<h3>", $user->username, "</h3>";
+                            ?>
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
                         </div>
                         <div class='userfriends row'>
                             <h4>Friends</h4>

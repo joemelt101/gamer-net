@@ -1,6 +1,26 @@
 # gamer-net
 Provides a place for people to find others to play their favorite games with and make new friends!
 
+### Installation Instructions
+git clone this repo  
+install credentials file for the database (check model/DBConnection.php for location)  
+The format for the credentials file is laid out below
+```
+localhost
+username
+password
+```
+run MYSQL table setup statements (in Wiki)  
+open website in browser  
+
+#### Group 12 - Members:
+- Homer Gaidarski
+- Benjamin Liu
+- Arthur Martin
+- Carlos Martinez
+- Kean Mattingly
+- Jared Melton
+
 # Workflow Instructions
 1. Find issue assigned to you
 2. Create a branch **from the premaster branch** named 'yourfirstname_work'

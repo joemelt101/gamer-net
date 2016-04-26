@@ -1,7 +1,3 @@
-<!-- View data is defined here -->
-<?php
-    $isLoggedIn = $_SESSION['user'];
-?>
 
 <!-- Actual display of the view is defined here -->
 <nav class="navbar navbar-inverse">
@@ -18,9 +14,15 @@
             
           <a class="navbar-brand" href="index.php">Gamer-Net</a>
             <ul class="nav navbar-nav">
+<<<<<<< HEAD
                     <li><a href="dashboard"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     <li><a href="search"><span class="glyphicon glyphicon-search"></span> Search</a></li>     
                     <li><a href="settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+=======
+                    <li><a href="<?php echo $relativePath;?>dashboard"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="<?php echo $relativePath;?>search"><span class="glyphicon glyphicon-search"></span> Search</a></li>     
+                    <li><a href="<?php echo $relativePath;?>settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
             </ul>
         </div>
 
@@ -28,7 +30,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
     <?php 
-            if ($isLoggedIn)
+            if (isLoggedIn())
             {
                 echo("<li><a href=\"controller/controllers/logout.php\">Logout</a></li>");
             }
