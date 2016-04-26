@@ -12,11 +12,17 @@
             <span class="icon-bar"></span>
           </button>
             
-          <a class="navbar-brand" href="<?php echo $relativePath; ?>index.php">Gamer-Net</a>
+          <a class="navbar-brand" href="index.php">Gamer-Net</a>
             <ul class="nav navbar-nav">
+<<<<<<< HEAD
+                    <li><a href="dashboard"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="search"><span class="glyphicon glyphicon-search"></span> Search</a></li>     
+                    <li><a href="settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+=======
                     <li><a href="<?php echo $relativePath;?>dashboard"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     <li><a href="<?php echo $relativePath;?>search"><span class="glyphicon glyphicon-search"></span> Search</a></li>     
                     <li><a href="<?php echo $relativePath;?>settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
             </ul>
         </div>
 
@@ -26,11 +32,11 @@
     <?php 
             if (isLoggedIn())
             {
-                echo("<li><a href=\"" . $relativePath .  "controller/controllers/logout.php\">Logout</a></li>");
+                echo("<li><a href=\"controller/controllers/logout.php\">Logout</a></li>");
             }
             else
             {
-                echo ("<li><a href=\"" . $relativePath . "login\">Login</a></li>");
+                echo ("<li><a href=\"login\">Login</a></li>");
             }
     ?>        
           </ul>

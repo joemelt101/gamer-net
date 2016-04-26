@@ -1,16 +1,10 @@
-
 <!DOCTYPE html>
 
 <html>
     <head>
-        <title><?php 
-            if (isset($_GET['user']))
-                echo "Profile | ", $data->alias;
-            else
-                echo "Dashboard";
-        ?></title>
+        <title>Dashboard</title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
-        <?php require_once(__DIR__ . '/includes.php'); ?>
+        <?php require_once('view/views/includes.html'); ?>
         
         <style>
             a {
@@ -49,12 +43,23 @@
             .top30 { margin-top:30px; }
         </style>
     </head>
+<<<<<<< HEAD
+    
+    <body id="dg">
+        <?php require_once('view/views/navbar_component.php'); ?>
+=======
     <body id="dg">
         <?php require_once(__DIR__ . '/navbar_component.php'); ?>
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
         
         
         <div class="container-fixed container">
             <div class="panel panel-default">
+<<<<<<< HEAD
+                
+                <div class="panel-heading" id="blueGrey">
+                    <h2>Welcome, <?php $controller->echoUsername(); ?> to your dashboard</h2>
+=======
                 <div class="panel-heading" id="blueGrey">
                     <div class="row">
                         <div class="col-sm-6">
@@ -116,6 +121,7 @@
                             }    
                         ?>
                     </div>
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
                 </div>
                 
                 <div class="panel-body" id="lg">
@@ -136,6 +142,25 @@
                                 }
                             ?>
                             <div class="row">
+<<<<<<< HEAD
+                                <div class="col-sm-2 dark">
+                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
+                                </div>
+                                <div class="col-sm-2 dark">
+                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
+                                </div>
+                                <div class="col-sm-2 dark">
+                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
+                                </div>
+                                <div class="col-sm-2 dark">
+                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
+                                </div>
+                                <div class="col-sm-2 dark">
+                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
+                                </div>
+                                <div class="col-sm-2 dark">
+                                    <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />First Last</p>
+=======
                                 <?php
                                 if (isset($data->friends))
                                 {
@@ -161,13 +186,8 @@
                                                 echo $friend->username;
                                         ?>
                                     </h6>
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
                                 </div>
-                                <?php
-                                        }
-                                    }
-                                }
-                                ?>
-                                
                             </div>
                             
                             <!-- A list of Games -->
@@ -177,26 +197,31 @@
                                 <h3>Games You Play</h3>
 
                                 <div class="row">
-                                <?php
-                                    if (isset($data->games))
-                                    {
-                                        $games = $data->games;
-                                        $numOfGames = count($games);
-                                        for ($i = 0; $i < $numOfGames && $i < 6; $i++)
-                                        {?>
                                     <div class="col-sm-2 dark">
-                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br /><?php echo $games[$i]->getName(); ?></p>
+                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
                                     </div>
-                                    <?php
-                                        }
-                                    }?>
+                                    <div class="col-sm-2 dark">
+                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
+                                    </div>
+                                    <div class="col-sm-2 dark">
+                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
+                                    </div>
+                                    <div class="col-sm-2 dark">
+                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
+                                    </div>
+                                    <div class="col-sm-2 dark">
+                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
+                                    </div>
+                                    <div class="col-sm-2 dark">
+                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />Game Name</p>
+                                    </div>
                                 </div>
                             </div>
                             
                             <!-- About Me -->
                             <div class="top30">
                                 <h3>About Me</h3>
-                                <?php echo $data->about;?>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             </div>
                             
                         </div>
@@ -213,36 +238,14 @@
                             
                             <div>
                                 <h4>Contact Information:</h4>
-                        <!--        <address>
+                                <address>
                                   <strong>Twitter, Inc.</strong><br>
                                   1355 Market Street, Suite 900<br>
                                   San Francisco, CA 94103<br>
                                   <abbr title="Phone">P:</abbr> (123) 456-7890
-                                </address> -->
-                                <address>
-                                    <?php
-                                        $location = $data->location;
-                                        if (isset($location[0]))
-                                            echo $location[0];
-                                        if (isset($location[1]))
-                                        {
-                                            if (isset($location[0]))
-                                                echo ", ";
-                                            echo $location[1];
-                                        }
-                                        if (isset($location[2]))
-                                        {
-                                            if (isset($location[0]) || isset($location[1]))
-                                                echo " ";
-                                            echo $location[2];
-                                        }
-                                    ?><br>
                                 </address>
-                                
-                                
-                             <!-- this should only be shown if user is viewing another user's profile   
                                 <h4>Status</h4>
-                                <p>Feeling pretty good right now! Loving Starcraft 2!!!!</p> -->
+                                <p>Feeling pretty good right now! Loving Starcraft 2!!!!</p>
                             </div>
                         </div>
                     </div>

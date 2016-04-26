@@ -12,9 +12,11 @@
         {
             require_once("controller/controllers/" . $page . "_controller.php");
             $controller = new Controller();
-            $data = $controller->getData();
         }
+<<<<<<< HEAD
+=======
         
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
         require_once($contentUrl);
     }
 ?>

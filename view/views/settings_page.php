@@ -1,4 +1,40 @@
+<<<<<<< HEAD
+<?php
+/*
+    $controller->addContactInfo('facebook', 'bobsburgers');
+    $controller->displayContactInfo();
+    $controller->updateContactInfo(3, "xbox gamertag", "420xNoScope");
+    $controller->displaycontactInfo();
+    $controller->deleteContactInfo(3);
+*/
+//    $controller->displayContactInfo();
+    //$controller->setAbout("WOOOOOOOOOOO!!!!!<br>urlsauce.com/R<br>urlsauce.com/i<br>");
+    $controller->getAbout();
 
+    
+
+    $city = "Columbia";
+    $state = "Missouri (Misery)";
+    $zip_code = 65201;
+  //  echo $zip_code;
+    
+    $updateButtonPressed = false;
+    if ($updateButtonPressed)
+    {
+        if ($location = $controller->getLocation() == "empty")
+            $controller->addLocation($city, $state, $zip_code);
+        else
+        {
+            $controller->setLocation($city, $state, $zip_code);
+        }
+        $location = $controller->getLocation();
+    }
+    isset($location) ? $location : $controller->getLocation();
+
+?>
+=======
+
+>>>>>>> 0547e24a2203cd015797ef879308ba4699124a32
 <!DOCTYPE html>
 <html>
     <head>
@@ -100,7 +136,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.0/css/bootstrap-slider.min.css">
 
 
-        <?php require_once('view/views/includes.php');
+        <?php require_once('view/views/includes.html');
         ?>
 
     </head>
