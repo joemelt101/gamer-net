@@ -57,16 +57,16 @@
     <body id="dg">
         <?php require_once('view/views/navbar_component.php'); ?>
         
-        <div class="panel container-fixed container">
-            <div class="panel-body">
+        <div class="panel container-fixed container" id="lg">
+            <div class="panel-body" >
                 <h3>Your Friends</h3>
                 <form action="friends" method="POST">
-                <div class="panel-group">
+                <div class="panel-group" style="background-color: #2E3338 !important;">
                     <?php
                     foreach($data->friends as $friend)
                     {?>
                     
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" style="background-color: #2E3338 !important;">
                         <div class="panel-body center">
                             <div class="col-sm-4">
                                 <div>
