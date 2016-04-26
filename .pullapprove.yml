@@ -8,3 +8,7 @@ reviewers:
     required: 1
     members:
       - joemelt101
+    conditions:
+      branches:
+        - premaster
+        - master
