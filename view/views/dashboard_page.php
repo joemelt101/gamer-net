@@ -149,8 +149,10 @@
                                         {
                                 ?>
                                     <div class="col-sm-2 dark">
-                                    <?php echo "<a href = user/" , $friend->username;?>
-                                        <p class="text-center"><span class="glyphicon text-large glyphicon-user"></span><br />
+                                    <a href ="<?php echo $relativePath;?>user/<?php echo $friend->username;?>">
+                                        <p class="text-center">
+                                            <span class="glyphicon text-large glyphicon-user"></span>
+                                            <br />
                                             <h6 class = "text-center"><?php echo $friend->alias;?></h6>
                                         </p>
                                     </a>
