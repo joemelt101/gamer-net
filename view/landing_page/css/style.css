@@ -30,7 +30,7 @@ p{
 	color: #5b777f;
 }
 #team-section p, #contact-section p, #games-section p {
-	color: black;
+	color: rgba(25,25,25,1);
 }
 #footer p{
 	color: #5cb85c;
@@ -73,7 +73,8 @@ ul, ol {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: #032e3a;
+	/*background: #032e3a;*/
+	background: rgba(25,25,25,1);
 	z-index: 99999;
 	height: 100%;
 }
@@ -783,3 +784,4 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 /*#8ccd8c light green*/
 /*#cee9ce brighest green*/
 /*color: #5b777f; text color*/
+/*near black: rgba(25,25,25,1)*/
