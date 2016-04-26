@@ -82,14 +82,17 @@
                     foreach ($data->users as $user)
                 {?>
                 <div class='user row'>
-                    <div class='picture col-xs-4'>
-                        <img src="view/images/face.jpg" alt="..." class="img-circle">
-                    </div>
+                    <a href = "user/<?php echo $user->username;?>">
+                        <div class='picture col-xs-4'>
+                            <img src="view/images/face.jpg" alt="..." class="img-circle">
+                        </div>
+                    </a>
                     <div class='info col-xs-8'>
                         <div class='username row'>
+                            <a href = "user/<?php echo $user->username;?>">
+                                <h1><?php echo $user->alias?></h1>
+                            </a>
                             <?php
-                                
-                                echo "<h1>", $user->alias, "</h1>";
                                 if ($user->alias != $user->username)
                                     echo "<h3>", $user->username, "</h3>";
                             ?>
