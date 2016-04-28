@@ -9,7 +9,7 @@
 
 <footer id="footer">
 	<p>Copyright &copy;2016</p>
-	<p>Group 12 | Software Engineering | CMP_SCI 4320</p>
+	<p>Group 12 | Software Engineering | CMP_SC 4320</p>
 	<p>University of Missouri</p>
 	<br>
 	<p>Design by <a href="http://www.templategarden.com/">TemplateGarden</a></p>
