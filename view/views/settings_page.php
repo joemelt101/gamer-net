@@ -352,7 +352,7 @@
             <br><hr><br>
             
             
-            <form action="#" method="post">    
+            <form action="settings" method="post">    
             <div class="row "> 
                 <div class="col-lg-4"> </div>
                     <div class="col-lg-4"> <h3 class="text-center">Change Password</h3>
@@ -363,7 +363,7 @@
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="password" name="password">
+                                <input type="text" placeholder="Current Password" name="currentPassword">
                             </div>
                         </div>
                         <div class="row">    
@@ -371,10 +371,17 @@
                             </div>
                             <br>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="confirm password" name="passwordConfirm">
+                                <input type="text" placeholder="New Password" name="newPassword">
                             </div>
                         </div>  
-                        
+                        <div class="row">    
+                            <div class="col-md-3">
+                            </div>
+                            <br>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="Verify New Password" name="verifyPassword">
+                            </div>
+                        </div>  
                         </div>
                     
                     </div>
@@ -387,7 +394,7 @@
             
            <div class="row">
                 <div class="col-sm-3 col-sm-offset-5">
-                    <button class="btn btn-success">Save Password</button>
+                    <button name="changePassButton" class="btn btn-success">Save Password</button>
                 </div>
             </div>
     </form>
