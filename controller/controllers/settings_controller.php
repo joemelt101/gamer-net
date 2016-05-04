@@ -11,6 +11,8 @@ class Controller
     public function getData()
     {
         $data = new stdClass();
+        $data->user = User::loadByID($_SESSION['user']);
+        $user = $data->user;
         if (isset($_POST['changePassButton']))
         {
             if (isset($_POST['currentPassword']))
@@ -21,9 +23,20 @@ class Controller
                     {
                         $newPass = $_POST['newPassword'];
                         $verifyPass = $_POST['verifyPassword'];
-                        if ($newPass == $oldPass)
+                        if ($newPass == $verifyPass)
                         {
+                            $currentPass = $_POST['currentPassword'];
+                            $saltAndHash = $user->getPass();
+                            $salt = $saltAndHash[0];
+                            $hashPass = $saltAndHash[1];
                             
+                            /* user entered their current password correctly
+                            proceed with password change
+                            */
+                            if ($hashPass == generateHash($salt . $currentPass))
+                            {
+                                
+                            }
                         }
                     }
                 }

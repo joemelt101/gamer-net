@@ -363,7 +363,7 @@
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Current Password" name="currentPassword">
+                                <input type="password" placeholder="Current Password" name="currentPassword">
                             </div>
                         </div>
                         <div class="row">    
@@ -371,7 +371,7 @@
                             </div>
                             <br>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="New Password" name="newPassword">
+                                <input type="password" placeholder="New Password" name="newPassword">
                             </div>
                         </div>  
                         <div class="row">    
@@ -379,7 +379,7 @@
                             </div>
                             <br>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Verify New Password" name="verifyPassword">
+                                <input type="password" placeholder="Verify New Password" name="verifyPassword">
                             </div>
                         </div>  
                         </div>
