@@ -49,7 +49,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a class="navbar-brand" href="index.html"><i class="fa fa-magnet fa-flip-horizontal"></i> Gamer-Net<strong></strong></a> </div>
+      <a class="navbar-brand" href="#"><i class="fa fa-gamepad"></i> Gamer-Net<strong></strong></a> </div>
     
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -76,7 +76,7 @@
     <a href="register" class="btn btn-default btn-lg page-scroll wow fadeInUp" data-wow-delay="200ms">Sign Up</a> </div>
 </header>
 
-<!-- Services Section -->
+<!-- Mission Section -->
 <div id="mission-section" class="text-center">
   <div class="container">
     <div class="section-title wow fadeInDown">
@@ -106,7 +106,7 @@
     </div>
   </div>
 </div>
-<!-- Portfolio Section -->
+<!-- Games Section -->
 <div id="games-section" class="text-center">
   <div class="container"> <!-- Container -->
     <div class="section-title wow fadeInDown">
@@ -149,7 +149,7 @@
                 App Development
                 <div class="clearfix"></div>
                 <i class="fa fa-plus"></i> </div>
-              <img src="view/landing_page/img/portfolio/GTAV.png" class="img-responsive" alt="Project Title"> </a> </div>
+              <img src="view/landing_page/img/portfolio/GTA5.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 pc">
@@ -314,7 +314,9 @@
         </div>
       </div>
       <div class="col-md-4 col-sm-6 team wow fadeInUp" data-wow-delay="400ms">
-        <div class="thumbnail"> <img src="https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg" alt="Benjamin Liu image" class="img-circle team-img">
+        <div class="thumbnail"> 
+          <!--doge b/c adorable <img src="https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg" alt="Benjamin Liu image" class="img-circle team-img">-->
+          <img src="view/landing_page/img/team/BL.jpg" alt="Benjamin Liu image" class="img-circle team-img">
           <div class="caption">
             <h3>Benjamin Liu</h3>
             <p>Back End / Data Management</p>
@@ -354,16 +356,16 @@
       <div class="col-md-8 col-md-offset-2">
         <div id="testimonial" class="owl-carousel owl-theme wow fadeInUp" data-wow-delay="200ms">
           <div class="item">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at duis sed dapibus leo nec ornare diam.</p>
-            <p><strong>John DOE</strong>, CEO, Company.</p>
+            <p>Where were we. I over slept, look I need your help. I have to ask Lorraine out but I don't know how to do it. I have to ask Lorraine out but I don't know how to do it. Yeah. What were you doing in the middle of the street, a kid your age. Yeah.</p>
+            <p><strong>Marty McFly</strong>, Time Traveler.</p>
           </div>
           <div class="item">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at duis sed dapibus leo nec ornare diam.</p>
-            <p><strong>Jenny DOE</strong>, CEO, Company.</p>
+            <p>A block passed Maple, that's John F. Kennedy Drive. What did she say? It's your mom, she's tracked you down. Quick, let's cover the time machine. Jennifer, oh are you a sight for sore eyes. Let me look at you. Sit here, Marty. My name's Lorraine.</p>
+            <p><strong>Lorraine Baines</strong>, Calvin Klein's Mother.</p>
           </div>
           <div class="item">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at duis sed dapibus leo nec ornare diam.</p>
-            <p><strong>John DOE</strong>, CEO, Company.</p>
+            <p>A bolt of lightning, unfortunately, you never know when or where it's ever gonna strike. Don't worry, I'll take care of the lightning, you take care of your pop. By the way, what happened today, did he ask her out?</p>
+            <p><strong>Biff Tannen</strong>, MEGA Butthead.</p>
           </div>
         </div>
       </div>
@@ -393,6 +395,9 @@
       <div class="clearfix"></div>
     </div>
     <div class="col-md-8 col-md-offset-2 wow fadeInUp" data-wow-delay="400ms">
+
+      <br>
+
   <h3>Leave us a message</h3>
       <form name="sentMessage" id="contactForm" novalidate>
         <div class="row">
@@ -426,11 +431,17 @@
     </div>
   </div>
 </div>
-<div id="footer">
+
+<!--I know this doesn't go here, but not 100% sure how to implement w/ controller-->
+  <?php
+    require_once("view/views/footer_component.php");
+  ?>
+
+<!-- <div id="footer">
   <div class="container">
       <p>Copyright © Tempo. Design by <a href="http://www.templategarden.com" target="_blank" rel="nofollow">TemplateGarden</a></p>
   </div>
-</div>
+</div> -->
 
 <!-- Portfolio Modals --> 
 <!-- Use the modals below to showcase details about your portfolio projects! --> 
