@@ -20,7 +20,7 @@
             $this->hostname = self::getLine($file);
             $this->username = self::getLine($file);
             $this->password = self::getLine($file);
-            $this->dbname = "gamer-net";
+            $this->dbname = self::getLine($file);
             
             fclose($file);
             
