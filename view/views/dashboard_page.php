@@ -128,12 +128,17 @@
                             
                             <!-- Link to Friends -->
                             <?php 
-                                if ($_GET['user'] != $friend->username) {
-                                    echo "<h3>Friends</h3>";
+                                if (isset($_GET['user']))
+                                {
+                                    // prevents user from viewing their own profile as if it were someone else's profile
+                                    if ($_GET['user'] == $data->loggedUser->getUsername())
+                                        redirect("dashboard");
+                                    else // viewing someone else's profile
+                                        echo "<h3>Friends</h3>";
                                 }
-                                else {
+                                else // user is logged on and at their own dashboard
                                     echo "<a href = \"friends\"><h3>Friends</h3></a>";
-                                }
+                            
                             ?>
                             <div class="row">
                                 <?php

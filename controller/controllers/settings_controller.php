@@ -35,7 +35,10 @@ class Controller
                             */
                             if ($hashPass == generateHash($salt . $currentPass))
                             {
-                                
+                                if ($user->setPass($newPass))
+                                    echo "Password changed successfully.";
+                                else
+                                    echo "Password changed failed.";
                             }
                         }
                     }
