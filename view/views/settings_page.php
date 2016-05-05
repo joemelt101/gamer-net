@@ -306,8 +306,7 @@
             <hr>
             <br>
             
-            <!--
-            <form action="#" method="post">    
+            <form action="settings" method="post">    
             <div class="row"> 
                 <div class="col-lg-4"> </div>
                     <div class="col-lg-4"> <h3 class="text-center">Add Game</h3>
@@ -318,7 +317,7 @@
                             <div class="col-md-3">Name
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Name" name="gameName">
+                                <input type="text" placeholder="Name" name="name">
                             </div>
                         </div>
                             <br>
@@ -327,7 +326,7 @@
                             </div>
                             
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Developer" name="gameDev">
+                                <input type="text" placeholder="Developer" name="developer">
                             </div>
                         </div>
                              <br>
@@ -336,7 +335,7 @@
                             </div>
                             
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Platform" name="gamePlat">
+                                <input type="text" placeholder="Platform" name="platform">
                             </div>
                         </div>
                             
@@ -346,7 +345,7 @@
                             </div>
                             
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Genre" name="gameGenre">
+                                <input type="text" placeholder="Genre" name="genre">
                             </div>
                         </div>
                             
@@ -356,7 +355,7 @@
                             </div>
                             
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Year" name="gameYear">
+                                <input type="text" placeholder="Year" name="year">
                             </div>
                         </div> 
                             
@@ -366,7 +365,7 @@
                             </div>
                             
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Type" name="gameType">
+                                <input type="text" placeholder="Type" name="type">
                             </div>
                         </div>
                             
@@ -376,7 +375,7 @@
                             </div>
                             
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Description" name="gameDesc">
+                                <input type="text" placeholder="Description" name="description">
                             </div>
                         </div>  
                         
@@ -393,14 +392,14 @@
             
            <div class="row">
                 <div class="col-sm-3 col-sm-offset-5">
-                    <button class="btn btn-success">Add Game</button>
+                    <button name="addGameButton" class="btn btn-success">Add Game</button>
                 </div>
             </div>
             
     </form>
             
             <br><hr><br>
-      -->      
+      
             
             <form action="settings" method="post">    
             <div class="row "> 
