@@ -130,10 +130,13 @@
                             <?php 
                                 if (isset($_GET['user']))
                                 {
-                                    // prevents user from viewing their own profile as if it were someone else's profile
-                                    if ($_GET['user'] == $data->loggedUser->getUsername())
-                                        redirect("dashboard");
-                                    else // viewing someone else's profile
+                                    if (isset($data->loggedUser))
+                                    {
+                                        // prevents user from viewing their own profile as if it were someone else's profile
+                                        if ($_GET['user'] == $data->loggedUser->getUsername())
+                                            redirect("dashboard");
+                                    }
+
                                         echo "<h3>Friends</h3>";
                                 }
                                 else // user is logged on and at their own dashboard

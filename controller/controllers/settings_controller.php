@@ -7,46 +7,159 @@ class Controller
         {
             redirect('login');
         }
+        
+    }
+    // ensures that the user and location data is up to date with the database
+    public function initData()
+    {
+        $data = new stdClass();
+        
+        $user = User::loadByID($_SESSION['user']);
+        $data->user = $user;
+        $data->email = $user->getEmail();
+        $data->alias = $user->getAlias();
+        $data->age = $user->getAge();
+        $data->gender = $user->getGender();
+        
+        $location = Location::loadByID($_SESSION['user']);
+        $data->city = $location->getCity();
+        $data->state = $location->getState();
+        $data->zipcode = $location->getZip();
+        return $data;
     }
     public function getData()
     {
-        $data = new stdClass();
-        $data->user = User::loadByID($_SESSION['user']);
-        $user = $data->user;
-        if (isset($_POST['changePassButton']))
+        $user = User::loadByID($_SESSION['user']);
+        $message = "";
+        /* change user info logic */
+        if (isset($_POST['changeUserInfoButton']))
         {
-            if (isset($_POST['currentPassword']))
+            $alias;
+            $email;
+            $age;
+            $gender;
+            $city;
+            $state;
+            $zipcode;
+            $location = Location::loadByID($_SESSION['user']);
+            $updateFlag = false;
+            
+            if (!empty($_POST['alias']))
             {
-                if (isset($_POST['newPassword']))
-                {
-                    if (isset($_POST['verifyPassword']))
-                    {
-                        $newPass = $_POST['newPassword'];
-                        $verifyPass = $_POST['verifyPassword'];
-                        if ($newPass == $verifyPass)
-                        {
-                            $currentPass = $_POST['currentPassword'];
-                            $saltAndHash = $user->getPass();
-                            $salt = $saltAndHash[0];
-                            $hashPass = $saltAndHash[1];
-                            
-                            /* user entered their current password correctly
-                            proceed with password change
-                            */
-                            if ($hashPass == generateHash($salt . $currentPass))
-                            {
-                                if ($user->setPass($newPass))
-                                    echo "Password changed successfully.";
-                                else
-                                    echo "Password changed failed.";
-                            }
-                        }
-                    }
-                }
+                $alias = $_POST['alias'];
+                $updateFlag = true;
             }
+            else
+                $alias = $user->getAlias();
+            if (!empty($_POST['email']))
+            {
+                $email = $_POST['email'];
+                $updateFlag = true;
+            }
+            else
+                $email = $user->getEmail();
+            if (!empty($_POST['age']))
+            {
+                $age = $_POST['age'];
+                $updateFlag = true;
+            }
+            else
+                $age = $user->getAge();
+            if (!empty($_POST['gender']) || $_POST['gender'] == 0)
+            {
+                $gender = $_POST['gender'];
+                // a radio button will always be set, this prevents uneccessary update in database
+                if ($gender != $user->getGender())
+                    $updateFlag = true;
+            }
+            else
+                $gender = $user->getGender();
+            if (!empty($_POST['city']))
+            {
+                $city = $_POST['city'];
+                $updateFlag = true;
+            }
+            else
+                $city = $location->getCity();
+            if (!empty($_POST['state']))
+            {
+                $state = $_POST['state'];
+                $updateFlag = true;
+            }
+            else
+                $state = $location->getState();
+            if (!empty($_POST['zipcode']))
+            {
+                $zipcode = $_POST['zipcode'];
+                $updateFlag = true;
+            }
+            else
+                $zipcode = $location->getZip();
+          //  echo $alias,$email,$age,$gender,$city,$state,$zipcode;
+            
+            // if user pressed save changes without anything being changed
+            if ($updateFlag)
+            {
+                if ($user->updateSettings($alias, $email, $age, $gender, $city, $state, $zipcode))
+                    $message = "Update successful.";
+                else
+                    $message = "Update failed.";
+            }
+            else
+                $message = "Nothing to update.";
+        }
+        /* change location info */
+        /* change password logic */
+        else if (isset($_POST['changePassButton']))
+        {
+            if (isset($_POST['currentPassword'], $_POST['newPassword'], $_POST['verifyPassword']))
+            {
+                $database = new DBConnection();
+                $mysqli = $database->conn;
+                
+                // filter out dangerous characters (single quotes)
+                $currentPass = User::filter($mysqli, $_POST['currentPassword']);
+                $newPass = User::filter($mysqli, $_POST['newPassword']);
+                $verifyPass = User::filter($mysqli, $_POST['verifyPassword']);
+                
+                $database->close();
+                
+                if (empty($currentPass) || empty($newPass) || empty($verifyPass))
+                    $message = "One or more password fields was empty, password unchanged.";
+                else if ($newPass == $verifyPass)
+                {
+                    $saltAndHash = $user->getPass();
+                    $salt = $saltAndHash[0];
+                    $hashPass = $saltAndHash[1];
+                            
+                    /* user entered their current password correctly
+                    proceed with password change
+                    */
+                    if ($hashPass == generateHash($salt . $currentPass))
+                    {
+                        if (empty($newPass) || empty($verifyPass))
+                            $message = "Empty Password";
+                        else if (strlen($newPass) < 6)
+                            $message = "Password has a minimum length of 6 characters";
+                        else if ($user->setPass($newPass))
+                            $message = "Password changed successfully.";
+                        else
+                            $message = "Password changed failed.";
+                    }
+                    else
+                        $message = "Current password was incorrect.";
+                }
+                else
+                    $message = "Password and verify password are not the same.";
+            }
+            else
+                $message = "All password fields are required to change password.";
+            
         }
         
-        return $data;
+        
+        echo $message;
+        return $this->initData();
     }
 }
 ?>

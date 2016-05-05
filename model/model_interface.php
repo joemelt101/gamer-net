@@ -366,8 +366,8 @@
                 $database = new DBConnection();
                 $mysqli = $database->conn;
             
-                $uname = $mysqli->real_escape_string(strip_tags($uname, ENT_QUOTES));
-                $pass = $mysqli->real_escape_string(strip_tags($pass, ENT_QUOTES));
+                $uname = self::filter($mysqli, $uname);
+                $pass = self::filter($mysqli, $pass);
             
                 $query = file_get_contents(__DIR__ . "/dml/user/getUserByID.sql");
                // echo $query;
@@ -408,94 +408,44 @@
         
         public static function filter($mysqli, $string)
         {
+            if (!isset($mysqli))
+            {
+                $database = new DBConnection();
+                $mysqli = $database->conn;
+            }
             return $mysqli->real_escape_string(strip_tags($string, ENT_QUOTES));
         }
         
         
         
-        /* this function is primarily for checking to see which user attributes
-        were actually changed; an empty string indicates the attribute should not be changed;
-        for example, if the user is just changing alias and
-        nothing else, the function call for updateDatabase() would look like this:
-        updateDatabase($newAlias, "", "", "", "");       
-        
-        NOTE: updateDatabase() could also be written more dynamically
-        so that the function call has a dynamic number of parameters,
-        kind of like printf() in C
-        
-        This function only does basic error checking, more in-depth error checking
-        should be done for the settings page with ajax as the user types
-        
-        It's also important to note that salt and hash_pass aren't included
-        in this function because salt and hash_pass aren't saved as user
-        attributes in the User object, so it is VERY important
-        that the salt and hash_pass are passed in correctly for when the user
-        needs to change their password.
-        */
-        public function filterEmptyAttributes($alias, $gender, $age)
-        {
-            /*there's got to be a more dynamic way to do this since
-            variable names are same as attribute names */
-            if (!empty($alias))
-            {
-                echo $this->alias, " will be changed to ", $alias, "<br>";
-                $this->alias = $alias;
-            }
-          
-            if (is_numeric($gender))
-                if ($gender == 0 || $gender == 1)
-                {
-                    echo "gender will be changed to ", ($gender ? "girl" : "boy"), "<br>"; 
-                    $this->gender = $gender;
-                }
-            
-
-            if (is_numeric($age))
-            {
-                /* this made me think, what is the minimum age user's can be?
-This is a website for discussing with and or meeting up with people who play the same games so maybe it should only be for legal adults?
-
-Should the age update dynamically as the years go by?
-If yes then the user should just enter a birth date
-                */
-                if ($age >= 18) 
-                {
-                    echo "age will be changed to ", $age, "<br>";
-                    $this->age = $age;
-                }
-                else
-                    echo "age will NOT change, must be at least 18<br>";
-            }
-        }
-        
         /*
-After filtering the passed parameter variables, this function uses
-the object's attribute values for the prepared statement.
-This will be used for updating the user's settings in settings.php
-
 This function is not responsible for changing user password;
-see changePassword()
+see setPass()
         */
-        public function updateSettings($alias, $gender, $age)
+        public function updateSettings($alias, $email, $age, $gender, $city, $state, $zipcode)
         {
             $database = new DBConnection();
             $mysqli = $database->conn;
           //    echo "hello1";  
             
+            
+            /* should clean this up by possibly passing in an array into updateSettings() and then just calling filter function in a for loop */
             $alias = self::filter($mysqli, $alias);
-            $gender = self::filter($mysqli, $gender);
+            $email = self::filter($mysqli, $email);
             $age = self::filter($mysqli, $age);
-          //  echo "hello2";
-            $this->filterEmptyAttributes($alias, $gender, $age);
+            $gender = self::filter($mysqli, $gender);
+            $city = self::filter($mysqli, $city);
+            $state = self::filter($mysqli, $state);
+            $zipcode = self::filter($mysqli, $zipcode);
            
            //     echo "hello3";
-            $query = file_get_contents(__DIR__ . "/dml/user/update_user.sql");
+            $queries = explode(";", file_get_contents(__DIR__ . "/dml/user/update_user.sql"));
     //        echo $query;
-            if ($stmt = $mysqli->prepare($query))
+            if ($stmt = $mysqli->prepare($queries[0]))
             {
                 //echo "hello";
                     //Get the stored salt and hash as $dbSalt and $dbHash
-                $stmt->bind_param("siis", $this->alias, $this->gender, $this->age, $this->uid);
+                $stmt->bind_param("ssiii", $alias, $email, $age, $gender, $this->uid);
                 if (!$stmt->execute())
                     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
                 else
@@ -505,6 +455,21 @@ see changePassword()
 
             
                     $stmt->close(); // close prepare statement
+                    if ($stmt = $mysqli->prepare($queries[1]))
+                    {
+                        $stmt->bind_param("ssii", $city, $state, $zipcode, $this->uid);
+                        if (!$stmt->execute())
+                        {
+                            $stmt->close();
+                            $database->close();
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        $database->close();
+                        return false;
+                    }
                     $database->close(); // close database connection
                 
                     return true; // update was successful
@@ -514,8 +479,10 @@ see changePassword()
             return false; // update was unsuccessful
         }
         
+        /* this function assumes the password has already been filtered for dangerous
+        characters (single quotes, etc.) */
         public function setPass($newPass)
-        {
+        {   
             $database = new DBConnection();
             $mysqli = $database->conn;
                     
