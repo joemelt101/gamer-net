@@ -218,7 +218,15 @@
                                     <span class="profile-image glyphicon glyphicon-user text-large"></span>
                                 </div>
                             </div>
-                            
+                            <div>
+                                <h5><?php echo $data->status;?></h5>
+                                <h5><?php 
+                                        echo $data->gender;
+                                    ?></h5>
+                                <h5><?php
+                                        echo "Age: ", $data->age, "<br>";
+                                    ?></h5>
+                            </div>
                             <div>
                                 <h4>Contact Information:</h4>
                                 <?php

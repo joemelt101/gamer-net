@@ -3,11 +3,7 @@
     require_once("../../model/model_interface.php");
 
     // update database to tell other users that $user is now offline
-    if (isset($_SESSION['user']))
-    {
-        $user = User::loadByID($_SESSION['user']);
-        $user->setOnlineStatus(0);
-    }
+    goOffline();
 
 
 	session_unset();

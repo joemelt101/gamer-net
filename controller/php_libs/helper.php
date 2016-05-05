@@ -27,6 +27,40 @@
         }
     }
 
+    function getGenderString($genderType)
+    {
+        $gender = "Gender: ";
+        switch ($genderType)
+        {
+            case 0:
+                $gender .= "Male";
+                break;
+            case 1:
+                $gender .= "Female";
+                break;
+            case 2:
+                $gender .= "Other";
+                break;
+            default: // default is don't display, so a display string isn't necessary
+                $gender = "";
+                break;
+        }
+        return $gender;
+    }
+    function getStatusString($status)
+    {
+        $statusString;
+        switch($status)
+        {
+            case 0:
+                $statusString = "Offline";
+                break;
+            default:
+                $statusString = "Online";
+                break;
+        }
+        return $statusString;
+    }
     
     function getFriends($user)
     {
@@ -51,8 +85,9 @@
                 $friend->username = $fUser->getUsername();
                 $friend->alias = $fUser->getAlias();
                 $friend->age = $fUser->getAge();
-                $friend->gender = $fUser->getGender();
-                $friend->status = $fUser->getOnlineStatus();
+                $friend->gender = getGenderString($fUser->getGender());
+                
+                $friend->status = getStatusString($fUser->getOnlineStatus());
                 $friend->location = $fUser->getLocation(); // array containing city, state, zip code
                 if ($type != 3)
                 {
@@ -98,5 +133,4 @@
         }
         return $friends;
     }
-
 ?>

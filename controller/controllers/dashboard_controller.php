@@ -72,6 +72,11 @@ class Controller
         $data->about = str_replace("\n", "<br>", $user->getAbout());
         $data->email = $user->getEmail();
         
+        $gender = $user->getGender();
+        $data->gender = getGenderString($gender); // helper.php
+        $data->age = $user->getAge();
+        $data->status = getStatusString($user->getOnlineStatus());
+        
         return $data;
     }
 }

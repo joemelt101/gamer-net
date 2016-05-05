@@ -121,7 +121,13 @@
                 else if (isset($data->locations))
                     foreach ($data->locations as $location)
                     {
-                        echo $location->getCity(), ", ", $location->getState(), " ", $location->getZip(), "<br>";
+                        $user = $location->getUser();
+                        $uname = $user->getUsername();
+                        echo '<a href="user/' , $uname, '">', $uname, "</a> -> ";
+                        $zipcode = $location->getZip();
+                        if ($zipcode == 0)
+                            $zipcode = "";
+                        echo $location->getCity(), ", ", $location->getState(), " ", $zipcode, "<br>";
                     }
                 ?>
             </div>

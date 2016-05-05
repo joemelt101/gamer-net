@@ -9,6 +9,7 @@ class Controller
         if (isset($_POST['searchBox']))
         {
             $searchString = $_POST['searchBox'];
+            echo $searchString;
             if (isset($_POST['searchType']))
             {
                 $data = new stdClass();
@@ -32,10 +33,8 @@ class Controller
             }
             
         }
-        
 
-        
-        
+    
         
         
         

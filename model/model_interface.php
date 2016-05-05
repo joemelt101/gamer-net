@@ -16,7 +16,7 @@
         }
         public function getUser()
         {
-            
+            return User::loadByID($this->uid);
         }
         public function getCity()
         {
