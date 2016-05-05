@@ -221,12 +221,9 @@
                             
                             <div>
                                 <h4>Contact Information:</h4>
-                        <!--        <address>
-                                  <strong>Twitter, Inc.</strong><br>
-                                  1355 Market Street, Suite 900<br>
-                                  San Francisco, CA 94103<br>
-                                  <abbr title="Phone">P:</abbr> (123) 456-7890
-                                </address> -->
+                                <?php
+                                    echo $data->email;
+                                ?><br>
                                 <address>
                                     <?php
                                         $location = $data->location;
@@ -242,10 +239,11 @@
                                         {
                                             if (isset($location[0]) || isset($location[1]))
                                                 echo " ";
-                                            echo $location[2];
+                                            echo ($location[2] == 0 ? "" : $location[2]);
                                         }
                                     ?><br>
                                 </address>
+                                
                                 
                                 
                              <!-- this should only be shown if user is viewing another user's profile   

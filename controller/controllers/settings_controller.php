@@ -20,6 +20,8 @@ class Controller
         $data->alias = $user->getAlias();
         $data->age = $user->getAge();
         $data->gender = $user->getGender();
+        // makes it so literal <br> won't show up in text area in settings
+        $data->about = str_replace("<br>", "\n", $user->getAbout());
         
         $location = Location::loadByID($_SESSION['user']);
         $data->city = $location->getCity();
@@ -38,6 +40,7 @@ class Controller
             $email;
             $age;
             $gender;
+            $about;
             $city;
             $state;
             $zipcode;
@@ -74,6 +77,14 @@ class Controller
             }
             else
                 $gender = $user->getGender();
+            if (isset($_POST['about']))
+            {
+                
+             //   $about = str_replace("\n", "<br>", $_POST['about']);
+                $about = $_POST['about'];
+                if (strip_tags($about) != strip_tags($user->getAbout()))
+                    $updateFlag = true;
+            }
             if (!empty($_POST['city']))
             {
                 $city = $_POST['city'];
@@ -100,7 +111,7 @@ class Controller
             // if user pressed save changes without anything being changed
             if ($updateFlag)
             {
-                if ($user->updateSettings($alias, $email, $age, $gender, $city, $state, $zipcode))
+                if ($user->updateSettings($alias, $email, $age, $gender, $about, $city, $state, $zipcode))
                     $message = "Update successful.";
                 else
                     $message = "Update failed.";

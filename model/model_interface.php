@@ -422,7 +422,7 @@
 This function is not responsible for changing user password;
 see setPass()
         */
-        public function updateSettings($alias, $email, $age, $gender, $city, $state, $zipcode)
+        public function updateSettings($alias, $email, $age, $gender, $about, $city, $state, $zipcode)
         {
             $database = new DBConnection();
             $mysqli = $database->conn;
@@ -445,7 +445,7 @@ see setPass()
             {
                 //echo "hello";
                     //Get the stored salt and hash as $dbSalt and $dbHash
-                $stmt->bind_param("ssiii", $alias, $email, $age, $gender, $this->uid);
+                $stmt->bind_param("ssiisi", $alias, $email, $age, $gender, $about, $this->uid);
                 if (!$stmt->execute())
                     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
                 else

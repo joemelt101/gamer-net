@@ -69,7 +69,8 @@ class Controller
         // function located in helper.php
         $data->friends = getFriends($user);
         $data->location = $user->getLocation();
-        $data->about = $user->getAbout();
+        $data->about = str_replace("\n", "<br>", $user->getAbout());
+        $data->email = $user->getEmail();
         
         return $data;
     }

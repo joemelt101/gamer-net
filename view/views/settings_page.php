@@ -208,6 +208,18 @@
     <input id="input-2" name="input2[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true">
                             </div>
                         </div>
+                            <br>
+                        <div class="row">    
+                            <div class="col-md-3">
+                                About Me
+                            </div>
+                            <div class="col-md-offset-3">
+                                <textarea style="color: black"rows="4" cols="30" name="about"><?php
+                                    echo $data->about;
+                                ?></textarea>
+                            </div>
+                        </div>
+                            <br>
                             
                                 
                             
