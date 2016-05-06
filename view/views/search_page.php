@@ -56,15 +56,15 @@
             <div class='panel-heading'>
                 <div class='row'>
                     <div class='col-xs-12'>
-                        <form action='search' method='POST' class='input-group input-group-sm'>
-                           <input name='searchBox' type='text'class='form-control' placeholder='Search'>
+                        <form action='<?php echo($relativePath);?>search/' method='GET' class='input-group input-group-sm'>
+                           <input name='s' type='text'class='form-control' placeholder='Search'>
                            <div class='input-group-btn'>
                             <!--    <button type='submit' class='btn btn-default'>
                                     <span class='glyphicon glyphicon-search'></span>
                                 </button>-->
-                                <button type='submit' id='userSearch' name='searchType' value='userSearch' class='btn btn-default'>Username</button>
-                                <button type='submit' id='gameSearch' name='searchType' value='gameSearch' class='btn btn-default'>Game</button>
-                                <button type='submit' id='locationSearch' name='searchType' value='locationSearch' class='btn btn-default'>Location</button>
+                                <button type='submit' id='user' name='type' value='user' class='btn btn-default'>Username</button>
+                                <button type='submit' id='game' name='type' value='game' class='btn btn-default'>Game</button>
+                                <button type='submit' id='location' name='type' value='location' class='btn btn-default'>Location</button>
                            </div>
                         </form>
                     </div>
@@ -84,7 +84,7 @@
                 <div class='user row'>
                     <a href = "user/<?php echo $user->username;?>">
                         <div class='picture col-xs-4'>
-                            <img src="view/images/face.jpg" alt="..." class="img-circle">
+                            <img src="<?php echo($relativePath);?>view/images/face.jpg" alt="..." class="img-circle">
                         </div>
                     </a>
                     <div class='info col-xs-8'>
@@ -99,21 +99,25 @@
                         </div>
                         <div class='userfriends row'>
                             <h4>Friends</h4>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <?php
+                                for ($i = 0; $i < 5; $i++)
+                                {
+                                    ?>
+                                    <img src="<?php echo($relativePath);?>view/images/face.jpg" alt='...' width='30' height='30'>
+                                    <?php
+                                }
+                            ?>
                         </div>
                         <div class='games row'>
                             <h4>Games</h4>
-                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <?php
+                                for ($i = 0; $i < 5; $i++)
+                                {
+                                    ?>
+                                    <img src="<?php echo($relativePath);?>view/images/game_icon.jpg" alt='...' width='30' height='30'>
+                                    <?php
+                                }
+                            ?>
                         </div>
                     </div>
                 </div><?php
