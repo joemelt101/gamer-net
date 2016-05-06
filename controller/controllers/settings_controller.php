@@ -48,6 +48,10 @@ class Controller
             if (Game::addGame($name, $developer, $platform, $genre, $year, $type, $description))
             {
                 $message = "Game successfully added.";
+                $gid = Game::getGameIdForUser($name, $developer, $platform, $year, $type);
+                echo $gid;
+                if ($user->addGame($gid) != NULL)
+                    $message .= "<br>Game successfully added to your game list.";
             }
             else
                 $message = "Game creation failed.";

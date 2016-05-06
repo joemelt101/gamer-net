@@ -226,6 +226,36 @@
                 }
             return NULL;
         }
+
+        /* returns a game id of a specific game, to be used after a user creates a new game to add it to their list */
+        public static function getGameIdForUser($name, $developer, $platform, $year, $type)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+
+            echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/game/getGame.sql");
+            echo $query;
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("sssii", $name, $developer, $platform, $year, $type);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+
+                echo "hello2";
+                $stmt->store_result();
+
+                $stmt->bind_result($gid);
+
+                $stmt->fetch();
+                echo $gid;
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $gid;
+            }
+
+            return NULL;
+        }
         public static function searchGame($game)
         {
             $database = new DBConnection();
@@ -260,7 +290,7 @@
             return NULL;
         }
         
-        public function getGid()
+        public function getGID()
         {
             return $this->gid;
         }
@@ -980,6 +1010,7 @@ see setPass()
                 $stmt->bind_param("ii", $this->uid, $gid);
                 if (!$stmt->execute())
                     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+
                 $stmt->close(); // close prepare statement
                 $database->close(); // close database connection
                 
