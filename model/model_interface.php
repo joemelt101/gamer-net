@@ -181,9 +181,17 @@
                     //   echo "hello4";
             
                     $stmt->fetch();
+                    
+                    if ($stmt->num_rows == 0)
+                    {
+                        $stmt->close();
+                        $database->close();
+                        return NULL;
+                    }
             
                     $stmt->close(); // close prepare statement
                     $database->close(); // close database connection
+                    
                     
                     
                     return new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description);

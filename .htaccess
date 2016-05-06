@@ -31,7 +31,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !^(user|search)
 
-RewriteRule ^game/(.*)$ page.php?page=friends&game=$1 [L]
+RewriteRule ^game/(.*)$ page.php?page=game&game=$1 [L]
 
 
 #search page

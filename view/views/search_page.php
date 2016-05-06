@@ -76,7 +76,7 @@
                 if (isset($data->games))
                     foreach($data->games as $game)
                     {
-                        echo $game->getName(), "<br>";
+                        echo '<a href = "' . $relativePath . 'game/' . $game->getGID() . '">' . $game->getName() . "</a><br>";
                     }
                 else if (isset($data->users))
                     foreach ($data->users as $user)
