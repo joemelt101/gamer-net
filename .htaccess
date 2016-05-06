@@ -18,14 +18,22 @@ RewriteEngine On
 #user profile page: gamer-net/user/usernameGoesHere
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^game
 
 RewriteRule ^user/(.*)$ page.php?page=dashboard&user=$1 [L]
 
 
-#golden rule
+#game page
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !^user
+
+RewriteRule ^game/(.*)$ page.php?page=friends&game=$1 [L]
+
+#golden rule
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^(user|game)
 
 #redirects anything after gamer-net/ to a view
 RewriteRule ^(.*)$ page.php?page=$1 [NC,L]
