@@ -14,6 +14,8 @@ class Controller
             $registerMessage = User::doRegister();
             if ($registerMessage == "successful registration")
             {
+                $user = User::loadByUsername($_POST['username']);
+                $user->addLocation('', '', 0);
                 login($_POST['username'], $_POST['pass']);
             }
             else
