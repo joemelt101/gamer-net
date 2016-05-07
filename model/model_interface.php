@@ -132,28 +132,47 @@
             $database = new DBConnection();
             $mysqli = $database->conn;
             
-            $query = file_get_contents(__DIR__ . "/dml/game/add_game.sql");
+            $queries = explode(";", file_get_contents(__DIR__ . "/dml/game/add_game.sql"));
                // echo $query;
-            if ($stmt = $mysqli->prepare($query))
+            if ($stmt = $mysqli->prepare($queries[0]))
             {
-                //echo "hello";
-                //Get the stored salt and hash as $dbSalt and $dbHash
-                $stmt->bind_param("ssssiiss", $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
+               // echo $queries[0];
+                $stmt->bind_param("ssssii", $name, $developer, $platform, $genre, $year, $type);
                 if (!$stmt->execute())
                     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
             
-                    //  echo "hello2";
                 $stmt->store_result();
+                $stmt->bind_result($game_id);
+                $stmt->fetch();
+                
+                    //  echo "hello3";
+            
+                    //   echo "hello4";
+                if ($stmt->num_rows < 1)
+                {
+                    $stmt->close();
+                    if ($stmt = $mysqli->prepare($queries[1]))
+                    {
+                        echo $queries[1];
+                        $stmt->bind_param("ssssiiss", $name, $developer, $platform, $genre,     $year, $type, $description, $videoID);
+                        if (!$stmt->execute())
+                            echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                        $stmt->store_result();
                     //  echo "hello3";
             
                     //   echo "hello4";
             
-                $stmt->close(); // close prepare statement
-                $database->close(); // close database connection
-                return true;
+                        $stmt->close(); // close prepare statement
+                        $database->close(); // close database connection
+                        return true;
+                    }
+                }
             }
+            $database->close();
             
-            return NULL;
+            return false;
         }
         /*
         used to create game objects from the game_ids located in the user's game list
