@@ -10,6 +10,11 @@ class Controller
     {
         $data = new stdClass();
         $user = NULL;
+        if (isLoggedIn())
+        {
+            $data->loggedUser = User::loadByID($_SESSION['user']);
+        }
+        
         if (!isset($_GET['user'])) //this is the logged in user's dashboard
         {
             // user should not be able to view self dashboard if not logged in
@@ -24,7 +29,6 @@ class Controller
             $user = User::loadByUsername($_GET['user']);
             if (isLoggedIn())
             {
-                $data->loggedUser = User::loadByID($_SESSION['user']);
                 if ($data->loggedUser->getUsername() == $user->getUsername())
                     redirect("dashboard");
             }

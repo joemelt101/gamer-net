@@ -222,7 +222,15 @@
                                 </div>
                             </div>
                             <div>
-                                <h5><?php echo $data->status;?></h5>
+                                <h5><?php
+                                    if (isset($data->loggedUser))
+                                    {
+                                        if ($data->loggedUser->getUID() != $data->uid)
+                                            echo $data->status;
+                                    }
+                                    else
+                                        echo $data->status;
+                                    ?></h5>
                                 <h5><?php 
                                         echo $data->gender;
                                     ?></h5>
