@@ -27,9 +27,18 @@
         }
     }
 
-    function getGenderString($genderType)
+    function getDistance($zip1, $zip2)
     {
-        $gender = "Gender: ";
+        $json = explode(":", file_get_contents("https://www.zipcodeapi.com/rest/1kLviFVVGgQuzF4GzxpQCFlh12iFQfUSzGnSliN1zEw9jBPS8fJKU52V7kAYAvQ9/distance.json/" . $zip1 . "/" . $zip2 . "/mile"));
+        $json = explode("}", $json[1]);
+        return $json[0];
+    }
+
+    function getGenderString($genderType, $needLabel)
+    {
+        $gender = "";
+        if ($needLabel)
+            $gender = "Gender: ";
         switch ($genderType)
         {
             case 0:

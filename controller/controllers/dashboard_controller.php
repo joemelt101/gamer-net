@@ -48,10 +48,13 @@ class Controller
                 $data->loggedUser->removeUser($data->uid);
             else if ($value == "Accept Request")
                 $data->loggedUser->acceptFriend($data->uid);
+            
+            redirect("user/" . $user->getUsername());
         }
         else if (isset($_POST['blockButton']))
         {
             $data->loggedUser->block($data->uid);
+            redirect("user/" . $user->getUsername());
         }
         
         $data->alias = $user->getAlias();

@@ -285,14 +285,14 @@
 
             return NULL;
         }
-        /* gets the number of user's "playing" this game */
-        public function getNumUsers()
+        /* gets users "playing" this game */
+        public function getUsersPlaying()
         {
             $database = new DBConnection();
             $mysqli = $database->conn;
 
             //echo "hello";
-            $query = file_get_contents(__DIR__ . "/dml/user_games/getNumberOfUser'sPlaying.sql");
+            $query = file_get_contents(__DIR__ . "/dml/user_games/getUsersPlaying.sql");
             //echo $query;
             if ($stmt = $mysqli->prepare($query))
             {
@@ -303,13 +303,17 @@
                 //echo "hello2";
                 $stmt->store_result();
 
-                $stmt->bind_result($numUsers);
-
-                $stmt->fetch();
+                $stmt->bind_result($uid);
+                
+                $users;
+                while ($stmt->fetch())
+                {
+                    $users[] = User::loadByID($uid);
+                }
 
                 $stmt->close(); // close prepare statement
                 $database->close(); // close database connection
-                return $numUsers;
+                return $users;
             }
 
             return NULL;

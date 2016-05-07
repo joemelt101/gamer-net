@@ -122,7 +122,7 @@
                             </div>
                             <div>
                                 <h5><?php
-                                            echo $data->numUsers, " playing<br>";
+                                            echo "<a href='", $relativePath, "gamersPlaying/", $data->gid, "'><button class='btn btn-success btn-sm'>Gamers Playing: ", $data->numUsers,  "</button></a><br>";
                                         ?></h5>
                                 <h5><?php
                                         if ($data->developer != "")

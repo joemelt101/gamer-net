@@ -30,7 +30,7 @@ class Controller
             {
                 $this->user->removeGame($this->gid);
             }
-            
+            redirect("game/" . $this->gid);
         }
     }
     public function getData()
@@ -58,7 +58,7 @@ class Controller
         }
         
         
-        $data->numUsers = $game->getNumUsers();
+        $data->numUsers = count($game->getUsersPlaying());
         
         return $data;
     }

@@ -2,7 +2,7 @@
 <!-- GAMER-NET - SEARCH PAGE -->
 <html>
     <head>
-        <title><?php echo $data->username;?> | Game List</title>
+        <title><?php echo $data->title;?></title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
         <?php require_once('view/views/includes.php'); ?>
         <style>
@@ -54,6 +54,8 @@
         <div class='container'>
             <div class='panel-body fixed-container'>
                 <?php
+                if (isset($_GET['user']))
+                {
                 if ($data->isLoggedUser)
                 {
                     echo '<form action="', $relativePath, 'gameList/', $data->username, '" method="POST">';
@@ -92,7 +94,48 @@
                 }
                 if ($data->isLoggedUser)
                     echo "</form>";
-                ?>
+                }
+                else if (isset($data->gid))
+                {?>
+                                   <div class="user row">
+
+                <div class="col-lg-4 text-center">
+                        <h1>Gamers Playing: <?php echo '<a href="', $relativePath, 'game/', $data->gid, '">', $data->gameName, '</a>';?></h1>
+                        <br>
+                </div>
+                </div>
+                <?php
+                    foreach($data->users as $user)
+                    {
+                        $location = Location::loadByID($user->getUID());
+                        echo $location->getZip();
+                        ?>
+                <div class='user row'>
+                    <a href = "<?php echo $relativePath, "user/", $user->getUsername();?>">
+                        <div class='picture col-xs-4'>
+                            <img src="<?php echo($relativePath);?>view/images/face.jpg" alt="..." class="img-circle">
+                        </div>
+                    </a>
+                    <div class='info col-xs-8'>
+                        <div class='username row'>
+                            <a href="<?php echo $relativePath, "user/", $user->getUsername();?>">
+                                <?php
+                                    echo '<br>';
+                                    echo '<h2>', $user->getUsername(), '</h2>';
+                                ?></a><?php
+                        
+                                    $genderString = getGenderString($user->getGender(), false);
+                                    if ($genderString != "")
+                                    {
+                                        echo '<h4>', $user->getAge(), ', ', $genderString, '</h4>';
+                                    }
+                                    echo '<h4>', $user->getEmail(), '</h4>';
+                                ?>
+                        </div>
+                    </div>
+                </div><?php
+                    }
+                }?>
             </div>
 
             <div class='panel-footer'>

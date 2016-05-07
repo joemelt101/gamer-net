@@ -19,6 +19,18 @@
                 text-decoration: inherit;
             }
             
+            a.page
+            {
+                display: block;
+                color: steelblue;
+                text-decoration-line: underline;
+            }
+            a.page:hover
+            {
+                display: block;
+                color: inherit;
+            }
+            
             a:hover {
                 display: block;
                 text-decoration: inherit;
@@ -142,7 +154,7 @@
                                         echo "<h3>Friends</h3>";
                                 }
                                 else // user is logged on and at their own dashboard
-                                    echo "<a href = \"friends\"><h3>Friends</h3></a>";
+                                    echo "<a class='page' href = \"friends\"><h3>Friends</h3></a>";
                             
                             ?>
                             <div class="row">
@@ -192,15 +204,13 @@
                                     else
                                         $username = $data->username;
                                     echo '<div class="col-sm-4">';
-                                    echo '<a href="', $relativePath, 'gameList/', $username, '"><h3>Game List</h3></a>';
+                                    echo '<a class="page" href="', $relativePath, 'gameList/', $username, '"><h3>Game List</h3></a>';
                                     echo '</div>';
                                     if (!isset($_GET['user']))
                                     {?>
                                     <div>
-                                        <form action="addGame" method="POST">
-                                            <h3></h3>
-                                            <button href="addGame" type="submit" class="btn btn-primary btn-sm">Add Game</button>
-                                        </form>
+                                            <a href="addGame"><h3></h3>
+                                                <button class="btn btn-primary btn-sm">Add Game</button></a>
                                     </div>
                                     <?php
                                     }
