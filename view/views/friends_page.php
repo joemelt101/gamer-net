@@ -116,14 +116,14 @@
                                     $buttonLabel = "Cancel";
                                 else if ($friend->type == "wants to be friends")
                                 {
-                                    echo "<button type='submit' class='btn btn-primary' name='Accept' value='", $value, "'>Accept</button>";
+                                    echo "<button id='", $value, "' type='submit' class='btn btn-primary' name='Accept' value='", $value, "'>Accept</button>";
                                     $buttonLabel = "Decline";
                                 }
                                 else
                                     $buttonLabel = "Unblock";
                      
                                 
-                                echo "<button type='submit' class='btn btn-primary' name='", $buttonLabel, "' value='", $value, "'>", $buttonLabel, "</button>";
+                                echo "<button id='", $value, "'type='submit' class='btn btn-primary' name='", $buttonLabel, "' value='", $value, "'>", $buttonLabel, "</button>";
                             ?>
                         </div>
                             

@@ -1096,13 +1096,13 @@ see setPass()
                     //  echo "hello2";
                 $stmt->store_result();
                 
-                $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
                 
                 $games = NULL;
                 while ($stmt->fetch())
                 {
                   //  echo $name;
-                    $games[] = new Game($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                    $games[] = new Game($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
                 }
             
                 $stmt->close(); // close prepare statement

@@ -23,6 +23,7 @@ class Controller
             
             // session variable will be assigned thanks to above control statement
             $user = User::loadByID($_SESSION['user']);
+            $data->username = $user->getUsername();
         }
         else // this is a different user's dashboard
         {

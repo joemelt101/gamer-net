@@ -182,7 +182,15 @@
                             
                             <!-- Link to Friends -->
                             <div class="top30">
-                                <h3>Games You Play</h3>
+                                <?php
+                                    $username = "NULL";
+                                    if (isset($_GET['user']))
+                                        $username = $_GET['user'];
+                                    else
+                                        $username = $data->username;
+                                
+                                    echo '<a href="', $relativePath, 'gameList/', $username, '"><h3>Game List</h3></a>';
+                                ?>
 
                                 <div class="row">
                                 <?php

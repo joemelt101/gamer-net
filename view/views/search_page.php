@@ -62,8 +62,8 @@
                             <!--    <button type='submit' class='btn btn-default'>
                                     <span class='glyphicon glyphicon-search'></span>
                                 </button>-->
-                                <button type='submit' id='user' name='type' value='user' class='btn btn-default'>Username</button>
                                 <button type='submit' id='game' name='type' value='game' class='btn btn-default'>Game</button>
+                               <button type='submit' id='user' name='type' value='user' class='btn btn-default'>Username</button>
                                 <button type='submit' id='location' name='type' value='location' class='btn btn-default'>Location</button>
                            </div>
                         </form>
@@ -74,10 +74,37 @@
             <div class='panel-body fixed-container'>
                 <?php
                 if (isset($data->games))
-                    foreach($data->games as $game)
-                    {
-                        echo '<a href = "' . $relativePath . 'game/' . $game->getGID() . '">' . $game->getName() . "</a><br>";
-                    }
+                    foreach ($data->games as $game)
+                {?>
+                <div class='user row'>
+                    <a href = "<?php echo $relativePath, "game/", $game->getGID();?>">
+                        <div class='picture col-xs-4'>
+                            <img src="<?php echo($relativePath);?>view/images/face.jpg" alt="..." class="img-circle">
+                        </div>
+                    </a>
+                    <div class='info col-xs-8'>
+                        <div class='username row'>
+                            <a href="<?php echo $relativePath, "game/", $game->getGID();?>">
+                                <h1><?php echo $game->getName();?></h1>
+                            </a>
+                            <h3><?php echo $game->getDeveloper();?></h3>
+                            <h5><?php
+                                    if ($game->getType() == 0)
+                                        echo $game->getPlatform();
+                                    else
+                                        echo "Board Game";
+                                ?></h5>
+                            
+                            <div>
+                            <?php
+                            if ($data->isLoggedUser)
+                                echo "<button id='", $game->getGID(), "' type='submit' class='btn btn-secondary btn-sm' name='removeGame' value='", $game->getGID(), "'>Remove</button>";
+                            ?>
+                            </div>
+                        </div>
+                    </div>
+                </div><?php
+                }
                 else if (isset($data->users))
                     foreach ($data->users as $user)
                 {?>
