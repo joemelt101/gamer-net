@@ -117,7 +117,8 @@
                         
                 </div>
                 <div class="col-lg-4 text-center">
-                        <h2>Add Game</h2>    
+                        <h2>Add Game</h2>  
+                    <p style="text-align: left;">You cannot create duplicate games, which are games that have the same name, developer, platform, genre, year, and type. If your game creation failed, it is possible it already exits; you should always <a href="search/?s=&type=game">search for a game</a> you want to add to the site before you create it.</p>
                 </div>
                 <div class="col-lg-4">
                         

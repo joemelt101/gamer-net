@@ -283,7 +283,7 @@
                                             echo $location[0];
                                         if (isset($location[1]))
                                         {
-                                            if (isset($location[0]))
+                                            if (!empty($location[0]) && $location[2] != 0)
                                                 echo ", ";
                                             echo $location[1];
                                         }
