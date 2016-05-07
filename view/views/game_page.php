@@ -74,7 +74,8 @@
                                     {
                                     ?>
                                         <form action="<?php echo $relativePath . 'game/' . $data->gid;?>" method="POST">
-                                        <div class="col-sm-3">    
+                                        <div class="col-sm-3">
+                                            <h3></h3>
                                             <input class="btn btn-default" name="gameButton" type=submit value="Add">
                                         </div>
                                     </form>
@@ -120,6 +121,9 @@
                                 </div>
                             </div>
                             <div>
+                                <h5><?php
+                                            echo $data->numUsers, " playing<br>";
+                                        ?></h5>
                                 <h5><?php
                                         if ($data->developer != "")
                                             echo "Developer: ", $data->developer, "<br>";

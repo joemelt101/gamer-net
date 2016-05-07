@@ -277,10 +277,39 @@
                 $stmt->bind_result($gid);
 
                 $stmt->fetch();
-                echo $gid;
+                //echo $gid;
                 $stmt->close(); // close prepare statement
                 $database->close(); // close database connection
                 return $gid;
+            }
+
+            return NULL;
+        }
+        /* gets the number of user's "playing" this game */
+        public function getNumUsers()
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+
+            //echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/user_games/getNumberOfUser'sPlaying.sql");
+            //echo $query;
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("i", $this->getGID());
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+
+                //echo "hello2";
+                $stmt->store_result();
+
+                $stmt->bind_result($numUsers);
+
+                $stmt->fetch();
+
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $numUsers;
             }
 
             return NULL;

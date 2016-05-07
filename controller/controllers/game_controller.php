@@ -56,6 +56,10 @@ class Controller
         {
             $data->inUserGameList = $this->user->doesUserHaveGame($this->gid);
         }
+        
+        
+        $data->numUsers = $game->getNumUsers();
+        
         return $data;
     }
 }
