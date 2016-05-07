@@ -6,6 +6,8 @@
 <title>Gamer-Net</title>
 <meta name="description" content="">
 <meta name="author" content="">
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
 
 <!-- Favicons
     ================================================== -->
@@ -30,6 +32,8 @@
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="view/landing_page/js/modernizr.custom.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -351,14 +355,16 @@
     <div class="section-title wow fadeInDown">
       <h2>What our <strong>Users</strong> say</h2>
       <hr>
-    </div>
+    </div> 
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <div id="testimonial" class="owl-carousel owl-theme wow fadeInUp" data-wow-delay="200ms">
+          <canvas id="popularGames"></canvas>
+          trolololololo
+        <!--div id="testimonial" class="owl-carousel owl-theme wow fadeInUp" data-wow-delay="200ms">
           <div class="item">
             <p>Where were we. I over slept, look I need your help. I have to ask Lorraine out but I don't know how to do it. I have to ask Lorraine out but I don't know how to do it. Yeah. What were you doing in the middle of the street, a kid your age. Yeah.</p>
             <p><strong>Marty McFly</strong>, Time Traveler.</p>
-          </div>
+          </div> 
           <div class="item">
             <p>A block passed Maple, that's John F. Kennedy Drive. What did she say? It's your mom, she's tracked you down. Quick, let's cover the time machine. Jennifer, oh are you a sight for sore eyes. Let me look at you. Sit here, Marty. My name's Lorraine.</p>
             <p><strong>Lorraine Baines</strong>, Calvin Klein's Mother.</p>
@@ -367,7 +373,7 @@
             <p>A bolt of lightning, unfortunately, you never know when or where it's ever gonna strike. Don't worry, I'll take care of the lightning, you take care of your pop. By the way, what happened today, did he ask her out?</p>
             <p><strong>Biff Tannen</strong>, MEGA Butthead.</p>
           </div>
-        </div>
+        </div-->
       </div>
     </div>
   </div>
@@ -684,7 +690,10 @@
 <script type="text/javascript" src="view/landing_page/js/jqBootstrapValidation.js"></script> 
 <script type="text/javascript" src="view/landing_page/js/contact_me.js"></script> 
 <script type="text/javascript" src="view/landing_page/js/owl.carousel.js"></script> 
-
+    
+<script type="text/javascript" src="http://www.chartjs.org/assets/Chart.js"></script>
+<script type="text/javascript" src="view/landing_page/js/PopularGamesChart.js"></script>
+    
 <!-- Javascripts
     ================================================== --> 
 <script type="text/javascript" src="view/landing_page/js/main.js"></script>
