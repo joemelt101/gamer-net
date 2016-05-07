@@ -110,8 +110,9 @@
         private $year;
         private $type;
         private $description;
+        private $videoID;
         
-        public function __construct($gid, $name, $developer, $platform, $genre, $year, $type, $description)
+        public function __construct($gid, $name, $developer, $platform, $genre, $year, $type, $description, $videoID)
         {
             $this->gid = $gid;
             $this->name = $name;
@@ -121,11 +122,12 @@
             $this->year = $year;
             $this->type = $type;
             $this->description = $description;
+            $this->videoID = $videoID;
         }
         /*
         adds a "new" game to the database
         */
-        public static function addGame($name, $developer, $platform, $genre, $year, $type, $description)
+        public static function addGame($name, $developer, $platform, $genre, $year, $type, $description, $videoID)
         {
             $database = new DBConnection();
             $mysqli = $database->conn;
@@ -136,7 +138,7 @@
             {
                 //echo "hello";
                 //Get the stored salt and hash as $dbSalt and $dbHash
-                $stmt->bind_param("ssssiis", $name, $developer, $platform, $genre, $year, $type, $description);
+                $stmt->bind_param("ssssiiss", $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
                 if (!$stmt->execute())
                     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
             
@@ -176,7 +178,7 @@
                     //  echo "hello2";
                     $stmt->store_result();
                     //  echo "hello3";
-                    $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                    $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
             
                     //   echo "hello4";
             
@@ -194,7 +196,7 @@
                     
                     
                     
-                    return new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                    return new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
                 }
             }
             return NULL;
@@ -282,12 +284,12 @@
                     //  echo "hello2";
                 $stmt->store_result();
                 
-                $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
                 
                 $games = NULL;
                 while ($stmt->fetch())
                 {
-                    $games[] = new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                    $games[] = new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
                 }
             
                 $stmt->close(); // close prepare statement
@@ -329,6 +331,10 @@
         public function getDescription()
         {
             return $this->description;
+        }
+        public function getVideoID()
+        {
+            return $this->videoID;
         }
     }
 
@@ -1009,10 +1015,12 @@ see setPass()
         }
         public function doGameListOp($gid, $filename)
         {
+            //echo 'hello';
             $database = new DBConnection();
             $mysqli = $database->conn;
             
             $query = file_get_contents(__DIR__ . "/dml/user_games/" . $filename);
+            //echo $query;
             if ($stmt = $mysqli->prepare($query))
             {
                 $stmt->bind_param("ii", $this->uid, $gid);
@@ -1035,7 +1043,40 @@ see setPass()
         }
         public function removeGame($gid)
         {
-            return $this->doGameListOp($gid, "del_game_to_user's_games.sql");
+            return $this->doGameListOp($gid, "del_game_from_user's_games.sql");
+        }
+        public function doesUserHaveGame($gid)
+        {
+            
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            $userHasGame = false;
+
+            $query = file_get_contents(__DIR__ . "/dml/user_games/search_user's_games.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                //echo "hello";
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                $stmt->bind_param("ii", $this->uid, $gid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                $stmt->store_result();
+                
+                $stmt->bind_result($game_id);
+                
+                $stmt->fetch();
+                
+                if ($stmt->num_rows > 0)
+                    $userHasGame = true;
+                
+            }
+            $stmt->close();
+            $database->close();
+            
+            return $userHasGame;
         }
         public function getGames()
         {

@@ -2,7 +2,7 @@
 <!-- GAMER-NET - SEARCH PAGE -->
 <html>
     <head>
-        <title>Gamer-net -- Search</title>
+        <title>Gamer-Net | Search</title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
         <?php require_once('view/views/includes.php'); ?>
         <style>
@@ -82,14 +82,14 @@
                     foreach ($data->users as $user)
                 {?>
                 <div class='user row'>
-                    <a href = "user/<?php echo $user->username;?>">
+                    <a href = "<?php echo $relativePath, "user/", $user->username;?>">
                         <div class='picture col-xs-4'>
                             <img src="<?php echo($relativePath);?>view/images/face.jpg" alt="..." class="img-circle">
                         </div>
                     </a>
                     <div class='info col-xs-8'>
                         <div class='username row'>
-                            <a href = "user/<?php echo $user->username;?>">
+                            <a href = "<?php echo $relativePath, "user/", $user->username;?>">
                                 <h1><?php echo $user->alias?></h1>
                             </a>
                             <?php
@@ -127,7 +127,7 @@
                     {
                         $user = $location->getUser();
                         $uname = $user->getUsername();
-                        echo '<a href="user/' , $uname, '">', $uname, "</a> -> ";
+                        echo '<a href="', $relativePath, 'user/' , $uname, '">', $uname, "</a> -> ";
                         $zipcode = $location->getZip();
                         if ($zipcode == 0)
                             $zipcode = "";

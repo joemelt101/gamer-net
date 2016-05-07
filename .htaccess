@@ -55,5 +55,4 @@ RewriteRule ^(.*)$ page.php?page=$1 [NC,L]
 
 
 
-
 #RewriteRule ^homer/gamer-net/(.*)$ http://cyberdyn3.centralus.cloudapp.azure.com/homer/gamer-net/page.php?page=$1 [NC,L]

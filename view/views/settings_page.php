@@ -77,7 +77,7 @@
             
             
         </style>
-        <title>G-N Settings</title>  
+        <title>Gamer-Net | Settings</title>  
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
         
         <!-- Latest compiled and minified CSS -->
@@ -365,7 +365,8 @@
                             </div>
                             
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Type" name="type">
+                                <input type="radio" name="type" value="0" checked>Video Game
+                                <input type="radio" name="type" value="1">Board Game
                             </div>
                         </div>
                             
@@ -375,7 +376,14 @@
                             </div>
                             
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Description" name="description">
+                                <textarea style="color: black"rows="4" cols="30" placeholder="Description" name="description"></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">    
+                            <div class="col-md-3">Youtube Video ID</div>
+                            <div class="col-md-offset-3">
+                                <input type="text" placeholder="Video ID" name="videoID">
                             </div>
                         </div>  
                         

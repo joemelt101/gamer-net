@@ -7,7 +7,7 @@
             if (isset($_GET['user']))
                 echo "Profile | ", $data->alias;
             else
-                echo "Dashboard";
+                echo "Gamer-Net | Dashboard";
         ?></title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
         <?php require_once(__DIR__ . '/includes.php'); ?>
@@ -193,7 +193,10 @@
                                         for ($i = 0; $i < $numOfGames && $i < 6; $i++)
                                         {?>
                                     <div class="col-sm-2 dark">
-                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br /><?php echo $games[$i]->getName(); ?></p>
+                                        <a href="<?php echo $relativePath, "game/", $games[$i]->getGID();?>">
+                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />
+                                            <?php echo $games[$i]->getName();?>
+                                        </a>
                                     </div>
                                     <?php
                                         }
@@ -204,7 +207,7 @@
                             <!-- About Me -->
                             <div class="top30">
                                 <h3>About Me</h3>
-                                <?php echo $data->about;?>
+                                <p style="word-wrap: break-word;"><?php echo $data->about;?></p>
                             </div>
                             
                         </div>

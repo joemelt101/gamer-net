@@ -44,8 +44,9 @@ class Controller
             $year = $_POST['year'];
             $type = $_POST['type'];
             $description = $_POST['description'];
+            $videoID = $_POST['videoID'];
             
-            if (Game::addGame($name, $developer, $platform, $genre, $year, $type, $description))
+            if (Game::addGame($name, $developer, $platform, $genre, $year, $type, $description, $videoID))
             {
                 $message = "Game successfully added.";
                 $gid = Game::getGameIdForUser($name, $developer, $platform, $year, $type);

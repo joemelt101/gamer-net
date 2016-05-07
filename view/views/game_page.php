@@ -3,12 +3,7 @@
 
 <html>
     <head>
-        <title><?php 
-            if (isset($_GET['user']))
-                echo "Profile | ", $data->alias;
-            else
-                echo "Dashboard";
-        ?></title>
+        <title><?php echo $data->name;?></title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
         <?php require_once(__DIR__ . '/includes.php'); ?>
         
@@ -60,61 +55,33 @@
                         <div class="col-sm-6">
                             <h2><?php echo $data->name;?></h2>
                         </div>
-                        <?php
-                            if (isset($_GET['user']))
-                            {
-                                if ($data->loggedUser)
+                            <?php
+                                if (isset($data->inUserGameList))
                                 {
-                                    // prevent user from being able to add/block himself
-                                    if ($data->loggedUser->getUsername() != $data->username)
+                                    
+                                    if ($data->inUserGameList)
                                     {
-                                        //need to add logic for checking if already friend, etc.
-                                        $type = $data->loggedUser->getFriend($data->uid);
-                                        $value = "Send Friend Request";
-                                        
-                                        if ($type != -1) // not currently a 'friend' of any kind
-                                        {
-                                            switch ($type)
-                                            {
-                                                case 0:
-                                                    $value = "Cancel Request";
-                                                    break;
-                                                case 1:
-                                                    $value = "Accept Request";
-                                                    break;
-                                                case 2:
-                                                    $value = "Remove Friend";
-                                                    break;
-                                                case 3:
-                                                    $value = "Unblock";
-                                                    break;
-                                                default: //user tried to view someone's page who blocked them
-                                                    redirect("dashboard");
-                                                    break;
-                                            }
-                                        }
-                        ?>
-                            <form action="" method="POST">
-                                <div class="col-sm-3">    
-                                    <input class="btn btn-default" name="friendButton" type=submit value="<?php echo $value;?>">
-                                </div>
-                                <?php
-                                    if ($value != "Unblock")
-                                    {?>
-                                
-                                    <div class="col-sm-2">
-                                    <input class="btn btn-default" name="blockButton" type="submit" value="Block">
-                                    </div>
-                                
-        <?php  /* so apparently you need at least one space after <?php or there will be a compile error*/?>
-                                <?php }?>
-                            </form>
-                        <?php
-                                        
+                                    ?>
+                                        <form action="<?php echo $relativePath . 'game/' . $data->gid;?>" method="POST">
+                                        <div class="col-sm-3">    
+                                            <input class="btn btn-default" name="gameButton" type=submit value="Remove">
+                                        </div>
+                                    </form>
+                                    <?php
                                     }
+                                    else
+                                    {
+                                    ?>
+                                        <form action="<?php echo $relativePath . 'game/' . $data->gid;?>" method="POST">
+                                        <div class="col-sm-3">    
+                                            <input class="btn btn-default" name="gameButton" type=submit value="Add">
+                                        </div>
+                                    </form>
+                                    <?php
+                                    }
+                                    
                                 }
-                            }    
-                        ?>
+                            ?>
                     </div>
                 </div>
                 
@@ -126,85 +93,18 @@
                         <!-- Left Column -->
                         <div class="col-sm-8">
                             
-                            <!-- Link to Friends -->
-                            <?php 
-                                if (isset($_GET['user']))
-                                {
-                                    if (isset($data->loggedUser))
-                                    {
-                                        // prevents user from viewing their own profile as if it were someone else's profile
-                                        if ($_GET['user'] == $data->loggedUser->getUsername())
-                                            redirect("dashboard");
-                                    }
-
-                                        echo "<h3>Friends</h3>";
-                                }
-                                else // user is logged on and at their own dashboard
-                                    echo "<a href = \"friends\"><h3>Friends</h3></a>";
-                            
-                            ?>
-                            <div class="row">
-                                <?php
-                                if (isset($data->friends))
-                                {
-                                    $friends = $data->friends;
-                                    $numOfFriends = count($friends);
-                                    
-                                    for ($i = 0; $i < $numOfFriends && $i < 6; $i++)
-                                    {
-                                        $friend = $friends[$i];
-                                        if ($friend->type == "") // currently friends
-                                        {
-                                ?>
-                                    <div class="col-sm-2 dark">
-                                    <a href ="<?php echo $relativePath;?>user/<?php echo $friend->username;?>">
-                                        <p class="text-center">
-                                            <span class="glyphicon text-large glyphicon-user"></span>
-                                            <br />
-                                            <h6 class = "text-center"><?php echo $friend->alias;?></h6>
-                                        </p>
-                                    </a>
-                                    <h6><?php
-                                            if ($friend->alias != $friend->username)
-                                                echo $friend->username;
-                                        ?>
-                                    </h6>
-                                </div>
-                                <?php
-                                        }
-                                    }
-                                }
-                                ?>
-                                
-                            </div>
-                            
-                            <!-- A list of Games -->
-                            
-                            <!-- Link to Friends -->
-                            <div class="top30">
-                                <h3>Games You Play</h3>
-
-                                <div class="row">
-                                <?php
-                                    if (isset($data->games))
-                                    {
-                                        $games = $data->games;
-                                        $numOfGames = count($games);
-                                        for ($i = 0; $i < $numOfGames && $i < 6; $i++)
-                                        {?>
-                                    <div class="col-sm-2 dark">
-                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br /><?php echo $games[$i]->getName(); ?></p>
-                                    </div>
-                                    <?php
-                                        }
-                                    }?>
-                                </div>
-                            </div>
                             
                             <!-- About Me -->
                             <div class="top30">
-                                <h3>About Me</h3>
-                                <?php echo $data->about;?>
+                                <?php
+                                if (isset($data->videoLink))
+                                {
+                                    ?>
+                                    <iframe width="420" height="315" src="<?php echo $data->videoLink;?>" frameborder="0" allowfullscreen></iframe>
+                                    <br>
+                                    <?php
+                                }
+                                echo $data->description;?>
                             </div>
                             
                         </div>
@@ -219,44 +119,28 @@
                                 </div>
                             </div>
                             <div>
-                                <h5><?php echo $data->status;?></h5>
-                                <h5><?php 
-                                        echo $data->gender;
-                                    ?></h5>
                                 <h5><?php
-                                        echo "Age: ", $data->age, "<br>";
+                                        if ($data->developer != "")
+                                            echo "Developer: ", $data->developer, "<br>";
                                     ?></h5>
-                            </div>
-                            <div>
-                                <h4>Contact Information:</h4>
-                                <?php
-                                    echo $data->email;
-                                ?><br>
-                                <address>
+                                    <h5><?php
+                                        if ($data->platform != "")
+                                            echo "Platform: ", $data->platform, "<br>";
+                                    ?></h5>
+                                    <h5><?php
+                                        if ($data->genre != "")
+                                            echo "Genre: ", $data->genre, "<br>";
+                                    ?></h5>
+                                    <h5><?php
+                                        if ($data->year != "")
+                                            echo "Year: ", $data->year, "<br>";
+                                    ?></h5>
                                     <?php
-                                        $location = $data->location;
-                                        if (isset($location[0]))
-                                            echo $location[0];
-                                        if (isset($location[1]))
+                                        if ($data->type == 1)
                                         {
-                                            if (isset($location[0]))
-                                                echo ", ";
-                                            echo $location[1];
+                                            echo "<h5>", "Type: ", "Board Game", "</h5>";
                                         }
-                                        if (isset($location[2]))
-                                        {
-                                            if (isset($location[0]) || isset($location[1]))
-                                                echo " ";
-                                            echo ($location[2] == 0 ? "" : $location[2]);
-                                        }
-                                    ?><br>
-                                </address>
-                                
-                                
-                                
-                             <!-- this should only be shown if user is viewing another user's profile   
-                                <h4>Status</h4>
-                                <p>Feeling pretty good right now! Loving Starcraft 2!!!!</p> -->
+                                    ?>
                             </div>
                         </div>
                     </div>

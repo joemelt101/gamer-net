@@ -25,6 +25,8 @@ class Controller
             if (isLoggedIn())
             {
                 $data->loggedUser = User::loadByID($_SESSION['user']);
+                if ($data->loggedUser->getUsername() == $user->getUsername())
+                    redirect("dashboard");
             }
         }
         
