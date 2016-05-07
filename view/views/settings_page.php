@@ -138,9 +138,6 @@
                 <div class="col-lg-4 text-center">
                         <h2>Location Settings</h2>    
                 </div>
-                <div class="col-lg-4 text-center">
-                      <!--  <h2>Game Settings</h2> -->
-                </div>
                 </div>
                 <br>
 
@@ -305,109 +302,6 @@
             <br>
             <hr>
             <br>
-            
-            <form action="settings" method="post">    
-            <div class="row"> 
-                <div class="col-lg-4"> </div>
-                    <div class="col-lg-4"> <h3 class="text-center">Add Game</h3>
-                        <br>
-                        <div class="card card-container">    
-                        <br> 
-                        <div class="row">    
-                            <div class="col-md-3">Name
-                            </div>
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Name" name="name">
-                            </div>
-                        </div>
-                            <br>
-                        <div class="row">    
-                            <div class="col-md-3">Developer
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Developer" name="developer">
-                            </div>
-                        </div>
-                             <br>
-                        <div class="row">    
-                            <div class="col-md-3">Platform
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Platform" name="platform">
-                            </div>
-                        </div>
-                            
-                             <br>
-                        <div class="row">    
-                            <div class="col-md-3">Genre
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Genre" name="genre">
-                            </div>
-                        </div>
-                            
-                             <br>
-                        <div class="row">    
-                            <div class="col-md-3">Year
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Year" name="year">
-                            </div>
-                        </div> 
-                            
-                             <br>
-                        <div class="row">    
-                            <div class="col-md-3">Type
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <input type="radio" name="type" value="0" checked>Video Game
-                                <input type="radio" name="type" value="1">Board Game
-                            </div>
-                        </div>
-                            
-                             <br>
-                        <div class="row">    
-                            <div class="col-md-3">Description
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <textarea style="color: black"rows="4" cols="30" placeholder="Description" name="description"></textarea>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">    
-                            <div class="col-md-3">Youtube Video ID</div>
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Video ID" name="videoID">
-                            </div>
-                        </div>  
-                        
-                        </div>
-                    
-                    </div>
-                <div class="col-lg-4"> </div>
-            </div>
-                
-                <br>
-                    
-
-
-            
-           <div class="row">
-                <div class="col-sm-3 col-sm-offset-5">
-                    <button name="addGameButton" class="btn btn-success">Add Game</button>
-                </div>
-            </div>
-            
-    </form>
-            
-            <br><hr><br>
-      
             
             <form action="settings" method="post">    
             <div class="row "> 

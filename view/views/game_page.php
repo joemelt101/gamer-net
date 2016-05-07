@@ -63,7 +63,8 @@
                                     {
                                     ?>
                                         <form action="<?php echo $relativePath . 'game/' . $data->gid;?>" method="POST">
-                                        <div class="col-sm-3">    
+                                        <div class="col-sm-3">
+                                            <h3></h3>
                                             <input class="btn btn-default" name="gameButton" type=submit value="Remove">
                                         </div>
                                     </form>

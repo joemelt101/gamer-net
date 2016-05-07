@@ -243,16 +243,16 @@
             $database = new DBConnection();
             $mysqli = $database->conn;
 
-            echo "hello";
+            //echo "hello";
             $query = file_get_contents(__DIR__ . "/dml/game/getGame.sql");
-            echo $query;
+            //echo $query;
             if ($stmt = $mysqli->prepare($query))
             {
                 $stmt->bind_param("sssii", $name, $developer, $platform, $year, $type);
                 if (!$stmt->execute())
                     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
 
-                echo "hello2";
+                //echo "hello2";
                 $stmt->store_result();
 
                 $stmt->bind_result($gid);

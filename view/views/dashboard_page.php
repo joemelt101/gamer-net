@@ -95,7 +95,8 @@
                                         }
                         ?>
                             <form action="" method="POST">
-                                <div class="col-sm-3">    
+                                <div class="col-sm-3">
+                                    <h3></h3>
                                     <input class="btn btn-default" name="friendButton" type=submit value="<?php echo $value;?>">
                                 </div>
                                 <?php
@@ -103,6 +104,7 @@
                                     {?>
                                 
                                     <div class="col-sm-2">
+                                    <h3></h3>
                                     <input class="btn btn-default" name="blockButton" type="submit" value="Block">
                                     </div>
                                 
@@ -182,16 +184,29 @@
                             
                             <!-- Link to Friends -->
                             <div class="top30">
+                                <div class="row">
                                 <?php
                                     $username = "NULL";
                                     if (isset($_GET['user']))
                                         $username = $_GET['user'];
                                     else
                                         $username = $data->username;
-                                
+                                    echo '<div class="col-sm-4">';
                                     echo '<a href="', $relativePath, 'gameList/', $username, '"><h3>Game List</h3></a>';
+                                    echo '</div>';
+                                    if (!isset($_GET['user']))
+                                    {?>
+                                    <div>
+                                        <form action="addGame" method="POST">
+                                            <h3></h3>
+                                            <button href="addGame" type="submit" class="btn btn-primary btn-sm">Add Game</button>
+                                        </form>
+                                    </div>
+                                    <?php
+                                    }
+                                    
                                 ?>
-
+                                </div>
                                 <div class="row">
                                 <?php
                                     if (isset($data->games))
