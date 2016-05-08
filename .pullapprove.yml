@@ -8,6 +8,7 @@ reviewers:
     required: 1
     members:
       - joemelt101
+      - HomerGaidarski
     conditions:
       branches:
         - premaster
