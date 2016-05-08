@@ -63,6 +63,7 @@ class Controller
         }
         
         $data->games = $user->getGames();
+        $data->popularGames = PopularGame::getPopularGames();
        // foreach($data->games as $game)
       //      echo $game->getName();
         

@@ -1,45 +1,39 @@
-/*var myBarChart = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: options
-});
-
-var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-        {
-            label: "My First dataset",
-            backgroundColor: "rgba(255,99,132,0.2)",
-            borderColor: "rgba(255,99,132,1)",
-            borderWidth: 1,
-            hoverBackgroundColor: "rgba(255,99,132,0.4)",
-            hoverBorderColor: "rgba(255,99,132,1)",
-            data: [65, 59, 80, 81, 56, 55, 40],
-        }
-    ]
-};*/
-
 var dData = function() {
   return Math.round(Math.random() * 90) + 10
 };
 
-var barChartData = {
-  labels: ["dD 1", "dD 2", "dD 3", "dD 4", "dD 5", "dD 6", "dD 7", "dD 8", "dD 9", "dD 10"],
-  datasets: [{
-    fillColor: "rgba(0,60,100,1)",
-    strokeColor: "black",
-    data: [dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData()]
-  }]
+/*var barChartData = {
+    //labels: ["dD 1", "dD 2", "dD 3", "dD 4", "dD 5", "dD 6", "dD 7", "dD 8", "dD 9", "dD 10"],
+    labels: ["<?php echo $data[0]->getName();?>"],
+    datasets: [{
+        fillColor: "rgba(0,255,60,.5)",
+        strokeColor: "black",
+        data: [<?php echo $data[1]->getCount();?>]
+        //data: [dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData()]
+    }]
 }
+*/
+/*
+var barChartData = {
+    labels: ["dD 1", "dD 2", "dD 3", "dD 4", "dD 5", "dD 6", "dD 7", "dD 8", "dD 9", "dD 10"],
+    
+    datasets: [{
+        fillColor: "rgba(0,255,60,.5)",
+        strokeColor: "black",
+        data: [dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData()]
+    }]
+}*/
 
-var index = 11;
+//var index = 11;
 var ctx = document.getElementById("popularGames").getContext("2d");
 var barChartDemo = new Chart(ctx).Bar(barChartData, {
   responsive: true,
   barValueSpacing: 2
 });
+/*
 setInterval(function() {
   barChartDemo.removeData();
   barChartDemo.addData([dData()], "dD " + index);
   index++;
 }, 3000);
+*/

@@ -7,6 +7,25 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<?php 
+    require_once("controller/controllers/landing_controller.php");
+    require_once('controller/php_libs/helper.php');
+
+    $controller = new Controller();
+    $data = $controller->getData();
+?>
+<script>
+    var barChartData = {
+    //labels: ["dD 1", "dD 2", "dD 3", "dD 4", "dD 5", "dD 6", "dD 7", "dD 8", "dD 9", "dD 10"],
+    labels: ["<?php echo $data[0]->getName();?>","<?php echo $data[1]->getName();?>","<?php echo $data[2]->getName();?>","<?php echo $data[3]->getName();?>","<?php echo $data[4]->getName();?>","<?php echo $data[5]->getName();?>",],
+    datasets: [{
+        fillColor: "rgba(0,255,60,.5)",
+        strokeColor: "black",
+        data: [<?php echo $data[0]->getCount();?>, <?php echo $data[1]->getCount();?>, <?php echo $data[2]->getCount();?>, <?php echo $data[3]->getCount();?>, <?php echo $data[4]->getCount();?>, <?php echo $data[5]->getCount();?>, ]
+        //data: [dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData()]
+    }]
+}
+</script>
 
 
 <!-- Favicons
@@ -353,13 +372,12 @@
 <div id="testimonials-section" class="text-center">
   <div class="container">
     <div class="section-title wow fadeInDown">
-      <h2>What our <strong>Users</strong> say</h2>
+      <h2>Most <strong>popular</strong> games</h2>
       <hr>
     </div> 
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
           <canvas id="popularGames"></canvas>
-          trolololololo
         <!--div id="testimonial" class="owl-carousel owl-theme wow fadeInUp" data-wow-delay="200ms">
           <div class="item">
             <p>Where were we. I over slept, look I need your help. I have to ask Lorraine out but I don't know how to do it. I have to ask Lorraine out but I don't know how to do it. Yeah. What were you doing in the middle of the street, a kid your age. Yeah.</p>

@@ -1,0 +1,1 @@
+SELECT COUNT(*), name FROM game INNER JOIN user_games ON game.game_id = user_games.game_id WHERE user_games.game_id = game.game_id GROUP BY name ORDER BY COUNT(*) desc LIMIT 10;

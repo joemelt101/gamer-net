@@ -2,12 +2,17 @@
 
 class Controller
 {
-    public function grabData()
+    public function __construct() {
+        
+    }
+    
+    public function getData()
     {
-        $object = new StdClass;
+        //$object = new StdClass;
+        $data = new StdClass;
         
         //here we access the model to retrieve valid data
-        if (isset($_POST['module']))
+        /*if (isset($_POST['module']))
         {
             
             //'print' module of code
@@ -20,8 +25,14 @@ class Controller
             //other modules go here to handle different forms
             //the module is set by the 
         }
-        
-        return "Default";
+        */
+        $data = PopularGame::getPopularGames();
+        //echo $data->count;
+        /*foreach ($data as $echoData) {
+            echo $echoData;
+            echo "<br>";
+        }*/
+        return $data;
     }
     
     public function grabViewLocation()
