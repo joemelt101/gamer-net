@@ -99,6 +99,56 @@
             return NULL;
         }
     }
+    
+    class PopularGame {
+        private $count;
+        private $name;
+        
+        public function __construct($count, $name) {
+            $this->count = $count;
+            $this->name = $name;
+        }
+        
+        public static function getPopularGames() {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            //echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/game/list_popular_games.sql");
+            if ($stmt = $mysqli->prepare($query)) {
+                if (!$stmt->execute())
+                        echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                $stmt->store_result();
+                $stmt->bind_result($count, $name);
+                
+
+                $games = NULL;
+                while ($stmt->fetch())
+                {
+                    $games[] = new self($count, $name);
+                    
+                }
+ 
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection  
+                /*foreach ($games as $game) {
+                    $data[$i]->name = $game->getName();
+                    $data[$i++]->count = $game->getCount();
+                }
+                echo $data[i]*/
+                return $games;
+            }
+        return NULL;
+        }
+        
+        public function getName() {
+            return $this->name;
+        }
+        
+        public function getCount() {
+            return $this->count;
+        }
+    }
 
     class Game
     {
@@ -352,7 +402,7 @@
             return NULL;
         }
         
-        public function getGID()
+        public function getGid()
         {
             return $this->gid;
         }
