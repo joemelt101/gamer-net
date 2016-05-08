@@ -1,4 +1,6 @@
 <?php
+// zero means "until browser is closed"
+    session_set_cookie_params(0);
     session_start();
     
 
@@ -36,5 +38,14 @@
             $redirectUrl .= $urlPieces[$i] . '/';
         
         return $redirectUrl;
+    }
+/* this function will be called when the user logs out or when the browser is closed */
+    function goOffline()
+    {
+        if (isset($_SESSION['user']))
+        {
+            $user = User::loadByID($_SESSION['user']);
+            $user->setOnlineStatus(0);
+        }
     }
 ?>

@@ -6,9 +6,10 @@ git clone this repo
 install credentials file for the database (check model/DBConnection.php for location)  
 The format for the credentials file is laid out below
 ```
-localhost
+host
 username
 password
+databaseName
 ```
 run MYSQL table setup statements (in Wiki)  
 open website in browser  

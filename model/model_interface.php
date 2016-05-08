@@ -16,7 +16,7 @@
         }
         public function getUser()
         {
-            
+            return User::loadByID($this->uid);
         }
         public function getCity()
         {
@@ -160,8 +160,9 @@
         private $year;
         private $type;
         private $description;
+        private $videoID;
         
-        public function __construct($gid, $name, $developer, $platform, $genre, $year, $type, $description)
+        public function __construct($gid, $name, $developer, $platform, $genre, $year, $type, $description, $videoID)
         {
             $this->gid = $gid;
             $this->name = $name;
@@ -171,37 +172,57 @@
             $this->year = $year;
             $this->type = $type;
             $this->description = $description;
+            $this->videoID = $videoID;
         }
         /*
         adds a "new" game to the database
         */
-        public static function addGame($name, $developer, $platform, $genre, $year, $type, $description)
+        public static function addGame($name, $developer, $platform, $genre, $year, $type, $description, $videoID)
         {
             $database = new DBConnection();
             $mysqli = $database->conn;
             
-            $query = file_get_contents(__DIR__ . "/dml/game/add_game.sql");
+            $queries = explode(";", file_get_contents(__DIR__ . "/dml/game/add_game.sql"));
                // echo $query;
-            if ($stmt = $mysqli->prepare($query))
+            if ($stmt = $mysqli->prepare($queries[0]))
             {
-                //echo "hello";
-                //Get the stored salt and hash as $dbSalt and $dbHash
-                $stmt->bind_param("ssssiis", $name, $developer, $platform, $genre, $year, $type, $description);
+               // echo $queries[0];
+                $stmt->bind_param("ssssii", $name, $developer, $platform, $genre, $year, $type);
                 if (!$stmt->execute())
                     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
             
-                    //  echo "hello2";
                 $stmt->store_result();
+                $stmt->bind_result($game_id);
+                $stmt->fetch();
+                
+                    //  echo "hello3";
+            
+                    //   echo "hello4";
+                if ($stmt->num_rows < 1)
+                {
+                    $stmt->close();
+                    if ($stmt = $mysqli->prepare($queries[1]))
+                    {
+                        echo $queries[1];
+                        $stmt->bind_param("ssssiiss", $name, $developer, $platform, $genre,     $year, $type, $description, $videoID);
+                        if (!$stmt->execute())
+                            echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                        $stmt->store_result();
                     //  echo "hello3";
             
                     //   echo "hello4";
             
-                $stmt->close(); // close prepare statement
-                $database->close(); // close database connection
-                return true;
+                        $stmt->close(); // close prepare statement
+                        $database->close(); // close database connection
+                        return true;
+                    }
+                }
             }
+            $database->close();
             
-            return NULL;
+            return false;
         }
         /*
         used to create game objects from the game_ids located in the user's game list
@@ -226,17 +247,25 @@
                     //  echo "hello2";
                     $stmt->store_result();
                     //  echo "hello3";
-                    $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                    $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
             
                     //   echo "hello4";
             
                     $stmt->fetch();
+                    
+                    if ($stmt->num_rows == 0)
+                    {
+                        $stmt->close();
+                        $database->close();
+                        return NULL;
+                    }
             
                     $stmt->close(); // close prepare statement
                     $database->close(); // close database connection
                     
                     
-                    return new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                    
+                    return new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
                 }
             }
             return NULL;
@@ -276,6 +305,69 @@
                 }
             return NULL;
         }
+
+        /* returns a game id of a specific game, to be used after a user creates a new game to add it to their list */
+        public static function getGameIdForUser($name, $developer, $platform, $year, $type)
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+
+            //echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/game/getGame.sql");
+            //echo $query;
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("sssii", $name, $developer, $platform, $year, $type);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+
+                //echo "hello2";
+                $stmt->store_result();
+
+                $stmt->bind_result($gid);
+
+                $stmt->fetch();
+                //echo $gid;
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $gid;
+            }
+
+            return NULL;
+        }
+        /* gets users "playing" this game */
+        public function getUsersPlaying()
+        {
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+
+            //echo "hello";
+            $query = file_get_contents(__DIR__ . "/dml/user_games/getUsersPlaying.sql");
+            //echo $query;
+            if ($stmt = $mysqli->prepare($query))
+            {
+                $stmt->bind_param("i", $this->getGID());
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+
+                //echo "hello2";
+                $stmt->store_result();
+
+                $stmt->bind_result($uid);
+                
+                $users;
+                while ($stmt->fetch())
+                {
+                    $users[] = User::loadByID($uid);
+                }
+
+                $stmt->close(); // close prepare statement
+                $database->close(); // close database connection
+                return $users;
+            }
+
+            return NULL;
+        }
         public static function searchGame($game)
         {
             $database = new DBConnection();
@@ -294,12 +386,12 @@
                     //  echo "hello2";
                 $stmt->store_result();
                 
-                $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
                 
                 $games = NULL;
                 while ($stmt->fetch())
                 {
-                    $games[] = new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                    $games[] = new self($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
                 }
             
                 $stmt->close(); // close prepare statement
@@ -309,7 +401,6 @@
             
             return NULL;
         }
-        
         
         public function getGid()
         {
@@ -342,6 +433,10 @@
         public function getDescription()
         {
             return $this->description;
+        }
+        public function getVideoID()
+        {
+            return $this->videoID;
         }
     }
 
@@ -417,8 +512,8 @@
                 $database = new DBConnection();
                 $mysqli = $database->conn;
             
-                $uname = $mysqli->real_escape_string(strip_tags($uname, ENT_QUOTES));
-                $pass = $mysqli->real_escape_string(strip_tags($pass, ENT_QUOTES));
+                $uname = self::filter($mysqli, $uname);
+                $pass = self::filter($mysqli, $pass);
             
                 $query = file_get_contents(__DIR__ . "/dml/user/getUserByID.sql");
                // echo $query;
@@ -459,94 +554,44 @@
         
         public static function filter($mysqli, $string)
         {
+            if (!isset($mysqli))
+            {
+                $database = new DBConnection();
+                $mysqli = $database->conn;
+            }
             return $mysqli->real_escape_string(strip_tags($string, ENT_QUOTES));
         }
         
         
         
-        /* this function is primarily for checking to see which user attributes
-        were actually changed; an empty string indicates the attribute should not be changed;
-        for example, if the user is just changing alias and
-        nothing else, the function call for updateDatabase() would look like this:
-        updateDatabase($newAlias, "", "", "", "");       
-        
-        NOTE: updateDatabase() could also be written more dynamically
-        so that the function call has a dynamic number of parameters,
-        kind of like printf() in C
-        
-        This function only does basic error checking, more in-depth error checking
-        should be done for the settings page with ajax as the user types
-        
-        It's also important to note that salt and hash_pass aren't included
-        in this function because salt and hash_pass aren't saved as user
-        attributes in the User object, so it is VERY important
-        that the salt and hash_pass are passed in correctly for when the user
-        needs to change their password.
-        */
-        public function filterEmptyAttributes($alias, $gender, $age)
-        {
-            /*there's got to be a more dynamic way to do this since
-            variable names are same as attribute names */
-            if (!empty($alias))
-            {
-                echo $this->alias, " will be changed to ", $alias, "<br>";
-                $this->alias = $alias;
-            }
-          
-            if (is_numeric($gender))
-                if ($gender == 0 || $gender == 1)
-                {
-                    echo "gender will be changed to ", ($gender ? "girl" : "boy"), "<br>"; 
-                    $this->gender = $gender;
-                }
-            
-
-            if (is_numeric($age))
-            {
-                /* this made me think, what is the minimum age user's can be?
-This is a website for discussing with and or meeting up with people who play the same games so maybe it should only be for legal adults?
-
-Should the age update dynamically as the years go by?
-If yes then the user should just enter a birth date
-                */
-                if ($age >= 18) 
-                {
-                    echo "age will be changed to ", $age, "<br>";
-                    $this->age = $age;
-                }
-                else
-                    echo "age will NOT change, must be at least 18<br>";
-            }
-        }
-        
         /*
-After filtering the passed parameter variables, this function uses
-the object's attribute values for the prepared statement.
-This will be used for updating the user's settings in settings.php
-
 This function is not responsible for changing user password;
-see changePassword()
+see setPass()
         */
-        public function updateSettings($alias, $gender, $age)
+        public function updateSettings($alias, $email, $age, $gender, $about, $city, $state, $zipcode)
         {
             $database = new DBConnection();
             $mysqli = $database->conn;
           //    echo "hello1";  
             
+            
+            /* should clean this up by possibly passing in an array into updateSettings() and then just calling filter function in a for loop */
             $alias = self::filter($mysqli, $alias);
-            $gender = self::filter($mysqli, $gender);
+            $email = self::filter($mysqli, $email);
             $age = self::filter($mysqli, $age);
-          //  echo "hello2";
-            $this->filterEmptyAttributes($alias, $gender, $age);
+            $gender = self::filter($mysqli, $gender);
+            $city = self::filter($mysqli, $city);
+            $state = self::filter($mysqli, $state);
+            $zipcode = self::filter($mysqli, $zipcode);
            
            //     echo "hello3";
-            $query = file_get_contents(__DIR__ . "/dml/user/update_user.sql");
+            $queries = explode(";", file_get_contents(__DIR__ . "/dml/user/update_user.sql"));
     //        echo $query;
-            if ($stmt = $mysqli->prepare($query))
+            if ($stmt = $mysqli->prepare($queries[0]))
             {
                 //echo "hello";
                     //Get the stored salt and hash as $dbSalt and $dbHash
-                $stmt->bind_param("siis", $this->alias, $this->gender, $this->age, $this->uid);
+                $stmt->bind_param("ssiisi", $alias, $email, $age, $gender, $about, $this->uid);
                 if (!$stmt->execute())
                     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
                 else
@@ -556,6 +601,21 @@ see changePassword()
 
             
                     $stmt->close(); // close prepare statement
+                    if ($stmt = $mysqli->prepare($queries[1]))
+                    {
+                        $stmt->bind_param("ssii", $city, $state, $zipcode, $this->uid);
+                        if (!$stmt->execute())
+                        {
+                            $stmt->close();
+                            $database->close();
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        $database->close();
+                        return false;
+                    }
                     $database->close(); // close database connection
                 
                     return true; // update was successful
@@ -565,8 +625,10 @@ see changePassword()
             return false; // update was unsuccessful
         }
         
+        /* this function assumes the password has already been filtered for dangerous
+        characters (single quotes, etc.) */
         public function setPass($newPass)
-        {
+        {   
             $database = new DBConnection();
             $mysqli = $database->conn;
                     
@@ -1055,15 +1117,18 @@ see changePassword()
         }
         public function doGameListOp($gid, $filename)
         {
+            //echo 'hello';
             $database = new DBConnection();
             $mysqli = $database->conn;
             
             $query = file_get_contents(__DIR__ . "/dml/user_games/" . $filename);
+            //echo $query;
             if ($stmt = $mysqli->prepare($query))
             {
                 $stmt->bind_param("ii", $this->uid, $gid);
                 if (!$stmt->execute())
                     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+
                 $stmt->close(); // close prepare statement
                 $database->close(); // close database connection
                 
@@ -1080,7 +1145,40 @@ see changePassword()
         }
         public function removeGame($gid)
         {
-            return $this->doGameListOp($gid, "del_game_to_user's_games.sql");
+            return $this->doGameListOp($gid, "del_game_from_user's_games.sql");
+        }
+        public function doesUserHaveGame($gid)
+        {
+            
+            $database = new DBConnection();
+            $mysqli = $database->conn;
+            
+            $userHasGame = false;
+
+            $query = file_get_contents(__DIR__ . "/dml/user_games/search_user's_games.sql");
+            if ($stmt = $mysqli->prepare($query))
+            {
+                //echo "hello";
+                    //Get the stored salt and hash as $dbSalt and $dbHash
+                $stmt->bind_param("ii", $this->uid, $gid);
+                if (!$stmt->execute())
+                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            
+                    //  echo "hello2";
+                $stmt->store_result();
+                
+                $stmt->bind_result($game_id);
+                
+                $stmt->fetch();
+                
+                if ($stmt->num_rows > 0)
+                    $userHasGame = true;
+                
+            }
+            $stmt->close();
+            $database->close();
+            
+            return $userHasGame;
         }
         public function getGames()
         {
@@ -1100,13 +1198,13 @@ see changePassword()
                     //  echo "hello2";
                 $stmt->store_result();
                 
-                $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                $stmt->bind_result($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
                 
                 $games = NULL;
                 while ($stmt->fetch())
                 {
                   //  echo $name;
-                    $games[] = new Game($game_id, $name, $developer, $platform, $genre, $year, $type, $description);
+                    $games[] = new Game($game_id, $name, $developer, $platform, $genre, $year, $type, $description, $videoID);
                 }
             
                 $stmt->close(); // close prepare statement

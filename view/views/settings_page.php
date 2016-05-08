@@ -77,7 +77,7 @@
             
             
         </style>
-        <title>G-N Settings</title>  
+        <title>Gamer-Net | Settings</title>  
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
         
         <!-- Latest compiled and minified CSS -->
@@ -106,7 +106,7 @@
     </head>
     
     <body id="dg">
-    <form action="#" method="post">
+    <form action="settings" method="post">
         <?php require_once('view/views/navbar_component.php');
         ?>
 
@@ -138,9 +138,6 @@
                 <div class="col-lg-4 text-center">
                         <h2>Location Settings</h2>    
                 </div>
-                <div class="col-lg-4 text-center">
-                        <h2>Game Settings</h2>
-                </div>
                 </div>
                 <br>
 
@@ -153,7 +150,7 @@
                                 Alias
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Alias" name="alias">
+                                <input type="text" placeholder="<?php echo $data->alias;?>" name="alias">
                             </div>
                         </div>
                             <br>
@@ -162,7 +159,40 @@
                                 Public Email
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Public Email" name="publicEmail">
+                                <input type="text" placeholder="<?php echo $data->email;?>" name="email">
+                            </div>
+                        </div>
+                            <br>
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Age
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="number" placeholder="<?php echo $data->age;?>" name="age" min="1" max="150">
+                            </div>
+                        </div>
+                            <br>
+                        <div class="row">    
+                            <div class="col-md-3">
+                                Gender
+                            </div>
+                            <div class="col-md-offset-3">
+                                <input type="radio" name="gender" value="0"
+                                <?php if ($data->gender == 0)
+                                        echo "checked";
+                                ?>>M
+                                <input type="radio" name="gender" value="1"
+                                <?php if ($data->gender == 1)
+                                        echo "checked";
+                                ?>>F
+                                <input type="radio" name="gender" value="2"
+                                <?php if ($data->gender == 2)
+                                    echo "checked";
+                                ?>>Other
+                                <input type="radio" name="gender" value="3"
+                                <?php if ($data->gender == 3)
+                                    echo "checked";
+                                ?>>Don't Display
                             </div>
                         </div>
                             <br>
@@ -175,6 +205,18 @@
     <input id="input-2" name="input2[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true">
                             </div>
                         </div>
+                            <br>
+                        <div class="row">    
+                            <div class="col-md-3">
+                                About Me
+                            </div>
+                            <div class="col-md-offset-3">
+                                <textarea style="color: black"rows="4" cols="30" name="about"><?php
+                                    echo $data->about;
+                                ?></textarea>
+                            </div>
+                        </div>
+                            <br>
                             
                                 
                             
@@ -192,7 +234,9 @@
                                 City
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="City" name="city">
+                                <input type="text" placeholder="<?php
+                                    echo $data->city;
+                                ?>" name="city">
                             </div>
                         </div>
                         <br>
@@ -200,25 +244,25 @@
                             <div class="col-md-3">
                                 State
                             </div>
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="State" name="state">
-                            </div>
+                                <input type="text" placeholder="<?php
+                                    echo $data->state;
+                                ?>" name="state">
                         </div>
                         <br>
                         <div class="row">    
                             <div class="col-md-3">
                                 Zipcode
                             </div>
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Zipcode" name="zipcode">
-                            </div>
+                                <input type="number" max="99999" placeholder="<?php
+                                    echo ($data->zipcode == 0 ? "" : $data->zipcode);
+                                ?>" name="zipcode">
                         </div>
     
                             <br> 
                         </div>
                     </div>
                     
-                    
+                    <!--
                     <div class="col-lg-4">
                         <div class="card card-container">    
                         <br>    
@@ -243,114 +287,21 @@
                             <br>   
 
                         </div>
-            </div>
                     
+            </div>
+                    -->
             </div>
             <br>
                 
                 <div class="row">
                 <div class="col-sm-3 col-sm-offset-5">
-                    <button class="btn btn-success">Save Changes</button>
+                    <button name="changeUserInfoButton" class="btn btn-success">Save Changes</button>
                 </div>
             </div>
                 </form>    
             <br>
             <hr>
             <br>
-            
-            <form action="#" method="post">    
-            <div class="row"> 
-                <div class="col-lg-4"> </div>
-                    <div class="col-lg-4"> <h3 class="text-center">Add Game</h3>
-                        <br>
-                        <div class="card card-container">    
-                        <br> 
-                        <div class="row">    
-                            <div class="col-md-3">Name
-                            </div>
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Name" name="gameName">
-                            </div>
-                        </div>
-                            <br>
-                        <div class="row">    
-                            <div class="col-md-3">Developer
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Developer" name="gameDev">
-                            </div>
-                        </div>
-                             <br>
-                        <div class="row">    
-                            <div class="col-md-3">Platform
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Platform" name="gamePlat">
-                            </div>
-                        </div>
-                            
-                             <br>
-                        <div class="row">    
-                            <div class="col-md-3">Genre
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Genre" name="gameGenre">
-                            </div>
-                        </div>
-                            
-                             <br>
-                        <div class="row">    
-                            <div class="col-md-3">Year
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Year" name="gameYear">
-                            </div>
-                        </div> 
-                            
-                             <br>
-                        <div class="row">    
-                            <div class="col-md-3">Type
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Type" name="gameType">
-                            </div>
-                        </div>
-                            
-                             <br>
-                        <div class="row">    
-                            <div class="col-md-3">Description
-                            </div>
-                            
-                            <div class="col-md-offset-3">
-                                <input type="text" placeholder="Description" name="gameDesc">
-                            </div>
-                        </div>  
-                        
-                        </div>
-                    
-                    </div>
-                <div class="col-lg-4"> </div>
-            </div>
-                
-                <br>
-                    
-
-
-            
-           <div class="row">
-                <div class="col-sm-3 col-sm-offset-5">
-                    <button class="btn btn-success">Add Game</button>
-                </div>
-            </div>
-    </form>
-            
-            <br><hr><br>
-            
             
             <form action="settings" method="post">    
             <div class="row "> 
@@ -363,7 +314,7 @@
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Current Password" name="currentPassword">
+                                <input type="password" placeholder="Current Password" name="currentPassword">
                             </div>
                         </div>
                         <div class="row">    
@@ -371,7 +322,7 @@
                             </div>
                             <br>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="New Password" name="newPassword">
+                                <input type="password" placeholder="New Password" name="newPassword">
                             </div>
                         </div>  
                         <div class="row">    
@@ -379,7 +330,7 @@
                             </div>
                             <br>
                             <div class="col-md-offset-3">
-                                <input type="text" placeholder="Verify New Password" name="verifyPassword">
+                                <input type="password" placeholder="Verify New Password" name="verifyPassword">
                             </div>
                         </div>  
                         </div>
@@ -398,16 +349,15 @@
                 </div>
             </div>
     </form>
-    
+    <!--
             <br><br> <hr><br><br>
             <form method="post" action="#"> <!-- delete account php? -->
-            <div class="row">
+    <!--        <div class="row">
                 <div class="col-sm-3 col-sm-offset-5">
                     <button class="btn btn-danger">Delete Profile</button>
                 </div>
             </div>
-            </form>
-
+    -->
         </div><!--close panel body-->
     </div><!--close main-->
         
