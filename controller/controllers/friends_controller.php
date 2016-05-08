@@ -38,7 +38,6 @@ class Controller
         {
             $user->removeUser($_POST['Unblock']);
         }   
-        
         $data->friends = getFriends($user);
         return $data;
     }

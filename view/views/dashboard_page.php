@@ -62,7 +62,7 @@
         </style>
     </head>
     <body id="dg">
-        <?php require_once(__DIR__ . '/navbar_component.php'); ?>
+        <?php require_once(__DIR__ . '/navbar_component.php');?>
         
         
         <div class="container-fixed container">
