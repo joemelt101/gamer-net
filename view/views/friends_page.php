@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        <title>This is my page!</title>  
+        <title>Gamer-net | Friends</title>  
         <!-- Import Libraries Dynamically so as to change in only one spot... -->      
         
         <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -80,6 +80,7 @@
                                     <h4><?php echo $friend->username;?></h4>
                                 </a>
                                 <h5><?php echo $friend->type;?></h5>
+                                <h5><?php echo $friend->gender;?></h5>
                                 <h5>Age: <?php echo $friend->age;?></h5>
                                 <h5>Location: 
                                     <?php 
@@ -92,8 +93,7 @@
                                             echo "unknown";
                                     ?>
                                 </h5>
-                                <h5>Gender: <?php echo $friend->gender;?></h5>
-                                <h5>Availabile: <?php echo $friend->status;?></h5>
+                                <h5><?php echo $friend->status;?></h5>
                             </div>
                             <div class="col-sm-4">
                                 
@@ -116,14 +116,14 @@
                                     $buttonLabel = "Cancel";
                                 else if ($friend->type == "wants to be friends")
                                 {
-                                    echo "<button type='submit' class='btn btn-primary' name='Accept' value='", $value, "'>Accept</button>";
+                                    echo "<button id='", $value, "' type='submit' class='btn btn-primary' name='Accept' value='", $value, "'>Accept</button>";
                                     $buttonLabel = "Decline";
                                 }
                                 else
                                     $buttonLabel = "Unblock";
                      
                                 
-                                echo "<button type='submit' class='btn btn-primary' name='", $buttonLabel, "' value='", $value, "'>", $buttonLabel, "</button>";
+                                echo "<button id='", $value, "'type='submit' class='btn btn-primary' name='", $buttonLabel, "' value='", $value, "'>", $buttonLabel, "</button>";
                             ?>
                         </div>
                             

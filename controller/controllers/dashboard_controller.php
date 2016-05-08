@@ -10,6 +10,11 @@ class Controller
     {
         $data = new stdClass();
         $user = NULL;
+        if (isLoggedIn())
+        {
+            $data->loggedUser = User::loadByID($_SESSION['user']);
+        }
+        
         if (!isset($_GET['user'])) //this is the logged in user's dashboard
         {
             // user should not be able to view self dashboard if not logged in
@@ -18,13 +23,15 @@ class Controller
             
             // session variable will be assigned thanks to above control statement
             $user = User::loadByID($_SESSION['user']);
+            $data->username = $user->getUsername();
         }
         else // this is a different user's dashboard
         {
             $user = User::loadByUsername($_GET['user']);
             if (isLoggedIn())
             {
-                $data->loggedUser = User::loadByID($_SESSION['user']);
+                if ($data->loggedUser->getUsername() == $user->getUsername())
+                    redirect("dashboard");
             }
         }
         
@@ -41,10 +48,13 @@ class Controller
                 $data->loggedUser->removeUser($data->uid);
             else if ($value == "Accept Request")
                 $data->loggedUser->acceptFriend($data->uid);
+            
+            redirect("user/" . $user->getUsername());
         }
         else if (isset($_POST['blockButton']))
         {
             $data->loggedUser->block($data->uid);
+            redirect("user/" . $user->getUsername());
         }
         
         $data->alias = $user->getAlias();
@@ -69,7 +79,13 @@ class Controller
         // function located in helper.php
         $data->friends = getFriends($user);
         $data->location = $user->getLocation();
-        $data->about = $user->getAbout();
+        $data->about = str_replace("\n", "<br>", $user->getAbout());
+        $data->email = $user->getEmail();
+        
+        $gender = $user->getGender();
+        $data->gender = getGenderString($gender); // helper.php
+        $data->age = $user->getAge();
+        $data->status = getStatusString($user->getOnlineStatus());
         
         return $data;
     }

@@ -2,7 +2,7 @@
 <!-- GAMER-NET - SEARCH PAGE -->
 <html>
     <head>
-        <title>Gamer-net -- Search</title>
+        <title>Gamer-Net | Search</title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
         <?php require_once('view/views/includes.php'); ?>
         <style>
@@ -56,15 +56,15 @@
             <div class='panel-heading'>
                 <div class='row'>
                     <div class='col-xs-12'>
-                        <form action='search' method='POST' class='input-group input-group-sm'>
-                           <input name='searchBox' type='text'class='form-control' placeholder='Search'>
+                        <form action='<?php echo($relativePath);?>search/' method='GET' class='input-group input-group-sm'>
+                           <input name='s' type='text'class='form-control' placeholder='Search'>
                            <div class='input-group-btn'>
                             <!--    <button type='submit' class='btn btn-default'>
                                     <span class='glyphicon glyphicon-search'></span>
                                 </button>-->
-                                <button type='submit' id='userSearch' name='searchType' value='userSearch' class='btn btn-default'>Username</button>
-                                <button type='submit' id='gameSearch' name='searchType' value='gameSearch' class='btn btn-default'>Game</button>
-                                <button type='submit' id='locationSearch' name='searchType' value='locationSearch' class='btn btn-default'>Location</button>
+                                <button type='submit' id='game' name='type' value='game' class='btn btn-default'>Game</button>
+                               <button type='submit' id='user' name='type' value='user' class='btn btn-default'>Username</button>
+                                <button type='submit' id='location' name='type' value='location' class='btn btn-default'>Location</button>
                            </div>
                         </form>
                     </div>
@@ -74,22 +74,49 @@
             <div class='panel-body fixed-container'>
                 <?php
                 if (isset($data->games))
-                    foreach($data->games as $game)
-                    {
-                        echo $game->getName(), "<br>";
-                    }
-                else if (isset($data->users))
-                    foreach ($data->users as $user)
+                    foreach ($data->games as $game)
                 {?>
                 <div class='user row'>
-                    <a href = "user/<?php echo $user->username;?>">
+                    <a href = "<?php echo $relativePath, "game/", $game->getGID();?>">
                         <div class='picture col-xs-4'>
-                            <img src="view/images/face.jpg" alt="..." class="img-circle">
+                            <img src="<?php echo($relativePath);?>view/images/face.jpg" alt="..." class="img-circle">
                         </div>
                     </a>
                     <div class='info col-xs-8'>
                         <div class='username row'>
-                            <a href = "user/<?php echo $user->username;?>">
+                            <a href="<?php echo $relativePath, "game/", $game->getGID();?>">
+                                <h1><?php echo $game->getName();?></h1>
+                            </a>
+                            <h3><?php echo $game->getDeveloper();?></h3>
+                            <h5><?php
+                                    if ($game->getType() == 0)
+                                        echo $game->getPlatform();
+                                    else
+                                        echo "Board Game";
+                                ?></h5>
+                            
+                            <div>
+                            <?php
+                            if ($data->isLoggedUser)
+                                echo "<button id='", $game->getGID(), "' type='submit' class='btn btn-secondary btn-sm' name='removeGame' value='", $game->getGID(), "'>Remove</button>";
+                            ?>
+                            </div>
+                        </div>
+                    </div>
+                </div><?php
+                }
+                else if (isset($data->users))
+                    foreach ($data->users as $user)
+                {?>
+                <div class='user row'>
+                    <a href = "<?php echo $relativePath, "user/", $user->username;?>">
+                        <div class='picture col-xs-4'>
+                            <img src="<?php echo($relativePath);?>view/images/face.jpg" alt="..." class="img-circle">
+                        </div>
+                    </a>
+                    <div class='info col-xs-8'>
+                        <div class='username row'>
+                            <a href = "<?php echo $relativePath, "user/", $user->username;?>">
                                 <h1><?php echo $user->alias?></h1>
                             </a>
                             <?php
@@ -99,21 +126,25 @@
                         </div>
                         <div class='userfriends row'>
                             <h4>Friends</h4>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
-                            <img src="view/images/face.jpg" alt='...' width='30' height='30'>
+                            <?php
+                                for ($i = 0; $i < 5; $i++)
+                                {
+                                    ?>
+                                    <img src="<?php echo($relativePath);?>view/images/face.jpg" alt='...' width='30' height='30'>
+                                    <?php
+                                }
+                            ?>
                         </div>
                         <div class='games row'>
                             <h4>Games</h4>
-                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
-                            <img src="view/images/game_icon.jpg" alt="..." width='30' height='30'>
+                            <?php
+                                for ($i = 0; $i < 5; $i++)
+                                {
+                                    ?>
+                                    <img src="<?php echo($relativePath);?>view/images/game_icon.jpg" alt='...' width='30' height='30'>
+                                    <?php
+                                }
+                            ?>
                         </div>
                     </div>
                 </div><?php
@@ -121,7 +152,13 @@
                 else if (isset($data->locations))
                     foreach ($data->locations as $location)
                     {
-                        echo $location->getCity(), ", ", $location->getState(), " ", $location->getZip(), "<br>";
+                        $user = $location->getUser();
+                        $uname = $user->getUsername();
+                        echo '<a href="', $relativePath, 'user/' , $uname, '">', $uname, "</a> -> ";
+                        $zipcode = $location->getZip();
+                        if ($zipcode == 0)
+                            $zipcode = "";
+                        echo $location->getCity(), ", ", $location->getState(), " ", $zipcode, "<br>";
                     }
                 ?>
             </div>

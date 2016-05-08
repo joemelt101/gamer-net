@@ -7,7 +7,7 @@
             if (isset($_GET['user']))
                 echo "Profile | ", $data->alias;
             else
-                echo "Dashboard";
+                echo "Gamer-Net | Dashboard";
         ?></title>
         <!-- Import Libraries Dynamically so as to change in only one spot... -->
         <?php require_once(__DIR__ . '/includes.php'); ?>
@@ -17,6 +17,18 @@
                 display: block;
                 color: inherit;
                 text-decoration: inherit;
+            }
+            
+            a.page
+            {
+                display: block;
+                color: steelblue;
+                text-decoration-line: underline;
+            }
+            a.page:hover
+            {
+                display: block;
+                color: inherit;
             }
             
             a:hover {
@@ -95,7 +107,8 @@
                                         }
                         ?>
                             <form action="" method="POST">
-                                <div class="col-sm-3">    
+                                <div class="col-sm-3">
+                                    <h3></h3>
                                     <input class="btn btn-default" name="friendButton" type=submit value="<?php echo $value;?>">
                                 </div>
                                 <?php
@@ -103,6 +116,7 @@
                                     {?>
                                 
                                     <div class="col-sm-2">
+                                    <h3></h3>
                                     <input class="btn btn-default" name="blockButton" type="submit" value="Block">
                                     </div>
                                 
@@ -128,12 +142,20 @@
                             
                             <!-- Link to Friends -->
                             <?php 
-                                if ($_GET['user'] != $friend->username) {
-                                    echo "<h3>Friends</h3>";
+                                if (isset($_GET['user']))
+                                {
+                                    if (isset($data->loggedUser))
+                                    {
+                                        // prevents user from viewing their own profile as if it were someone else's profile
+                                        if ($_GET['user'] == $data->loggedUser->getUsername())
+                                            redirect("dashboard");
+                                    }
+
+                                        echo "<h3>Friends</h3>";
                                 }
-                                else {
-                                    echo "<a href = \"friends\"><h3>Friends</h3></a>";
-                                }
+                                else // user is logged on and at their own dashboard
+                                    echo "<a class='page' href = \"friends\"><h3>Friends</h3></a>";
+                            
                             ?>
                             <div class="row">
                                 <?php
@@ -174,8 +196,27 @@
                             
                             <!-- Link to Friends -->
                             <div class="top30">
-                                <h3>Games You Play</h3>
-
+                                <div class="row">
+                                <?php
+                                    $username = "NULL";
+                                    if (isset($_GET['user']))
+                                        $username = $_GET['user'];
+                                    else
+                                        $username = $data->username;
+                                    echo '<div class="col-sm-4">';
+                                    echo '<a class="page" href="', $relativePath, 'gameList/', $username, '"><h3>Game List</h3></a>';
+                                    echo '</div>';
+                                    if (!isset($_GET['user']))
+                                    {?>
+                                    <div>
+                                            <a href="addGame"><h3></h3>
+                                                <button class="btn btn-primary btn-sm">Add Game</button></a>
+                                    </div>
+                                    <?php
+                                    }
+                                    
+                                ?>
+                                </div>
                                 <div class="row">
                                 <?php
                                     if (isset($data->games))
@@ -185,7 +226,10 @@
                                         for ($i = 0; $i < $numOfGames && $i < 6; $i++)
                                         {?>
                                     <div class="col-sm-2 dark">
-                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br /><?php echo $games[$i]->getName(); ?></p>
+                                        <a href="<?php echo $relativePath, "game/", $games[$i]->getGID();?>">
+                                        <p class="text-center"><span class="glyphicon text-large glyphicon-knight"></span><br />
+                                            <?php echo $games[$i]->getName();?>
+                                        </a>
                                     </div>
                                     <?php
                                         }
@@ -196,7 +240,7 @@
                             <!-- About Me -->
                             <div class="top30">
                                 <h3>About Me</h3>
-                                <?php echo $data->about;?>
+                                <p style="word-wrap: break-word;"><?php echo $data->about;?></p>
                             </div>
                             
                         </div>
@@ -210,15 +254,28 @@
                                     <span class="profile-image glyphicon glyphicon-user text-large"></span>
                                 </div>
                             </div>
-                            
+                            <div>
+                                <h5><?php
+                                    if (isset($data->loggedUser))
+                                    {
+                                        if ($data->loggedUser->getUID() != $data->uid)
+                                            echo $data->status;
+                                    }
+                                    else
+                                        echo $data->status;
+                                    ?></h5>
+                                <h5><?php 
+                                        echo $data->gender;
+                                    ?></h5>
+                                <h5><?php
+                                        echo "Age: ", $data->age, "<br>";
+                                    ?></h5>
+                            </div>
                             <div>
                                 <h4>Contact Information:</h4>
-                        <!--        <address>
-                                  <strong>Twitter, Inc.</strong><br>
-                                  1355 Market Street, Suite 900<br>
-                                  San Francisco, CA 94103<br>
-                                  <abbr title="Phone">P:</abbr> (123) 456-7890
-                                </address> -->
+                                <?php
+                                    echo $data->email;
+                                ?><br>
                                 <address>
                                     <?php
                                         $location = $data->location;
@@ -226,7 +283,7 @@
                                             echo $location[0];
                                         if (isset($location[1]))
                                         {
-                                            if (isset($location[0]))
+                                            if (!empty($location[0]) && $location[2] != 0)
                                                 echo ", ";
                                             echo $location[1];
                                         }
@@ -234,10 +291,11 @@
                                         {
                                             if (isset($location[0]) || isset($location[1]))
                                                 echo " ";
-                                            echo $location[2];
+                                            echo ($location[2] == 0 ? "" : $location[2]);
                                         }
                                     ?><br>
                                 </address>
+                                
                                 
                                 
                              <!-- this should only be shown if user is viewing another user's profile   

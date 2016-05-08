@@ -6,39 +6,31 @@ class Controller
     {
         $data = NULL;
         
-        if (isset($_POST['searchBox']))
+        if (isset($_GET['s']))
         {
-            $searchString = $_POST['searchBox'];
-            if (isset($_POST['searchType']))
+            $searchString = $_GET['s'];
+            //echo $searchString;
+
+            $data = new stdClass();
+            
+            if (isset($_GET['type']))
             {
-                $data = new stdClass();
-                
-                $searchType = $_POST['searchType'];
+                $searchType = $_GET['type'];
+                //echo $searchType;
                 switch ($searchType)
                 {
-                    case "userSearch":
+                    case "user":
                         $data->users = User::searchUser($searchString);
                         break;
-                    case "gameSearch":
+                    case "game":
                         $data->games = Game::searchGame($searchString);
                         break;
                     default: //location
                         $data->locations = Location::searchLocation($searchString);
                         break;
                 }
-                
-                
-                
             }
-            
         }
-        
-
-        
-        
-        
-        
-        
         return $data;
     }
 }

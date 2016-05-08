@@ -27,6 +27,49 @@
         }
     }
 
+    function getDistance($zip1, $zip2)
+    {
+        $json = explode(":", file_get_contents("https://www.zipcodeapi.com/rest/1kLviFVVGgQuzF4GzxpQCFlh12iFQfUSzGnSliN1zEw9jBPS8fJKU52V7kAYAvQ9/distance.json/" . $zip1 . "/" . $zip2 . "/mile"));
+        $json = explode("}", $json[1]);
+        return $json[0];
+    }
+
+    function getGenderString($genderType, $needLabel)
+    {
+        $gender = "";
+        if ($needLabel)
+            $gender = "Gender: ";
+        switch ($genderType)
+        {
+            case 0:
+                $gender .= "Male";
+                break;
+            case 1:
+                $gender .= "Female";
+                break;
+            case 2:
+                $gender .= "Other";
+                break;
+            default: // default is don't display, so a display string isn't necessary
+                $gender = "";
+                break;
+        }
+        return $gender;
+    }
+    function getStatusString($status)
+    {
+        $statusString;
+        switch($status)
+        {
+            case 0:
+                $statusString = "Offline";
+                break;
+            default:
+                $statusString = "Online";
+                break;
+        }
+        return $statusString;
+    }
     
     function getFriends($user)
     {
@@ -51,8 +94,9 @@
                 $friend->username = $fUser->getUsername();
                 $friend->alias = $fUser->getAlias();
                 $friend->age = $fUser->getAge();
-                $friend->gender = $fUser->getGender();
-                $friend->status = $fUser->getOnlineStatus();
+                $friend->gender = getGenderString($fUser->getGender());
+                
+                $friend->status = getStatusString($fUser->getOnlineStatus());
                 $friend->location = $fUser->getLocation(); // array containing city, state, zip code
                 if ($type != 3)
                 {
@@ -98,5 +142,4 @@
         }
         return $friends;
     }
-
 ?>
