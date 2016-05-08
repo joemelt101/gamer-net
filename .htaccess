@@ -1,10 +1,9 @@
 #prevents users from being able to see active directory
-#Options -Indexes
 Options FollowSymLinks
 
 
-#custom 404 page
 
+#custom 404 page
 
 
 RewriteEngine On

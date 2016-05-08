@@ -99,7 +99,7 @@
                 {?>
                                    <div class="user row">
 
-                <div class="col-lg-4 text-center">
+                <div class="col-lg-12 text-center">
                         <h1>Gamers Playing: <?php echo '<a href="', $relativePath, 'game/', $data->gid, '">', $data->gameName, '</a>';?></h1>
                         <br>
                 </div>
